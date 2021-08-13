@@ -17,22 +17,67 @@
             nav {
                 background: rgb(117, 127, 130);
                 margin: 0 auto;
+                margin-bottom: 20px;
                 display: flex;
                 padding: 10px;
+                border-radius: 10px;
+            }
+            h1 {
+                display: flex;
+                align-items: center;
+                color: white;
+                flex: 1;
+                margin: 0;
+            }
+            #nav-ul {
+                list-style-image: none;
+            }
+            .nav-li {
+                display:inline-block;
+                padding: 0 10px;
+            }
+            a {
+                text-decoration: none;
+                color: #fff;
+            }
+
+            /* Main Content Area Below Menu*/
+
+            main {
+                background: rgb(102, 108, 110);
+                display: flex;
+            }
+            .sidebar {
+                margin-right: 25px;
+                padding: 10px;
+            }
+            .sidebar-img {
+                width: 200px;
+            }
+            .content {
+                flex: 1;
+                padding: 15px;
+            }
+            #interests {
+                border: 4px silver ridge;
+                padding: 8px;
+            }
+            h2, h3{
+                margin: 0px;
             }
         </style>
     </head>
     
     <body>
         <!--All Content Goes Here-->
-        <div>
+        <div id="all-contents">
             <nav>
                 <h1>Ryan's Buggy Website</h1>
-                <ul>
-                    <li>
+                <ul id="nav-ul">
+                    <li class="nav-li">
                         <a href="index.html"> Home </a>
                     </li>
-                    <li>
+                    <li class="nav-li">
                         <a href="portfolio.html"> Portfolio </a>
                     </li>
                 </ul>
@@ -41,16 +86,16 @@
 
             <main>
                 <!--Sidebar Section-->
-                <div>
-                    <img src="https://www.formula1.com/content/fom-website/en/teams/McLaren/_jcr_content/gallery/image3.img.640.medium.jpg/1615540546800.jpg">
+                <div class= "sidebar">
+                    <img class="sidebar-img" src="https://www.formula1.com/content/fom-website/en/teams/McLaren/_jcr_content/gallery/image3.img.640.medium.jpg/1615540546800.jpg">
                 </div>
 
                 <!--Content Section-->
-                <div>
+                <div class= "content">
                     <h2>Ryan</h2>
                     <p>Student at Belle Chasse High School</p>
                     
-                    <div>
+                    <div id= "interests">
                         <h3>Interests</h3>
                         <u1>
                             <li>Formula 1</li>
