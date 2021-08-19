@@ -4,7 +4,7 @@
         <title>Ryan's Website</title>
         <style>
             body {
-                background: rgb(102, 108, 110);
+                background-image: linear-gradient(to bottom right, #1A1C19, #254F7F);
                 color: rgb(45, 45, 45);
                 padding: 10px;
                 font-family: arial;
@@ -15,7 +15,7 @@
             }
             /* navigation menu */
             nav {
-                background: rgb(117, 127, 130);
+                background: #0478A9;
                 margin: 0 auto;
                 margin-bottom: 20px;
                 display: flex;
@@ -25,9 +25,12 @@
             h1 {
                 display: flex;
                 align-items: center;
-                color: white;
+                color: #E9E9E9;
                 flex: 1;
                 margin: 0;
+                display: block;
+                padding-top: 10px;
+                padding-left: 15px;
             }
             #nav-ul {
                 list-style-image: none;
@@ -38,13 +41,13 @@
             }
             a {
                 text-decoration: none;
-                color: #fff;
+                color: #E9E9E9;
             }
 
             /* Main Content Area Below Menu*/
 
             main {
-                background: rgb(102, 108, 110);
+                background: #254F7F;
                 display: flex;
             }
             .sidebar {
@@ -52,18 +55,31 @@
                 padding: 10px;
             }
             .sidebar-img {
-                width: 200px;
+                
             }
             .content {
                 flex: 1;
                 padding: 15px;
+                font-family:'Times New Roman', Times, serif;
+                color: #E9E9E9;
             }
             #interests {
-                border: 4px silver ridge;
+                border: 4px solid #FF9014;
                 padding: 8px;
+                display: inline-block;
             }
             h2, h3{
                 margin: 0px;
+            }
+            img {
+                position: absolute;
+                top: 100px;
+                right: 100px;
+                width: 576px;
+                height: 324px;
+
+
+
             }
         </style>
     </head>
@@ -87,7 +103,7 @@
             <main>
                 <!--Sidebar Section-->
                 <div class= "sidebar">
-                    <img class="sidebar-img" src="https://www.formula1.com/content/fom-website/en/teams/McLaren/_jcr_content/gallery/image3.img.640.medium.jpg/1615540546800.jpg">
+                    <img class="sidebar-img" src="https://f1beat.com/wp-content/uploads/2021/05/Gulf20MCL3520hero203.jpg">
                 </div>
 
                 <!--Content Section-->
@@ -97,6 +113,7 @@
                     
                     <div id= "interests">
                         <h3>Interests</h3>
+                        <br>
                         <u1>
                             <li>Formula 1</li>
                             <li>XC and Track</li>
