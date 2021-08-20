@@ -53,10 +53,7 @@
                 margin-right: 25px;
                 padding: 10px;
             }
-            .sidebar-img {
-                
-            }
-            .content {
+            .content, #interests {
                 flex: 1;
                 padding: 15px;
                 font-family:'Times New Roman', Times, serif;
@@ -65,21 +62,35 @@
                 display: inline-block;
             }
             #interests {
-                border: 4px solid #FF9014;
-                padding: 8px;
-                display: inline-block;
+                padding: 8px; 
             }
             h2, h3{
                 margin: 0px;
             }
-            img {
+            .imgRight{
                 position: absolute;
-                top: 100px;
-                right: 100px;
+                top: 410px;
+                right: 15px;
                 width: 570px;
                 height: 320px;
                 border: 5px groove #E9E9E9;
             }
+            .imgLeft{
+                position: absolute;
+                top: 410px;
+                left: 15px;
+                width: 570px;
+                height: 320px;
+                border: 5px groove #E9E9E9;
+            }
+            #milesplit {
+                background-color: #0478A9;
+                padding: 2px;
+                border: 2px solid #E9E9E9;
+                
+
+            }
+
         </style>
     </head>
     
@@ -102,8 +113,9 @@
             <main>
                 <!--Sidebar Section-->
                 <div class= "sidebar">
-                    <img class="sidebar-img" src="https://f1beat.com/wp-content/uploads/2021/05/Gulf20MCL3520hero203.jpg">
+                    <img class="imgRight" src="https://f1beat.com/wp-content/uploads/2021/05/Gulf20MCL3520hero203.jpg">
                 </div>
+                <img class="imgLeft" src="https://www.thehindu.com/sci-tech/technology/hb692j/article33655166.ece/ALTERNATES/LANDSCAPE_1200/SpaceX-reuters-2jpg">
 
                 <!--Content Section-->
                 <div class= "content">
@@ -119,6 +131,11 @@
                             <li>Aerospace Engineering</li>
                         </u1>
                     </div>
+            
+            <br>
+            <br>
+            <a id="milesplit" href="https://la.milesplit.com/athletes/10175331-ryan-miller">MILESPLIT</a>
+
 
 
                 </div>
