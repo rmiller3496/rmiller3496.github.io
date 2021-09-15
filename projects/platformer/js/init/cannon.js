@@ -27,11 +27,16 @@
         // ALL YOUR CODE GOES BELOW HERE ///////////////////////////////////////
         
         // example: 
-        createCannon("top", 450);
-        createCannon("top", 95, 3000);
-        createCannon("bottom", 700);
-
         
+        var theLeft = 25;
+        var theDelay = 0;
+        
+        for (var i = 0; i < 35; i++ ) {
+            createCannon("top", theLeft, theDelay);
+            theLeft += 25;
+            theDelay += 200;
+        }
+
         
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
