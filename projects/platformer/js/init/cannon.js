@@ -31,12 +31,16 @@
         var theLeft = 25;
         var theDelay = 0;
         
-        for (var i = 0; i < 35; i++ ) {
-            createCannon("top", theLeft, theDelay);
-            theLeft += 25;
-            theDelay += 200;
+        function extraLevel() {
+            for (var i = 0; i < 35; i++ ) {
+                createCannon("top", theLeft, theDelay);
+                theLeft += 25;
+                theDelay += 200;
+            }
         }
 
+        createCannon("top", 100);
+        createCannon("top", 200);
         
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
