@@ -5,8 +5,8 @@
     let 
         opspark = window.opspark,
         animations = {},
-        spawnX = 30,
-        spawnY = 50;
+        spawnX = 10,
+        spawnY = 600;
         
     opspark.createPlayer = function (game) {
         let 
@@ -320,7 +320,7 @@
     
         //  Player physics properties. Give the little guy a slight bounce.
         asset.body.bounce.y = 0.4;
-        asset.body.gravity.y = 900;
+        asset.body.gravity.y = 75;
         // {"w":69,"h":107}
         asset.body.setSize(22, 95, 0, -3);
         asset.body.collideWorldBounds = true;

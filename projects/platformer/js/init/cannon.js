@@ -27,20 +27,20 @@
         // ALL YOUR CODE GOES BELOW HERE ///////////////////////////////////////
         
         // example: 
-        
+        /*
         var theLeft = 25;
         var theDelay = 0;
         
-        function extraLevel() {
             for (var i = 0; i < 35; i++ ) {
                 createCannon("top", theLeft, theDelay);
                 theLeft += 25;
                 theDelay += 200;
             }
-        }
+        */
 
-        createCannon("top", 100);
-        createCannon("top", 200);
+        createCannon("top", 75);
+        createCannon("top", 425);
+        createCannon("top", 675);
         
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////
