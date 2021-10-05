@@ -17,7 +17,7 @@
 			left: 250px;  /* <--- Change me! */
 		}
 		.scorebox {
-			width: 100px;
+			width: 120px;
 			height: 60px;
 			background-color: whitesmoke;
 			font-size: 300%;
@@ -25,7 +25,7 @@
 			display: block;
 			position: absolute;
 			top: 0px;
-			left: 641.5px;  
+			left: 631.5px;  
 		}
 		.line {
 			width: 1px;
@@ -41,15 +41,46 @@
 			height: 100vh;
 			background-image: url("https://www.enjpg.com/img/2020/outer-space-background-7.jpg")
 		}
+		.side1 {
+			width: 690px;
+			height: 1500px;
+			left: 0px;
+			top: 0px;
+			display: block;
+			position: absolute;
+			
+		}
+		.side2 {
+			width: 700px;
+			height: 1500px;
+			left: 690px;
+			top: 0px;
+			display: block;
+			position: absolute;
+			
+		}
+		.box {
+			width: 70px;
+			height: 70px;
+			background-color: teal;
+			font-size: 300%;
+			text-align: center;
+			display: block;
+			position: absolute;
+			top: 100px;
+			left: 250px;  /* <--- Change me! */
+		}
 	</style>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 <body class="board">
 	<!-- HTML for the box -->
-	<div class="box">0</div>
 	<div class="scorebox">0-0</div>
 	<div class="line"></div>
+	<div class="side1"></div>
+	<div class="side2"></div>
+	<div class="box">0</div>
 
 	<script>
 		(function(){
@@ -64,11 +95,15 @@
 			var board = jQuery('.board');	// reference to the HTML .board element
 			var boardWidth = board.width() - 50;	// the maximum X-Coordinate of the screen
 			var boardHeight = jQuery(window).height();
+			var side1 = jQuery('.side1');
+			var side2 = jQuery('.side2');
 
 			// Every 50 milliseconds, call the update Function (see below)
 			setInterval(update, 50);
 			
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
+			side1.on('click', misClickPenalty1);
+			side2.on('click', misClickPenalty2);
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
@@ -86,7 +121,15 @@
 				scorebox.text(newText);
 			}
 
+			function misClickPenalty1(){
+				player1 -= 1;
+				changeScoreBoxText(player1 + " - " + player2);
+			}
 			
+			function misClickPenalty2(){
+				player2 -= 1;
+				changeScoreBoxText(player1 + " - " + player2);
+			}
 
 			//////////////////////////////////////////////////////////////////
 			/////////////////// YOUR CODE BELOW HERE /////////////////////////
@@ -160,7 +203,7 @@
 				
 				box.css("background-color", randomColorGenerator());
 				changeBoxText(boxPoints);
-				changeScoreBoxText(player1 + "-" + player2);
+				changeScoreBoxText(player1 + " - " + player2);
 
 			};
 
