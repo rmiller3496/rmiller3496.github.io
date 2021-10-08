@@ -20,7 +20,7 @@ var accountLocation = 0;
 //Create  An Account
 
 function createAccount() {
-  var initalDepositAmount = 0;
+  var initialDepositAmount = 0;
 
   //Create Account Data
   var step1 = confirm("Welcome! To Get Started Creating Your Account, Press OK");

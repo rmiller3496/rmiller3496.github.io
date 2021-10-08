@@ -5,17 +5,6 @@
 	<title>Bouncing Box</title>
 	<script src="jquery.min.js"></script>
 	<style>
-		.box {
-			width: 70px;
-			height: 70px;
-			background-color: teal;
-			font-size: 300%;
-			text-align: center;
-			display: block;
-			position: absolute;
-			top: 100px;
-			left: 250px;  /* <--- Change me! */
-		}
 		.scorebox {
 			width: 120px;
 			height: 60px;
@@ -59,7 +48,7 @@
 			position: absolute;
 			
 		}
-		.box {
+		.box1 {
 			width: 70px;
 			height: 70px;
 			background-color: teal;
@@ -69,6 +58,17 @@
 			position: absolute;
 			top: 100px;
 			left: 250px;  /* <--- Change me! */
+		}
+		.box2 {
+			width: 70px;
+			height: 70px;
+			background-color: teal;
+			font-size: 300%;
+			text-align: center;
+			display: block;
+			position: absolute;
+			top: 100px;
+			left: 830px;
 		}
 	</style>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -80,10 +80,11 @@
 	<div class="side2"></div>
 	<div class="scorebox">0 | 0</div>
 	<div class="line"></div>
-	<div class="box"></div>
+	<div class="box1"></div>
+	<div class="box2"></div>
 
 	<script>
-		(function(){
+		
 			'use strict'
 			/* global jQuery */
 
@@ -91,12 +92,30 @@
 			/////////////////// SETUP DO NOT DELETE //////////////////////////
 			//////////////////////////////////////////////////////////////////
 			var scorebox = jQuery('.scorebox');
-			var box = jQuery('.box');	// reference to the HTML .box element
+			var box1 = jQuery('.box1');
+			var box2 = jQuery('.box2');	// reference to the HTML .box element
 			var board = jQuery('.board');	// reference to the HTML .board element
 			var boardWidth = board.width() - 50;	// the maximum X-Coordinate of the screen
 			var boardHeight = jQuery(window).height();
 			var side1 = jQuery('.side1');
 			var side2 = jQuery('.side2');
+
+			changeBoxText(0, 1);
+			changeBoxText(0, 2);
+			var positionX = 0;
+			var positionY = 0;
+			var speedX = 3;
+			var speedY = 3;
+			var player1 = 0;
+			var player2 = 0;
+			var positionX2 = 0;
+			var positionY2 = 0;
+			var speedX2 = 3;
+			var speedY2 = 3;
+
+			var boxPoints = 0;
+			var boxPoints2 = 0;
+
 
 			// Every 50 milliseconds, call the update Function (see below)
 			setInterval(update, 16.7);
@@ -104,17 +123,30 @@
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			side1.on('click', misClickPenalty1);
 			side2.on('click', misClickPenalty2);
-			box.on('click', handleBoxClick);
+			box1.on('click', handleBoxClick);
+			box2.on('click', handleBoxClick2);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX, newPositionY) {
-				box.css("left", newPositionX);
-				box.css("top", newPositionY)
+			function moveBoxTo(newPositionX, newPositionY, num) {
+				if (num === 1){
+					box1.css("left", newPositionX);
+					box1.css("top", newPositionY);
+				}
+				if (num === 2){
+					box2.css("left", newPositionX);
+					box2.css("top", newPositionY);
+				}
+				
 			}
 
 			// changes the text displayed on the Box
-			function changeBoxText(newText) {
-				box.text(newText);
+			function changeBoxText(newText, nums) {
+				if (nums === 1){
+					box1.text(newText);
+				}
+				if (nums === 2){
+					box2.text(newText)
+				}
 			}
 
 			function changeScoreBoxText(newText) {
@@ -136,16 +168,8 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
-			changeBoxText(0);
-			var positionX = 0;
-			var positionY = 0;
-			var boxPoints = 0;
-			var speedX = 3;
-			var speedY = 3;
-			var player1 = 0;
-			var player2 = 0;
-
 			
+
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
@@ -164,9 +188,21 @@
 				}
 				positionX = positionX + speedX;
 				positionY = positionY + speedY;
-				moveBoxTo(positionX, positionY);
+				moveBoxTo(positionX, positionY, 1);
 
-				
+				if (positionX2 > boardWidth){
+					speedX2 = speedX2 * -1;
+				} else if (positionX2 < 0){
+					speedX2 = speedX2 * -1;
+				}
+				if (positionY2 > boardHeight) {
+					speedY2 = speedY2 * -1;
+				} else if (positionY2 < 0){
+					speedY2 = speedY2 * -1;
+				}
+				positionX2 = positionX2 + speedX2;
+				positionY2 = positionY2 + speedY2;
+				moveBoxTo(positionX2, positionY2, 2);
 				
 			};
 
@@ -175,40 +211,77 @@
 			it should increase the points total, increase the speed, and move the box to
 			the left side of the screen.
 			*/
+			
 			function handleBoxClick() {
-				if (positionX < (boardWidth / 2)){
-					player1 += 1;
-				} else if (positionX > (boardWidth / 2)){
-					player2 += 1;
-				}
-				
-				
-				positionX = Math.random() * boardWidth;
-				positionY = Math.random() * boardHeight;
-				boxPoints = boxPoints + 1;
-				
-				if (boxPoints % 3 === 0){
-					if (speedX > 0){
-						speedX += Math.random() * 2;
-					} else if (speedX < 0){
-						speedX -= Math.random() * 2;
+				console.log("it ran");
+					if (positionX < (boardWidth / 2)){
+						player1 += 1;
+					} else if (positionX > (boardWidth / 2)){
+						player2 += 1;
 					}
+					
+					
+					positionX = Math.random() * boardWidth;
+					positionY = Math.random() * boardHeight;
+					boxPoints = boxPoints + 1;
+					
+					if (boxPoints % 3 === 0){
+						if (speedX > 0){
+							speedX += Math.random() * 2;
+						} else if (speedX < 0){
+							speedX -= Math.random() * 2;
+						}
 
-					if (speedY > 0){
-						speedY += Math.random() * 2;
-					} else if (speedY < 0){
-						speedX -= Math.random() * 2;
-					}	
+						if (speedY > 0){
+							speedY += Math.random() * 2;
+						} else if (speedY < 0){
+							speedX -= Math.random() * 2;
+						}	
+					}
+					
+					box1.css("background-color", randomColorGenerator());
+					changeBoxText(boxPoints, 1);
+					changeScoreBoxText(player1 + " | " + player2);
+
+					box1.css("width", Math.floor(Math.random() * 100) + 30);
+					box1.css("height", Math.floor(Math.random() * 100) + 30);
+
+				} 
+		
+			function handleBoxClick2() {
+
+					if (positionX2 < (boardWidth / 2)){
+						player1 += 1;
+					} else if (positionX2 > (boardWidth / 2)){
+						player2 += 1;
+					}
+					
+					
+					positionX2 = Math.random() * boardWidth;
+					positionY2 = Math.random() * boardHeight;
+					boxPoints2 = boxPoints2 + 1;
+					
+					if (boxPoints2 % 3 === 0){
+						if (speedX2 > 0){
+							speedX2 += Math.random() * 2;
+						} else if (speedX2 < 0){
+							speedX2 -= Math.random() * 2;
+						}
+
+						if (speedY2 > 0){
+							speedY2 += Math.random() * 2;
+						} else if (speedY2 < 0){
+							speedX2 -= Math.random() * 2;
+						}	
+					}
+					
+					box2.css("background-color", randomColorGenerator());
+					changeBoxText(boxPoints2, 2);
+					changeScoreBoxText(player1 + " | " + player2, 2);
+
+					box2.css("width", Math.floor(Math.random() * 100) + 30);
+					box2.css("height", Math.floor(Math.random() * 100) + 30);
 				}
-				
-				box.css("background-color", randomColorGenerator());
-				changeBoxText(boxPoints);
-				changeScoreBoxText(player1 + " | " + player2);
-
-				box.css("width", Math.floor(Math.random() * 100) + 30);
-				box.css("height", Math.floor(Math.random() * 100) + 30);
-
-			};
 
 			function randomColorGenerator() {
 				var newVal1 = Math.random() * 255;
@@ -218,7 +291,7 @@
 				return newColorValue
 			
 			}
-		})();
+		
 	</script>
 </body>
 </html>
