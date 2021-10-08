@@ -34,7 +34,7 @@
 			width: 510px;
 			height: 757px;
 			left: 0px;
-			top: 0px;
+			top: 20px;
 			display: block;
 			position: absolute;
 			
@@ -95,7 +95,7 @@
 			var box1 = jQuery('.box1');
 			var box2 = jQuery('.box2');	// reference to the HTML .box element
 			var board = jQuery('.board');	// reference to the HTML .board element
-			var boardWidth = board.width() - 50;	// the maximum X-Coordinate of the screen
+			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
 			var boardHeight = jQuery(window).height();
 			var side1 = jQuery('.side1');
 			var side2 = jQuery('.side2');
@@ -197,7 +197,7 @@
 				}
 				if (positionY2 > boardHeight) {
 					speedY2 = speedY2 * -1;
-				} else if (positionY < 0){
+				} else if (positionY2 < 0){
 					speedY2 = speedY2 * -1;
 				}
 				positionX2 = positionX2 + speedX2;
