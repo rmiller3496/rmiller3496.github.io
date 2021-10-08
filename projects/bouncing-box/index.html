@@ -116,6 +116,11 @@
 			var boxPoints = 0;
 			var boxPoints2 = 0;
 
+			var box1Width = 70;
+			var box2Height = 70;
+			var box1Width = 70;
+			var box2Width = 70;
+
 
 			// Every 50 milliseconds, call the update Function (see below)
 			setInterval(update, 16.7);
@@ -203,8 +208,6 @@
 				positionX2 = positionX2 + speedX2;
 				positionY2 = positionY2 + speedY2;
 				moveBoxTo(positionX2, positionY2, 2);
-				
-			};
 
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
@@ -243,8 +246,10 @@
 					changeBoxText(boxPoints, 1);
 					changeScoreBoxText(player1 + " | " + player2);
 
-					box1.css("width", Math.floor(Math.random() * 100) + 30);
-					box1.css("height", Math.floor(Math.random() * 100) + 30);
+					box1Width = Math.floor(Math.random() * 100) + 30;
+					box1Height = Math.floor(Math.random() * 100) + 30;
+					box1.css("width", box1Height);
+					box1.css("height", box2Height);
 
 				} 
 		
@@ -278,10 +283,13 @@
 					box2.css("background-color", randomColorGenerator());
 					changeBoxText(boxPoints2, 2);
 					changeScoreBoxText(player1 + " | " + player2, 2);
-
-					box2.css("width", Math.floor(Math.random() * 100) + 30);
-					box2.css("height", Math.floor(Math.random() * 100) + 30);
+					
+					box2Width = Math.floor(Math.random() * 100) + 30;
+					box2Height = Math.floor(Math.random() * 100) + 30;
+					box2.css("width", box2Width);
+					box2.css("height", box2Height);
 				}
+			}
 
 			function randomColorGenerator() {
 				var newVal1 = Math.random() * 255;
