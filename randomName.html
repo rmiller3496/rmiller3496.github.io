@@ -1,19 +1,26 @@
 <head>
-    <title>Random Name Generator</title>
+    <title>Random Name Selector</title>
 </head>
 <body>
+    <h1>Random Name Selector</h1>
     <button type = "button" onclick = "createList();">Create List</button>
     <button type = "button" onclick = "addToList();">Add Names to List</button>
     <button type = "button" onclick = "callRandomName();">Call Random Name</button>
     <script>
-        function createList() {
-        var names = prompt("Enter all names seperated by a comma");
-        var arrNames = names.split(",");
-        }
+        var names;
+        var arrNames;
+        var nameLength;
+        var value;
         
+        function createList() {
+        names = prompt("Enter all names seperated by a comma");
+        arrNames = names.split(",");
+        console.log(arrNames);
+        }
+
         function callRandomName(){
-            var nameLength = arrNames.length
-	        var value = parseInt(Math.random() * nameLength);
+            nameLength = arrNames.length
+	        value = parseInt(Math.random() * nameLength);
 	        alert(arrNames[value]);
         }
         function addToList(){
@@ -24,6 +31,7 @@
                 arrNames.push(arrAddedNames[i]);
             }
             alert("Names Added");
+            console.log(arrNames, arrAddedNames);
         }
 
 
