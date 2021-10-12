@@ -128,7 +128,7 @@
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			side1.on('click', misClickPenalty1);
 			side2.on('click', misClickPenalty2);
-			box1.on('click', handleBoxClick3);
+			box1.on('click', handleBoxClick);
 			box2.on('click', handleBoxClick2);
 
 			// moves the Box to a new position on the screen along the X-Axis
@@ -209,13 +209,15 @@
 				positionY2 = positionY2 + speedY2;
 				moveBoxTo(positionX2, positionY2, 2);
 
+			}
+
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
 			it should increase the points total, increase the speed, and move the box to
 			the left side of the screen.
 			*/
 			
-			function handleBoxClick3() {
+			function handleBoxClick() {
 				console.log("it ran");
 					if (positionX < (boardWidth / 2)){
 						player1 += 1;
@@ -289,7 +291,6 @@
 					box2.css("width", box2Width);
 					box2.css("height", box2Height);
 				}
-			}
 
 			function randomColorGenerator() {
 				var newVal1 = Math.random() * 255;
