@@ -128,7 +128,7 @@
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			side1.on('click', misClickPenalty1);
 			side2.on('click', misClickPenalty2);
-			box1.on('click', handleBoxClick);
+			box1.on('click', handleBoxClick3);
 			box2.on('click', handleBoxClick2);
 
 			// moves the Box to a new position on the screen along the X-Axis
@@ -215,7 +215,7 @@
 			the left side of the screen.
 			*/
 			
-			function handleBoxClick() {
+			function handleBoxClick3() {
 				console.log("it ran");
 					if (positionX < (boardWidth / 2)){
 						player1 += 1;
