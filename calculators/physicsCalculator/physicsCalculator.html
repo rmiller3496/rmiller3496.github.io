@@ -19,25 +19,47 @@
 		<label for="speedInitialUnit">Choose Your Starting Unit: </label>
 		<select id="speedInitialUnit" onChange = "updateSpeedSelection1()">
 			<option value="main" selected>Choose Unit</option>
-			<option value = "m/s">m/s</option>
-			<option value = "ft/s">ft/s</option>
-			<option value = "mph">mph</option>
-			<option value = "km/h">km/h</option>
-			<option value = 'knots'>knots</option>
+			<option value = " m/s">m/s</option>
+			<option value = " ft/s">ft/s</option>
+			<option value = " mph">mph</option>
+			<option value = " km/h">km/h</option>
+			<option value = ' knots'>knots</option>
 		</select>
 		<br>
 		<br>
 		<label for="speedFinalUnit">Choose Your Ending Unit: </label>
 		<select id="speedFinalUnit" onChange = "updateSpeedSelection2()">
 			<option value="main" selected>Choose Unit</option>
-			<option value = "m/s">m/s</option>
-			<option value = "ft/s">ft/s</option>
-			<option value = "mph">mph</option>
-			<option value = "km/h">km/h</option>
-			<option value = "knots">knots</option>
+			<option value = " m/s">m/s</option>
+			<option value = " ft/s">ft/s</option>
+			<option value = " mph">mph</option>
+			<option value = " km/h">km/h</option>
+			<option value = " knots">knots</option>
 		</select>
 		<br>
 		<br>
 		<button type="button" onclick="speedDataAndConvert()">Enter Data and Convert</button>
+	</div>
+	<div class = "temperatureConversions">
+		<h3>Temperature Conversions</h3>
+		<label for="tempInitialUnit">Choose Your Starting Unit: </label>
+		<select id="tempInitialUnit" onChange = "updateTempSelection1()">
+			<option value = "main" selected>Choose Unit</option>
+			<option value = "℉">Fahrenheit</option>
+			<option value = "℃">Celcius</option>
+			<option value = "K">Kelvin</option>
+		</select>
+		<br>
+		<br>
+		<label for="tempFinalUnit">Choose Your Starting Unit: </label>
+		<select id="tempFinalUnit" onChange = "updateTempSelection2()">
+			<option value = "main" selected>Choose Unit</option>
+			<option value = "℉">Fahrenheit</option>
+			<option value = "℃">Celcius</option>
+			<option value = "K">Kelvin</option>
+		</select>
+		<br>
+		<br>
+		<button type="button" onclick="tempDataAndConvert()">Enter Data and Convert</button>
 	</div>
 </body>
