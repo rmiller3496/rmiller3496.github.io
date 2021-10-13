@@ -1,0 +1,155 @@
+<head>
+
+</head>
+<body>
+    <p>Toppings: Chocolate Chips, Nuts, Fudge, Caramel, Whipped Cream, Cherry, Sprinkles. (Max 3)</p>
+    <p>Flavors: Chocolate, Vanilla, Swirl, Strawberry, Bannana</p>
+    <p>Prices: $5.00 for plain ice cream</p>
+    <p> $0.50 extra for each topping</p>
+    <p> $1.00 Waffle Cone
+    <p> $1.50 Dipped Waffle Cone</p>
+    <br>
+    <button type = "button" onclick="order()">Order Now</button>
+    <script>
+        var flavor = 0;
+        var topping1 = null;
+        var topping2 = null;
+        var topping3 = null;
+        var coneOrNot = 0;
+        var dippedOrNot = 0;
+        var cost = 0;
+        var toppingSign = "Toppings: Chocolate Chips, Nuts, Fudge, Caramel, Whipped Cream, Cherry, Sprinkles (Max 3)\n\nPrices: $5.00 for plain ice cream\n           $0.50 extra for each topping\n           $1.00 Waffle Cone\n           $1.50 Dipped Waffle Cone\n\nWhat topping would you like? If you do not want any toppings, press cancel";
+        flavors = ["chocolate", "vanilla", "swirl", "strawberry", "banana"];
+        toppings = [["chocolate chips", ], "nuts", "fudge", "caramel", "whipped cream", "cherry", "sprinkles", null, "none"];
+
+        function order(){
+            flavor = prompt("Welcome to the Ice Cream Shop\n\nFlavors: Chocolate, Vanilla, Swirl, Strawberry, Banana\n\nPrices: $5.00 for plain ice cream\n           $0.50 extra for each topping\n           $1.00 Waffle Cone\n           $1.50 Dipped Waffle Cone\n\nWhat flavor would you like?");
+            if (flavor !== null){
+            flavor = flavor.toLowerCase();
+            }
+
+            if (flavors.includes(flavor)) {
+            cost += 5.00;
+            getToppings();
+            } else {
+            cost = 0;
+            alert("Improper Flavor");
+            } 
+
+            function getToppings() {
+            
+            topping1 = prompt(toppingSign);
+            
+            if (topping1 !== null){
+                cost += 0.50;
+                topping2 = prompt(toppingSign);
+                
+                if (topping2 !== null){
+                cost += 0.50;
+                topping3 = prompt(toppingSign);
+                
+                if (topping3 !== null){
+                    cost += 0.50;
+                } 
+                }
+            }
+            
+            //Change to all lowercase
+            if (topping1 !== null){
+                topping1 = topping1.toLowerCase();
+            }
+            if (topping2 !== null){
+                topping2 = topping2.toLowerCase();
+            }
+            if (topping3 !== null){
+                topping3 = topping3.toLowerCase();
+            }
+            
+            //Alert if Improper Topping
+            if (toppings.includes(topping1) !== true){
+                alert("Improper First Topping");
+            } 
+            if (toppings.includes(topping2) !== true){
+                alert("Improper Second Topping");
+            } 
+            if (toppings.includes(topping3) !== true){
+                alert("Improper Third Topping");
+            }
+            if (toppings.includes(topping1) && toppings.includes(topping2) && toppings.includes(topping3)){
+                cones();
+            }
+            }
+
+            function cones() {
+            coneOrNot = confirm("Welcome to the Ice Cream Shop\n\nPrices: $5.00 for plain ice cream\n           $0.50 extra for each topping\n           $1.00 Waffle Cone\n           $1.50 Dipped Waffle Cone\n\nWould you like a cone? Press Okay");
+
+            if (coneOrNot === true) {
+            cost += 1.00
+            dippedOrNot = confirm("Welcome to the Ice Cream Shop\n\nPrices: $5.00 for plain ice cream\n           $0.50 extra for each topping\n           $1.00 Waffle Cone\n           $1.50 Dipped Waffle Cone\n\nWould you like a dipped cone? Press Okay");
+            if (dippedOrNot === true){
+                cost += 0.50
+            }
+            }
+            paymentConfirmation();
+            }
+
+            function paymentConfirmation() {
+
+            var payment = confirm("Your price is $" + cost + "\nPress OK to Pay");
+            var payment1 = 0;
+            
+            if (payment === true) {
+            alert("Thank you and Have A Nice Day!")
+            printReceipt();
+            } else if (payment === false) {
+            payment1 = confirm("Give me my money.")
+            }
+            if (payment1 === false){
+            alert("You have been warned...");
+            alert("Tracking current Location");
+            alert("Getting Social Security Number");
+            alert("Hacking Indoor Cameras");
+            alert("Seal Team 6 Ready and On Standby");
+            alert("Doors Unlocked");
+            alert("Breach Breach Breach");
+            alert("Good Luck... See you shortly");
+            } if (payment1 === true){
+            alert("I won't forget this, but here's your ice cream...");
+            printReceipt();
+            }
+            }
+
+
+            function printReceipt () {
+            //Print Based Upon Toppings
+            if (topping1 === null) {
+            console.log("Your Order: " + flavor + " ice cream ");
+            }
+            if (topping1 !== null && topping2 === null) {
+            console.log("Your Order: " + flavor + " ice cream");
+            console.log("            " + topping1);
+            }
+            if (topping1 !== null && topping2 !== null && topping3 === null) {
+            console.log("Your Order: " + flavor + " ice cream");
+            console.log("            " + topping1); 
+            console.log("            " + topping2);
+            }
+            if (topping1 !== null && topping2 !== null && topping3 !== null){
+            console.log("Your Order: " + flavor + " ice cream");
+            console.log("            " + topping1);
+            console.log("            " + topping2); 
+            console.log("            " + topping3);
+            }
+            if (coneOrNot === false){
+            console.log("            no cone");
+            }
+            if (coneOrNot === true && dippedOrNot === false){
+            console.log("            waffle cone");
+            }
+            if (coneOrNot === true && dippedOrNot === true){
+            console.log("            dipped waffle cone");
+            }
+            }
+        }
+    </script>
+</body>
