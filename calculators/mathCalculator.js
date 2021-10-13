@@ -230,3 +230,28 @@ function mathCalculator() {
   
   }
   
+var angleToConvert;
+var convertedAngle;
+var pi = 3.121592652;
+
+function degreeToRadian(){
+  angleToConvert = Number(prompt("Enter the angle value in degrees"));
+  if (isNaN(angleToConvert)){
+    alert("Improper Data Value");
+  } else {
+    convertedAngle = angleToConvert * (pi/180);
+    alert(angleToConvert + "° is " + convertedAngle + " radians");
+  }
+
+}
+
+function radianToDegree(){
+  angleToConvert = Number(prompt("Enter the angle value in radians"));
+  if (isNaN(angleToConvert)){
+    alert("Improper Data Value");
+  } else {
+    convertedAngle = angleToConvert * (180/pi);
+    alert(angleToConvert + " radians is " + convertedAngle + "°");
+  }
+
+}
