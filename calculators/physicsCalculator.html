@@ -3,10 +3,36 @@
 </head>
 <body>
     <script src = "physicsCalculator.js"></script>
-	<h3>Equation 1: Velocity, Acceleration, and Time</h3>
-	<p>Choose the variable you are solving for:</p>
-	<button type="button" onclick="eqn1FinalVelocity();">Final Velocity</button>
-	<button type="button" onclick="eqn1InitialVelocity();">Initial Velocity</button>
-	<button type="button" onclick="eqn1Acceleration();">Acceleration</button>
-	<button type="button" onclick="eqn1Time();">Time</button>
+	<div class = 'equation1'>
+		<h3>Equation 1: Velocity, Acceleration, and Time</h3>
+		<p>Choose the variable you are solving for:</p>
+		<button type="button" onclick="eqn1FinalVelocity();">Final Velocity</button>
+		<button type="button" onclick="eqn1InitialVelocity();">Initial Velocity</button>
+		<button type="button" onclick="eqn1Acceleration();">Acceleration</button>
+		<button type="button" onclick="eqn1Time();">Time</button>
+	</div>
+	<br>
+	<br>
+	<div class = "speedConversions">
+		<h3>Speed Conversions</h3>
+		<label for="speedInitialUnit">Choose Your Starting Unit: </label>
+		<select id="speedInitialUnit" onChange = "updateSpeedSelection1()">
+			<option value="main" selected>Choose Unit</option>
+			<option value = "m/s">m/s</option>
+			<option value = "ft/s">ft/s</option>
+			<option value = "mph">mph</option>
+			<option value = "mi/min">mi/min</option>
+		</select>
+		<br>
+		<br>
+		<label for="speedFinalUnit">Choose Your Ending Unit: </label>
+		<select id="speedFinalUnit" onChange = "updateSpeedSelection2()">
+			<option value="main" selected>Choose Unit</option>
+			<option value = "m/s">m/s</option>
+			<option value = "ft/s">ft/s</option>
+			<option value = "mph">mph</option>
+			<option value = "mi/min">mi/min</option>
+		</select>
+		<button type="button" onclick="speedConvert">Enter Data and Convert</button>
+	</div>
 </body>

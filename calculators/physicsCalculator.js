@@ -256,3 +256,19 @@ function eqn1FinalVelocity() {
 			alert("Improper Selection");
 		}
 	}
+
+
+// Unit Conversions
+
+// Speed Conversions
+function updateSpeedSelection1(){
+	var selectSpeed1 = document.getElementById('speedInitialUnit');
+	var unitSpeed1 = selectSpeed1.options[selectSpeed1.selectedIndex].value;
+	console.log(unitSpeed1);
+}
+
+function updateSpeedSelection2(){
+	var selectSpeed2 = document.getElementById('speedFinalUnit');
+	var unitSpeed2 = selectSpeed2.options[selectSpeed2.selectedIndex].value;
+	console.log(unitSpeed2);
+}
