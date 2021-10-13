@@ -3,6 +3,7 @@
 </head>
 <body>
     <script src = "physicsCalculator.js"></script>
+	<script src = "conversionsPhysics.js"></script>
 	<div class = 'equation1'>
 		<h3>Equation 1: Velocity, Acceleration, and Time</h3>
 		<p>Choose the variable you are solving for:</p>
@@ -14,14 +15,15 @@
 	<br>
 	<br>
 	<div class = "speedConversions">
-		<h3>Speed Conversions</h3>
+		<h3>Speed/Velocity Conversions</h3>
 		<label for="speedInitialUnit">Choose Your Starting Unit: </label>
 		<select id="speedInitialUnit" onChange = "updateSpeedSelection1()">
 			<option value="main" selected>Choose Unit</option>
 			<option value = "m/s">m/s</option>
 			<option value = "ft/s">ft/s</option>
 			<option value = "mph">mph</option>
-			<option value = "mi/min">mi/min</option>
+			<option value = "km/h">km/h</option>
+			<option value = 'knots'>knots</option>
 		</select>
 		<br>
 		<br>
@@ -31,8 +33,11 @@
 			<option value = "m/s">m/s</option>
 			<option value = "ft/s">ft/s</option>
 			<option value = "mph">mph</option>
-			<option value = "mi/min">mi/min</option>
+			<option value = "km/h">km/h</option>
+			<option value = "knots">knots</option>
 		</select>
-		<button type="button" onclick="speedConvert">Enter Data and Convert</button>
+		<br>
+		<br>
+		<button type="button" onclick="speedDataAndConvert()">Enter Data and Convert</button>
 	</div>
 </body>
