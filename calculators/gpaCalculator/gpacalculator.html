@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .classTitle{
+                color:blue;
+            }
+        </style>
+
+    </head>
+    <body>
+        <h1>Welcome to GPA Calculator</h1>
+        <h3>Enter Either Class Grades or Assignment Grades to Calculate GPA</h2>
+        <label for="numberOfClasses">Choose the number of classes you are taking:</label>
+        <select id="numberOfClasses" onChange="updateNumberOfClasses()">
+            <option value = "main">Select A Number</option>
+            <option value = "1">1</option>
+            <option value = "2">2</option>
+            <option value = "3">3</option>
+            <option value = "4">4</option>
+            <option value = "5">5</option>
+            <option value = "6">6</option>
+            <option value = "7">7</option>
+            <option value = "8">8</option>
+        </select>
+        <br>
+        <label for="start">Press the button when finished</label>
+        <button id="start" type="button" onclick="addClasses()">Calculate</button>
+        <script src="gpacalculator.js"></script>
+    </body>
+</html>
