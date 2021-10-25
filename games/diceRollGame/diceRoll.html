@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+    <style>
+    </style>
+
+</head>
+<body>
+    <h1>Dice Roll Game</h1>
+    <label for="guessNumber">Guess The Number</label>
+    <select id="guessNumber" onChange = "updateGuessNumber()">
+        <option id=1>1</option>
+        <option id=2>2</option>
+        <option id=3>3</option>
+        <option id=4>4</option>
+        <option id=5>5</option>
+        <option id=6>6</option>
+    </select>
+    <br>
+    <p id="balance">Current Balance: $200</p>
+    <form name="wagerAmountForm"  onchange = "wagerChanged()" action="javascript:wagerAmountSet()">
+        <label for="wagerAmount">Set Wager Amount:</label><br>
+        <input type="number" id="wagerAmount" name="wagerAmount"><br>
+        <br>
+        <label for="submit">Press to Play Game</label>
+        <input type="submit" id="submit"><br>
+    </form>
+    <script src="diceRoll.js"></script>
+</body>
