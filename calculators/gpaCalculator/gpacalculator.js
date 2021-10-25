@@ -56,7 +56,7 @@ function avenueToTake() {
 				howToCreate = 5;
 				break;
 			case "overall":
-				var step2 = prompt("To Enter Letter Grade, please type \"letter\"\nTo Enter Numerical Grade, please type\"number\"");
+				var step2 = prompt("To Enter Letter Grade, please type \"letter\"\nTo Enter Numerical Grade, please type \"number\"");
 				if (step2 !== null){
 					step2 = step2.toLowerCase();
 					switch(step2){
@@ -95,7 +95,7 @@ function classNumGrades(){
 			} else {
 				numToEnter = Number(numToEnter);
 				numClassGradeArray.push(numToEnter);
-				classInformation[i].push(classes[i] + "Grade : " + numToEnter);
+				classInformation[i].push(classes[i] + " Grade : " + numToEnter);
 			}
 		} else {
 			alert("No Value Entered");
