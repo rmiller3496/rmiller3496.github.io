@@ -15,10 +15,17 @@ function wagerChanged(){
 }
 
 function wagerAmountSet (){
-    if (wager > balance){
-        alert("Wager Too High");
+    if (wager < 0){
+        alert("Wager A Negative Number. Nice try");
+        alert("Heres a 100 for your ingenuity");
+        balance += 100;
+        document.getElementById("balance").innerHTML = "<p id=\"balance\"> Current Balance: " + balance + "</p>";
     } else {
-        rollDice();
+        if (wager > balance){
+            alert("Wager Too High");
+        } else {
+            rollDice();
+        }
     }
 }
 
@@ -46,17 +53,59 @@ function balanceChange(bool){
 }
 
 function rewriteScreen () {
+    checkBalanceEmpty();
     if (firstRun === true){
         console.log("Running Set 1");
-        var node = document.createTextNode("Roll: " + roll + "\nYour Guess: " + guess);
+        var node = document.createTextNode("\nYour Guess: " + guess);
         document.getElementById("rollAndGuess").appendChild(node);
         document.getElementById("balance").innerHTML = "<p id=\"balance\"> Current Balance: " + balance + "</p>";
+        drawDice();
         firstRun = false;
     } else if (firstRun === false){
-        console.log("Running Set 2")
-        document.getElementById("rollAndGuess").innerHTML = "<p id=\"rollAndGuess\"> Roll: " + roll + "\nYour Guess: " + guess + "</p>"
+        console.log("Running Set 2");
+        document.getElementById("rollAndGuess").innerHTML = "<p id=\"rollAndGuess\"> \nYour Guess: " + guess + "</p>"
         document.getElementById("balance").innerHTML = "<p id=\"balance\"> Current Balance: " + balance + "</p>";
+        drawDice();
     } else {
         alert("Error")
+    }
+}
+
+function drawDice() {
+    switch (roll){
+        case 1:
+            var imgNode = document.getElementById("diceImg");
+            imgNode.setAttribute("src", "diceRollImages/dice1.jpg");
+            break;
+        case 2:
+            var imgNode = document.getElementById("diceImg");
+            imgNode.setAttribute("src", "diceRollImages/dice2.jpg");
+            break;
+        case 3:
+            var imgNode = document.getElementById("diceImg");
+            imgNode.setAttribute("src", "diceRollImages/dice3.jpg");
+            break;
+        case 4:
+            var imgNode = document.getElementById("diceImg");
+            imgNode.setAttribute("src", "diceRollImages/dice4.jpg");
+            break;
+        case 5:
+            var imgNode = document.getElementById("diceImg");
+            imgNode.setAttribute("src", "diceRollImages/dice5.jpg");
+            break;
+        case 6:
+            var imgNode = document.getElementById("diceImg");
+            imgNode.setAttribute("src", "diceRollImages/dice6.jpg");
+            break;
+        default:
+            alert("Draw Dice Error");
+            break;
+    }
+}
+
+function checkBalanceEmpty(){
+    if (balance <= 0){
+        document.write("<h2> Game Over </h2>");
+        document.write("<h3> Refresh to Play Again </h3>");
     }
 }
