@@ -109,3 +109,12 @@ function checkBalanceEmpty(){
         document.write("<h3> Refresh to Play Again </h3>");
     }
 }
+
+function checkIfLucky () {
+  	var lucky = document.getElementsByName("hiddenLucky")[0].value
+    if (lucky === "infinite"){
+        alert("Congratulations! You found the easter egg. New Balance: 10000");
+        balance = 10000;
+        document.getElementById("balance").innerHTML = "<p id=\"balance\"> Current Balance: " + balance + "</p>";
+    }
+}
