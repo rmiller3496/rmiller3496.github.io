@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+    <h1>Game</h1>
+    <h2 id="gameMode"></h2>
+
+    <form name="guessWord" onchange="updateGuess()" action = "javascript:guessConfirm()">
+        <input type="text" id="guess" name="guess" autocomplete="off" required>
+        <input type="submit">
+    </form>
+
+    <script src="game.js"></script>
+</body>
