@@ -141,7 +141,7 @@ function updateGuess () {
 function guessConfirm () {
     guessArray = strToArray(guess, guessArray);
     for (var i = 0; i < guessArray.length; i++){
-        if (guessArray[i] = keyArray[i]){
+        if (guessArray[i] === keyArray[i]){
             foundArray[i] = true;
         }
     }
