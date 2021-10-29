@@ -5,12 +5,12 @@
 */
 
 // Random Words
-var numWords = 5;
-var words4 = ["frog", "home", "expo", "desk", "book"];
-var words5 = ["apple", "ghost", "chair", "iphone", "jacket"];
-var words6 = ["wizard", "genome", "marker", "school", "aligns"];
-var words7 = ["qualify", "biology", "console", "consult", "student"];
-var words8 = ["identify", "computer", "quandary", "morality", "centered"];
+var numWords = 7;
+var words4 = ["frog", "home", "expo", "desk", "book", "flow", "wire"];
+var words5 = ["apple", "ghost", "chair", "iphone", "jacket", "ivory", "snail"];
+var words6 = ["wizard", "genome", "marker", "school", "aligns", "crisis", "manner"];
+var words7 = ["qualify", "biology", "console", "consult", "student", "seminar", "sulphur"];
+var words8 = ["identify", "computer", "quandary", "morality", "centered", "suppress", "tolerate"];
 
 // Global Variables
 var key;
