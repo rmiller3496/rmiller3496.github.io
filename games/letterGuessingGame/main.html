@@ -1,11 +1,27 @@
 <head>
+    <style>
+        body {
+            background-color: #95B46A;
+        }
+        h1, h4, label {
+            color: #172815;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        button {
+            background-color: #F1E5AF;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    </style>
 
 </head>
 <body>
     <h1>Word Guessr</h1>
-    <button type="button" onclick="window.location.href='instructions.html';">Instructions</button>
-    <button type="button" onclick="window.location.href='pvp.html'; selectedMode('PvP')">PvP</button>
-    <button type="button" onclick="window.location.href='solo.html'; selectedMode('Solo')">Solo</button>
+    <h4>Select A Mode:</h4>
+    <label for="pvpbutton">User Inputted Word: </label>
+    <button type="button" id="pvpbutton" onclick="window.location.href='pvp.html'; selectedMode('PvP')">PvP</button><br>
+    <br>
+    <label for="solobutton">Computer Generated Word</label>
+    <button type="button" id="solobutton" onclick="window.location.href='solo.html'; selectedMode('Solo')">Solo</button>
     <script src="game.js"></script>
 </body>
 
