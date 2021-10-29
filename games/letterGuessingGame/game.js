@@ -255,6 +255,7 @@ window.onload = function(){
 	inputMinutes.setAttribute("id", "minutes");
 	inputMinutes.setAttribute("type", "text");
     inputMinutes.setAttribute("size", "5");
+    inputMinutes.setAttribute('autocomplete', "off");
 	
 	//create a button
 	var startButton = document.createElement("input");
