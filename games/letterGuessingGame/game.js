@@ -141,11 +141,8 @@ function updateGuess () {
 function guessConfirm () {
     guessArray = strToArray(guess, guessArray);
     for (var i = 0; i < guessArray.length; i++){
-        var letter = guessArray[i];
-        for (var j = 0; j < keyArray.length; j++){
-            if (letter === keyArray[j]){
-                foundArray[j] = true;
-            }
+        if (guessArray[i] = keyArray[i]){
+            foundArray[i] = true;
         }
     }
     updateScreen();
