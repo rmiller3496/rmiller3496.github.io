@@ -11,7 +11,7 @@ function updateGuessNumber (){
 }
 
 function wagerChanged(){
-    wager = document.getElementsByName("wagerAmount")[0].value;
+    
 }
 
 function wagerAmountSet (){

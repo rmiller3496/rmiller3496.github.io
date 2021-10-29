@@ -15,6 +15,9 @@ var words8 = ["identify", "computer", "quandary", "morality", "centered"];
 // Global Variables
 var key;
 var keyArray = [];
+var guess;
+var guessArray = [];
+var foundArray = [];
 
 // Find Which HTML Document is being displayed
 var gameMode = location.pathname.split('/').pop();
@@ -24,16 +27,22 @@ switch (gameMode){
     case "pvp.html":
         document.getElementById('gameMode').innerHTML = "<h4> PvP Selected </h4>";
         getKey();
-        alert(keyArray);
+        mainProcess();
         break;
     case "solo.html":
         document.getElementById('gameMode').innerHTML = "<h4> Solo Selected </h4>";
         selectKey();
-        alert(keyArray);
+        mainProcess();
         break;
     default:
-        alert("Error Code 1");
+        console.log("Error Code 1");
         break;
+}
+
+function mainProcess () {
+    limitInput();
+    generateFoundArray();
+    generateBlanksAndLetters();
 }
 
 // Get Word for PvP Mode
@@ -109,4 +118,61 @@ function selectKey () {
 function strToArray (str, array){
     array = str.split("");
     return array;
+}
+
+function limitInput () {
+    var guessLimit = document.getElementById("guess");
+    guessLimit.setAttribute("maxlength", keyArray.length);
+    guessLimit.setAttribute("minlength",keyArray.length);
+}
+
+function generateFoundArray () {
+    for (var i = 0; i < keyArray.length; i++){
+        foundArray.push(false);
+    }
+}
+
+// Update Guess Value with Changes
+function updateGuess () {
+    guess = document.getElementsByName("guess")[0].value;
+}
+
+// Guess Has Been Confirmed, take action
+function guessConfirm () {
+    guessArray = strToArray(guess, guessArray);
+    for (var i = 0; i < guessArray.length; i++){
+        var letter = guessArray[i];
+        for (var j = 0; j < keyArray.length; j++){
+            if (letter === keyArray[j]){
+                foundArray[j] = true;
+            }
+        }
+    }
+    updateScreen();
+}
+
+function generateBlanksAndLetters () {
+    for (var i = 0; i < keyArray.length; i++){
+        var line = document.createElement("h3");
+        line.innerHTML = "_";
+        line.setAttribute("class", "lines");
+        line.setAttribute("id", "line" + i);
+        document.body.appendChild(line);
+    }
+    for (var i = 0; i < keyArray.length; i++){
+        var letter = document.createElement("h3");
+        letter.innerHTML = "";
+        letter.setAttribute("class", "letter");
+        letter.setAttribute("id", "letter" + i);
+        document.body.appendChild(letter);
+    }
+}
+
+function updateScreen () {
+    for (var i = 0; i < foundArray.length; i++){
+        if (foundArray[i] === true){
+            var place = document.getElementById("letter" + i);
+            place.innerHTML = keyArray[i];
+        }
+    }
 }

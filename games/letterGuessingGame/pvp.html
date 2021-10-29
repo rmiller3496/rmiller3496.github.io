@@ -1,11 +1,103 @@
 <!DOCTYPE html>
 <head>
+    <style>
+        .lines{
+            font-weight: bold;
+            color: black;
+            font-size: 500%;
+        }
+        #line0 {
+            position: absolute;
+            top: 100px;
+            left: 350px;
+        }
+        #line1 {
+            position: absolute;
+            top: 100px;
+            left: 425px;
+        }
+        #line2 {
+            position: absolute;
+            top: 100px;
+            left: 500px;
+        }
+        #line3 {
+            position: absolute;
+            top: 100px;
+            left: 575px;
+        }
+        #line4 {
+            position: absolute;
+            top: 100px;
+            left: 650px;
+        }
+        #line5 {
+            position: absolute;
+            top: 100px;
+            left: 725px;
+        }
+        #line6 {
+            position: absolute;
+            top: 100px;
+            left: 800px;
+        }
+        #line7 {
+            position: absolute;
+            top: 100px;
+            left: 875px;
+        }
+        .letter {
+            font-weight: bold;
+            color: black;
+            font-size: 500%;
+        }
+        #letter0 {
+            position: absolute;
+            top: 90px;
+            left: 350px;
+        }
+        #letter1 {
+            position: absolute;
+            top: 90px;
+            left: 425px;
+        }
+        #letter2 {
+            position: absolute;
+            top: 90px;
+            left: 500px;
+        }
+        #letter3 {
+            position: absolute;
+            top: 90px;
+            left: 575px;
+        }
+        #letter4 {
+            position: absolute;
+            top: 90px;
+            left: 650px;
+        }
+        #letter5 {
+            position: absolute;
+            top: 90px;
+            left: 725px;
+        }
+        #letter6 {
+            position: absolute;
+            top: 90px;
+            left: 800px;
+        }
+        #letter7 {
+            position: absolute;
+            top: 90px;
+            left: 875px;
+        }
+    </style>
+
 
 </head>
 <body>
     <h1>Game</h1>
     <h2 id="gameMode"></h2>
-
     <form name="guessWord" onchange="updateGuess()" action = "javascript:guessConfirm()">
         <input type="text" id="guess" name="guess" autocomplete="off" required>
         <input type="submit">
