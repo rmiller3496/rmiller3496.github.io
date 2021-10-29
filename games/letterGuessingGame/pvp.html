@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <head>
     <style>
+        #container { 
+            width:400px;
+            margin:auto;
+            position: absolute;
+            top: 20px;
+            left: 400px;
+        }
         body {
             background-color: #95B46A;
         }
@@ -115,6 +122,11 @@
         <input type="text" id="guess" name="guess" autocomplete="off">
         <input type="submit">
     </form>
-
+    <div id="container">
+        <h1 id="time">0:00</h1>
+        <div id="inputArea">
+        </div>
+    </div>
+    <script src="game.js"></script>
     <script src="game.js"></script>
 </body>
