@@ -31,10 +31,18 @@ const pennsylvaniaAveInfo =  ["unowned", false, "none", 320, 200, 28, 150, 450, 
 const parkPlaceInfo =  ["unowned", false, "none", 350, 200, 35, 175, 500, 1100, 1300, 1500, 175];
 const boardwalkInfo =  ["unowned", false, "none", 400, 200, 50, 200, 600, 1400, 1700, 2000, 200];
 
+// Info For Railroads
+// [owned or not (if owned -> player number), mortaged or not (bool), rent 1 rr, 2rr, 3rr, 4rr]
+const readingRailRoadInfo = ["unowned", false, 25, 50, 100, 200];
+const pennsylvaniaRailRoadInfo = ["unowned", false, 25, 50, 100, 200];
+const bandoRailRoadInfo = ["unowned", false, 25, 50, 100, 200];
+const shortLineInfo = ["unowned", false, 25, 50, 100, 200];
+
+
 // player data is stored as follows:
-// [positionx, positiony, direction, money]
-// [0]         [1]        [2]        [3] 
-const playerInfo = [[1, 1, "left", 1500, "", ""], [1, 1, "left", 1500, "", ""], [1, 1, "left", 1500, "", ""], [1, 1, "left", 1500, "", ""]]
+// [positionx, positiony, direction, money, rr owned, utilities owned]
+// [0]         [1]        [2]        [3]   [4]        [5]
+const playerInfo = [[1, 1, "left", 1500, 0, 0], [1, 1, "left", 1500, 0, 0], [1, 1, "left", 1500, 0, 0], [1, 1, "left", 1500, 0, 0]]
 const playerProperties = [[], [], [], []];
 
 
@@ -60,7 +68,6 @@ function initialize() {
 
 
 // Change the turn
-
 
 function changeTurn () {
     switch(numPlayers){
@@ -463,15 +470,12 @@ function coordToLocationName (coord) {
 }
 
 function checkLocation (location){
-    // Call fxn to check if rent is due
-    // If it returns anything but "available" or "mortgaged", calculate and do rent
-    // If "available", call buy fxn
-    // If mortgaged, do nothing
     var playerIndex = currentTurn - 1;
     switch (location){
         case "Go":
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            alert('Collected 200 for Passing Go')
             break;
         case "Mediterranean Avenue":
             locationOptions(mediterraneanAveInfo, location, "regular");
@@ -479,8 +483,12 @@ function checkLocation (location){
         case "Baltic Avenue":
             locationOptions(balticAveInfo, location, "regular");
         case "Income Tax":
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 200;
+            document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            alert("Paid 200 for Income Tax");
             break;
         case "Reading Railroad":
+            locationOptions(readingRailRoadInfo, location, "railroad");
             break;
         case "Oriental Avenue":
             locationOptions(orientalAveInfo, location, "regular");
@@ -566,6 +574,9 @@ function checkLocation (location){
             locationOptions(parkPlaceInfo, location, "regular");
             break;
         case "Luxury Tax":
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 100;
+            document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            alert("Paid 200 for Luxury Tax");
             break;
         case "Boardwalk":
             locationOptions(boardwalkInfo, location, "regular");
@@ -588,6 +599,14 @@ function locationOptions(locationArray, location, locationType){
             }
             break;
         case "railroads":
+            if (locationArray[0] === currentTurn){
+                alert("Location Owned By Current Player")
+            } else if (locationArray[0] === "unowned"){
+                // buy railroad
+                // use player info last or second to last to keep track of rr?
+            } else {
+                // pay rent for rr
+            }
             break;
         case "utilities":
             break;
@@ -595,10 +614,13 @@ function locationOptions(locationArray, location, locationType){
             break;
         case "community chest":
             break;
-        case "taxes":
-            break;
     }
 }
+
+
+
+
+
 
 function buyPrompt (locationArray, location) {
     var intentToBuy = confirm(location + " is available! Press Ok to Continue, Press Cancel To Decline");
@@ -606,11 +628,15 @@ function buyPrompt (locationArray, location) {
     if (intentToBuy === true){
         var confirmPurchase = confirm("The Price of " + location + " is: " + locationArray[3]+ "\nPress Okay to Purchase, Cancel to Decline");
         if (confirmPurchase === true){
-            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - locationArray[3];
-            playerProperties[playerIndex].push(location);
-            locationArray[0] = currentTurn;
-            alert("Player " + currentTurn + " purchased " + location);
-            document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            if (playerInfo[playerIndex][3] >= locationArray[3]){
+                playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - locationArray[3];
+                playerProperties[playerIndex].push(location);
+                locationArray[0] = currentTurn;
+                alert("Player " + currentTurn + " purchased " + location);
+                document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3]; 
+            } else {
+                alert("Insufficient Funds");
+            }
         }
     }
 }
@@ -660,4 +686,18 @@ function completeRentTransaction (landerIndex, ownerIndex, rentToPay){
     playerInfo[ownerIndex][3] = playerInfo[ownerIndex][3] + rentToPay;
     document.getElementById("cash" + (ownerIndex + 1)).innerHTML = "Cash: " + playerInfo[ownerIndex][3];
     document.getElementById("cash" + (landerIndex + 1)).innerHTML = "Cash: " + playerInfo[landerIndex][3];
+}
+
+function viewProperties () {
+    var player1Properties = playerProperties[0];
+    var player2Properties = playerProperties[1];
+    var player3Properties = playerProperties[2];
+    var player4Properties = playerProperties[3];
+    if (numPlayers === 2){
+        alert('Player 1 Properties: ' + player1Properties + "\nPlayer 2 Properties: " + player2Properties);
+    } else if (numPlayers === 3){
+        alert('Player 1 Properties: ' + player1Properties +"\nPlayer 2 Properties: " + player2Properties +'\nPlayer 3 Properties: ' + player3Properties);
+    } else if (numPlayers === 4){
+        alert('Player 1 Properties: ' + player1Properties + "\nPlayer 2 Properties: " + player2Properties + '\nPlayer 3 Properties: ' + player3Properties +'\nPlayer 4 Properties: ' + player4Properties);
+    }
 }
