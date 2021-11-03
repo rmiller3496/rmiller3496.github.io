@@ -4,6 +4,7 @@ var roll1;
 var roll2;
 var currentTurn = 1;
 var playerIndex = currentTurn - 1;
+var freeParkingAmount = 0;
 
 // Info for All Addresses
 //[owned or not (if owned -> player number), monopoly or not, num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage]
@@ -32,11 +33,18 @@ const parkPlaceInfo =  ["unowned", false, "none", 350, 200, 35, 175, 500, 1100, 
 const boardwalkInfo =  ["unowned", false, "none", 400, 200, 50, 200, 600, 1400, 1700, 2000, 200];
 
 // Info For Railroads
-// [owned or not (if owned -> player number), mortaged or not (bool), rent 1 rr, 2rr, 3rr, 4rr]
-const readingRailRoadInfo = ["unowned", false, 25, 50, 100, 200];
-const pennsylvaniaRailRoadInfo = ["unowned", false, 25, 50, 100, 200];
-const bandoRailRoadInfo = ["unowned", false, 25, 50, 100, 200];
-const shortLineInfo = ["unowned", false, 25, 50, 100, 200];
+// [owned or not (if owned -> player number), mortaged or not (bool), rent 1 rr, 2rr, 3rr, 4rr, mortgage value, cost]
+// [0]                                        [1]                     [2]       [3]   [4]  [5]  [6]             [7]
+const readingRailRoadInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
+const pennsylvaniaRailRoadInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
+const bandoRailRoadInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
+const shortLineInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
+
+// Info for Utilities
+//[owned or not (if owned -> player number), mortgaged or not (bool), 1 multiplier, 2 multiplier, mortgage value, cost]
+//[0]                                        [1]                      [2]           [3]           [4]             [5]
+const electricCompanyInfo = ["unowned", false, 4, 10, 75, 150];
+const waterWorksInfo = ["unowned", false, 4, 10, 75, 150];
 
 
 // player data is stored as follows:
@@ -480,11 +488,14 @@ function checkLocation (location){
         case "Mediterranean Avenue":
             locationOptions(mediterraneanAveInfo, location, "regular");
             break;
+        case "Community Chest Browns":
+            break;
         case "Baltic Avenue":
             locationOptions(balticAveInfo, location, "regular");
         case "Income Tax":
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 200;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            freeParkingAmount += 200;
             alert("Paid 200 for Income Tax");
             break;
         case "Reading Railroad":
@@ -507,6 +518,7 @@ function checkLocation (location){
             locationOptions(stCharlesPlaceInfo, location, "regular");
             break;
         case "Electric Company":
+            locationOptions(electricCompanyInfo, location, "utilities")
             break;
         case "States Avenue":
             locationOptions(statesAveInfo, location, "regular");
@@ -515,6 +527,7 @@ function checkLocation (location){
             locationOptions(virginiaAveInfo, location, "regular");
             break;
         case "Pennsylvania Railroad":
+            locationOptions(pennsylvaniaRailRoadInfo, location, "railroad");
             break;
         case "St. James Place":
             locationOptions(stJamesPlaceInfo, location, "regular");
@@ -528,6 +541,10 @@ function checkLocation (location){
             locationOptions(newYorkAveInfo, location, "regular");
             break;
         case "Free Parking":
+            var playerIndex = currentTurn - 1;
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + freeParkingAmount;
+            alert("Player " + currentTurn + " got " + freeParkingAmount + " from Free Parking");
+            freeParkingAmount = 0;
             break;
         case "Kentucky Avenue":
             locationOptions(kentuckyAveInfo, location, "regular");
@@ -541,6 +558,7 @@ function checkLocation (location){
             locationOptions(illinoisAveInfo, location, "regular");
             break;
         case "B & O Railroad":
+            locationOptions(bandoRailRoadInfo, location, "railroad");
             break;
         case "Atlantic Avenue":
             locationOptions(atlanticAveInfo, location, "regular");
@@ -549,6 +567,7 @@ function checkLocation (location){
             locationOptions(ventnorAveInfo, location, "regular");
             break;
         case "Water Works":
+            locationOptions(waterWorksInfo, location, "utilities")
             break;
         case "Marvin Gardens":
             locationOptions(marvinGardensInfo, location, "regular");
@@ -567,6 +586,7 @@ function checkLocation (location){
             locationOptions(pennsylvaniaAveInfo, location, "regular");
             break;
         case "Short Line":
+            locationOptions(shortLineInfo, location, "railroad");
             break;
         case "Chance Dark Blues":
             break;
@@ -576,7 +596,8 @@ function checkLocation (location){
         case "Luxury Tax":
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 100;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
-            alert("Paid 200 for Luxury Tax");
+            freeParkingAmount += 100;
+            alert("Paid 100 for Luxury Tax");
             break;
         case "Boardwalk":
             locationOptions(boardwalkInfo, location, "regular");
@@ -598,17 +619,23 @@ function locationOptions(locationArray, location, locationType){
                 rentDue(locationArray, location);
             }
             break;
-        case "railroads":
+        case "railroad":
             if (locationArray[0] === currentTurn){
                 alert("Location Owned By Current Player")
             } else if (locationArray[0] === "unowned"){
-                // buy railroad
-                // use player info last or second to last to keep track of rr?
+                buyRRPrompt(locationArray, location);
             } else {
-                // pay rent for rr
+                payRentRailroads(locationArray, location);
             }
             break;
         case "utilities":
+            if (locationArray[0] === currentTurn){
+                alert("Location Owned By Current Player")
+            } else if (locationArray[0] === "unowned"){
+                buyUtilityPrompt(locationArray, location);
+            } else {
+                payRentUtility(locationArray, location);
+            }
             break;
         case "chance":
             break;
@@ -617,10 +644,93 @@ function locationOptions(locationArray, location, locationType){
     }
 }
 
+function buyUtilityPrompt(locationArray, location){
+    var intentToBuy = confirm(location + " is available! Press Ok to Continue, Press Cancel To Decline");
+    var playerIndex = currentTurn - 1;
+    if (intentToBuy === true){
+        var confirmPurchase = confirm("The Price of " + location + " is: " + locationArray[5] + "\nPress Okay to Purchase, Cancel to Decline");
+        if (confirmPurchase === true){
+            if (playerInfo[playerIndex][3] >= locationArray[5]){
+                playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - locationArray[5];
+                playerProperties[playerIndex].push(location);
+                locationArray[0] = currentTurn;
+                playerInfo[playerIndex][5] = playerInfo[playerIndex][5] + 1;
+                alert("Player " + currentTurn + " purchased " + location);
+                document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3]; 
+            } else {
+                alert("Insufficient Funds");
+            }
+        }
+    }
+}
 
+function payRentUtility(locationArray, location){
+    var ownerIndex = locationArray[0] - 1;
+    var landerIndex = currentTurn - 1;
+    var numberOfUtilityOwned = playerInfo[ownerIndex][5];
+    var rentToPay;
+    if (locationArray[1] === false){
+        switch (numberOfUtilityOwned){
+            case 1:
+                rentToPay = locationArray[2] * (roll1 + roll2);
+                completeRentTransaction (landerIndex, ownerIndex, rentToPay)
+                break;
+            case 2:
+                rentToPay = locationArray[3] * (roll1 + roll2);
+                completeRentTransaction (landerIndex, ownerIndex, rentToPay)
+                break;
+        }
+        alert("Player " + (landerIndex + 1) + " paid " + rentToPay + " to Player " + (ownerIndex + 1) + " for rent on " + location);
+    }
+}
 
+function buyRRPrompt(locationArray, location){
+    var intentToBuy = confirm(location + " is available! Press Ok to Continue, Press Cancel To Decline");
+    var playerIndex = currentTurn - 1;
+    if (intentToBuy === true){
+        var confirmPurchase = confirm("The Price of " + location + " is: " + locationArray[7] + "\nPress Okay to Purchase, Cancel to Decline");
+        if (confirmPurchase === true){
+            if (playerInfo[playerIndex][3] >= locationArray[7]){
+                playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - locationArray[7];
+                playerProperties[playerIndex].push(location);
+                locationArray[0] = currentTurn;
+                playerInfo[playerIndex][4] = playerInfo[playerIndex][4] + 1;
+                alert("Player " + currentTurn + " purchased " + location);
+                document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3]; 
+            } else {
+                alert("Insufficient Funds");
+            }
+        }
+    }
+}
 
-
+function payRentRailroads(locationArray, location){
+    var ownerIndex = locationArray[0] - 1;
+    var landerIndex = currentTurn - 1;
+    var numberOfRROwned = playerInfo[ownerIndex][4];
+    var rentToPay;
+    if (locationArray[1] === false){
+        switch (numberOfRROwned){
+            case 1:
+                rentToPay = locationArray[2];
+                completeRentTransaction (landerIndex, ownerIndex, rentToPay)
+                break;
+            case 2:
+                rentToPay = locationArray[3];
+                completeRentTransaction (landerIndex, ownerIndex, rentToPay)
+                break;
+            case 3:
+                rentToPay = locationArray[4];
+                completeRentTransaction (landerIndex, ownerIndex, rentToPay)
+                break;
+            case 4:
+                rentToPay = locationArray[5];
+                completeRentTransaction (landerIndex, ownerIndex, rentToPay)
+                break;
+        }
+        alert("Player " + (landerIndex + 1) + " paid " + rentToPay + " to Player " + (ownerIndex + 1) + " for rent on " + location);
+    }
+}
 
 function buyPrompt (locationArray, location) {
     var intentToBuy = confirm(location + " is available! Press Ok to Continue, Press Cancel To Decline");
