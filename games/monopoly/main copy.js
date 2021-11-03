@@ -83,9 +83,13 @@ function changeTurn () {
             switch(currentTurn){
                 case 1:
                     currentTurn = 2;
+                    document.getElementById("player1").setAttribute("background-color", "transparent");
+                    document.getElementById("player2").setAttribute("background-color", "#FFFF00");
                     break;
                 case 2:
                     currentTurn = 1;
+                    document.getElementById("player2").setAttribute("background-color", "transparent");
+                    document.getElementById("player1").setAttribute("background-color", "#FFFF00");
                     break;
             }
             break;
@@ -93,12 +97,21 @@ function changeTurn () {
             switch(currentTurn){
                 case 1:
                     currentTurn = 2;
+                    document.getElementById("player1").setAttribute("background-color", "transparent");
+                    document.getElementById("player2").setAttribute("background-color", "#FFFF00");
+                    document.getElementById("player3").setAttribute("background-color", "transparent");
                     break;
                 case 2:
                     currentTurn = 3;
+                    document.getElementById("player1").setAttribute("background-color", "transparent");
+                    document.getElementById("player3").setAttribute("background-color", "#FFFF00");
+                    document.getElementById("player2").setAttribute("background-color", "transparent");
                     break;
                 case 3:
                     currentTurn = 1;
+                    document.getElementById("player3").setAttribute("background-color", "transparent");
+                    document.getElementById("player1").setAttribute("background-color", "#FFFF00");
+                    document.getElementById("player2").setAttribute("background-color", "transparent");
                     break;
             }
             break;
@@ -106,21 +119,35 @@ function changeTurn () {
             switch(currentTurn){
                 case 1:
                     currentTurn = 2;
+                    document.getElementById("player1").setAttribute("background-color", "transparent");
+                    document.getElementById("player2").setAttribute("background-color", "#FFFF00");
+                    document.getElementById("player3").setAttribute("background-color", "transparent");
+                    document.getElementById("player4").setAttribute("background-color", "transparent");
                     break;
                 case 2:
                     currentTurn = 3;
+                    document.getElementById("player1").setAttribute("background-color", "transparent");
+                    document.getElementById("player3").setAttribute("background-color", "#FFFF00");
+                    document.getElementById("player2").setAttribute("background-color", "transparent");
+                    document.getElementById("player4").setAttribute("background-color", "transparent");
                     break;
                 case 3:
                     currentTurn = 4;
+                    document.getElementById("player1").setAttribute("background-color", "transparent");
+                    document.getElementById("player4").setAttribute("background-color", "#FFFF00");
+                    document.getElementById("player2").setAttribute("background-color", "transparent");
+                    document.getElementById("player3").setAttribute("background-color", "transparent");
                     break;
                 case 4:
-                    currentTurn = 1
+                    currentTurn = 1;
+                    document.getElementById("player4").setAttribute("background-color", "transparent");
+                    document.getElementById("player1").setAttribute("background-color", "#FFFF00");
+                    document.getElementById("player2").setAttribute("background-color", "transparent");
+                    document.getElementById("player3").setAttribute("background-color", "transparent");
                     break;
             }
             break;
     }   
-    var turnChange = document.getElementById("turnIndicator");
-    turnChange.innerHTML = "It is Player " + currentTurn + "\'s turn";
 }
 
 
@@ -170,8 +197,9 @@ function createPlayerData() {
 function createBasePlayerData () {
     var player1Title = document.createElement("p");
         player1Title.innerHTML = "Player 1";
-        player1Title.setAttribute("id", "Player 1");
+        player1Title.setAttribute("id", "player1");
         player1Title.setAttribute("class", "players");
+        player1Title.setAttribute("background-color", "#FFFF00");
         document.body.appendChild(player1Title);
     var player1LocationText = document.createElement("p");
         player1LocationText.innerHTML = "   Location: Go ";
@@ -492,6 +520,7 @@ function checkLocation (location){
             break;
         case "Baltic Avenue":
             locationOptions(balticAveInfo, location, "regular");
+            break;
         case "Income Tax":
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 200;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];

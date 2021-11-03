@@ -14,14 +14,14 @@
         #diceImg1{
             position: absolute;
             bottom: 100px;
-            right: 400px;
+            left: 300px;
             width: 100px;
             height: 100px;
         }
         #diceImg2 {
             position: absolute;
             bottom: 100px;
-            right: 250px;
+            left: 175px;
             width: 100px;
             height: 100px;
         }
@@ -31,18 +31,24 @@
             left: 250px;
 
         }
+        #allStuff {
+            width: 100%;
+            height: auto;
+        }
     </style>
 
     <title>Capitalism Simulator</title>
 </head>
 <body onload="initialize()">
-    <h1>Monopoly</h1>
     <img id="board" src="images/monopolyboard.jpg">
-    <script src="main copy.js"></script>
-    <button type="button" id="diceRoll" onclick="rollDice()">Roll Dice</button>
-    <img id="diceImg1">
-    <img id="diceImg2">
-    <button type="button" onclick="changeTurn()">End Turn</button>
-    <p id="turnIndicator">It is Player 1's turn</p>
-    <button type="button" id="viewProperties" onclick="viewProperties()">View Properties of All Players</button>
+    <div id="allStuff">
+        <h1>Monopoly</h1>
+        <script src="main copy.js"></script>
+        <button type="button" id="diceRoll" onclick="rollDice()">Roll Dice</button>
+        <img id="diceImg1">
+        <img id="diceImg2">
+        <button type="button" onclick="changeTurn()">End Turn</button>
+        <p id="turnIndicator">It is Player 1's turn</p>
+        <button type="button" id="viewProperties" onclick="viewProperties()">View Properties of All Players</button>
+    </div>
 </body>
