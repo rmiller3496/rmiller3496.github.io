@@ -3593,92 +3593,4704 @@ function checkLocation(location){
         case "Reading Railroad":
             break;
         case "Oriental Avenue":
-            buyCommand(location);
+            switch(orientalAveState[0]) {
+                case "unowned":
+                    //prompt buy command
+                    buyCommand(location);
+                    break;
+                // player 1 owns location
+                case "player1":
+                    switch(currentTurn){
+                        case 2:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+                //player 2 owns location
+                case "player2":
+                    switch(currentTurn){
+                        case 1:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+                //player 3 owns location
+                case "player3":
+                    switch(currentTurn){
+                        case 1:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+
+                // player4 owns location
+                case "player4":
+                    switch(currentTurn){
+                        case 1:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(orientalAveState[2]){
+                                case "none":
+                                    if (orientalAveState[1] === true){
+                                        var rentToPay = orientalAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = orientalAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = orientalAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = orientalAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = orientalAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = orientalAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = orientalAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+            }
             break;
+
         case "Chance Light Blues":
             break;
         case "Vermont Avenue":
-            buyCommand(location);
+            switch(vermontAveState[0]) {
+                case "unowned":
+                    //prompt buy command
+                    buyCommand(location);
+                    break;
+                // player 1 owns location
+                case "player1":
+                    switch(currentTurn){
+                        case 2:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+                //player 2 owns location
+                case "player2":
+                    switch(currentTurn){
+                        case 1:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+                //player 3 owns location
+                case "player3":
+                    switch(currentTurn){
+                        case 1:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+
+                // player4 owns location
+                case "player4":
+                    switch(currentTurn){
+                        case 1:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(vermontAveState[2]){
+                                case "none":
+                                    if (vermontAveState[1] === true){
+                                        var rentToPay = vermontAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = vermontAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = vermontAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = vermontAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = vermontAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = vermontAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = vermontAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+            }
             break;
         case "Connecticut Avenue":
-            buyCommand(location);
+            switch(connecticutAveState[0]) {
+                case "unowned":
+                    //prompt buy command
+                    buyCommand(location);
+                    break;
+                // player 1 owns location
+                case "player1":
+                    switch(currentTurn){
+                        case 2:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+                //player 2 owns location
+                case "player2":
+                    switch(currentTurn){
+                        case 1:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+                //player 3 owns location
+                case "player3":
+                    switch(currentTurn){
+                        case 1:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+
+                // player4 owns location
+                case "player4":
+                    switch(currentTurn){
+                        case 1:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(connecticutAveState[2]){
+                                case "none":
+                                    if (connecticutAveState[1] === true){
+                                        var rentToPay = connecticutAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = connecticutAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = connecticutAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = connecticutAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = connecticutAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = connecticutAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = connecticutAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+            }
             break;
         case "Just Visiting":
             break;
         case "St. Charles Place":
-            buyCommand(location);
+            switch(stCharlesPlaceState[0]) {
+                case "unowned":
+                    //prompt buy command
+                    buyCommand(location);
+                    break;
+                // player 1 owns location
+                case "player1":
+                    switch(currentTurn){
+                        case 2:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+                //player 2 owns location
+                case "player2":
+                    switch(currentTurn){
+                        case 1:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+                //player 3 owns location
+                case "player3":
+                    switch(currentTurn){
+                        case 1:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+
+                // player4 owns location
+                case "player4":
+                    switch(currentTurn){
+                        case 1:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(stCharlesPlaceState[2]){
+                                case "none":
+                                    if (stCharlesPlaceState[1] === true){
+                                        var rentToPay = stCharlesPlacePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = stCharlesPlacePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = stCharlesPlacePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = stCharlesPlacePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = stCharlesPlacePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = stCharlesPlacePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = stCharlesPlacePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+            }
             break;
         case "Electric Company":
             break;
         case "States Avenue":
-            buyCommand(location);
+            switch(balticAveState[0]) {
+                case "unowned":
+                    //prompt buy command
+                    buyCommand(location);
+                    break;
+                // player 1 owns location
+                case "player1":
+                    switch(currentTurn){
+                        case 2:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo1[3] = playerInfo1[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 1 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+                //player 2 owns location
+                case "player2":
+                    switch(currentTurn){
+                        case 1:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+                //player 3 owns location
+                case "player3":
+                    switch(currentTurn){
+                        case 1:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo4[3] = playerInfo4[3] - rentToPay;
+                                    playerInfo3[3] = playerInfo3[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 4 paid " + rentToPay + " to Player 3 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo4[3];
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+
+                // player4 owns location
+                case "player4":
+                    switch(currentTurn){
+                        case 1:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 2 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo2[3] = playerInfo2[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 2 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch(balticAveState[2]){
+                                case "none":
+                                    if (balticAveState[1] === true){
+                                        var rentToPay = balticAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = balticAvePrices[2];
+                                    }
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = balticAvePrices[3];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = balticAvePrices[4];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = balticAvePrices[5];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = balticAvePrices[6];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = balticAvePrices[7];
+                                    playerInfo3[3] = playerInfo3[3] - rentToPay;
+                                    playerInfo4[3] = playerInfo4[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 3 paid " + rentToPay + " to Player 4 for rent on " + location);
+                                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo3[3];
+                                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo4[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+            }
+            break;
             break;
         case "Virginia Avenue":
-            buyCommand(location);
+            
             break;
         case "Pennsylvania Railroad":
             break;
         case "St. James Place":
-            buyCommand(location);
+            
             break;
         case "Community Chest Oranges":
             break;
         case "Tennessee Avenue":
-            buyCommand(location);
+            
             break;
         case "New York Avenue":
-            buyCommand(location);
+            
             break;
         case "Free Parking":
             break;
         case "Kentucky Avenue":
-            buyCommand(location);
+            
             break;
         case "Chance Reds":
             break;
         case "Indiana Avenue":
-            buyCommand(location);
+            
             break;
         case "Illinois Avenue":
-            buyCommand(location);
+            
             break;
         case "B & O Railroad":
             break;
         case "Atlantic Avenue":
-            buyCommand(location);
+            
             break;
         case "Ventnor Avenue":
-            buyCommand(location);
+            
             break;
         case "Water Works":
             break;
         case "Marvin Gardens":
-            buyCommand(location);
+            
             break;
         case "Go To Jail":
             break;
         case "Pacific Avenue":
-            buyCommand(location);
+            
             break;
         case "North Carolina Avenue":
-            buyCommand(location);
+            
             break;
         case "Community Chest Greens":
             break;
         case "Pennsylvania Avenue":
-            buyCommand(location);
+            
             break;
         case "Short Line":
             break;
         case "Chance Blues":
             break;
         case "Park Place":
-            buyCommand(location);
+            
             break;
         case "Luxury Tax":
             break;
         case "Boardwalk":
-            buyCommand(location);
+            
             break;
         default:
             alert("switch statement problem");
