@@ -1,10 +1,60 @@
 // Global Variables
 var numPlayers;
-const locationArray = [];
-const namedLocationArray = ["Go", "Mediteranean Avenue", "Community Chest Browns", "Baltic Avenue", "Income Tax", "Reading Railroad", "Oriental Avenue", "Chance Light Blues", "Vermont Avenue", "Conneticut Avenue", "Just Visiting", "St. Charles Place", "Electric Company", "St. James Place", "States Avenue", "Virginia Avenue", "Pennsylvania Railroad", "St. James Place", "Community Chest Orange", "Tenessee Avenue", "New York Avenue", "Free Parking", "Kentucky Avenue", "Chance Reds", "Indiana Avenue", "Illnois Avenue", "B & O Railroad", "Atlantic Avenue", "Ventnor Avenue", "Water Works", "Marvin Gardens", "Go To Jail", "Pacific Avenue", "North Carolina Avenue", "Community Chest Greens", "Pennsylvania Avenue", "Short Line", "Chance Dark Blues", "Park Place", "Luxury Tax", "Boardwalk"];
 var roll1;
 var roll2;
 var currentTurn = 1;
+
+// State for All Addresses
+//[owned or not (if owned -> player name), monopoly or not, num houses/hotels or mortgaged]
+const mediterraneanAveState = ["unowned", false, "none"];
+const balticAveState = ["unowned", false, "none"];
+const orientalAveState = ["unowned", false, "none"];
+const vermontAveState = ["unowned", false, "none"];
+const connecticutAveState = ["unowned", false, "none"];
+const stCharlesPlaceState = ["unowned", false, "none"];
+const statesAveState = ["unowned", false, "none"];
+const virginiaAveState = ["unowned", false, "none"];
+const stJamesPlaceState = ["unowned", false, "none"];
+const tennesseeAveState = ["unowned", false, "none"];
+const newYorkAveState = ["unowned", false, "none"];
+const kentuckyAveState = ["unowned", false, "none"];
+const indianaAveState = ["unowned", false, "none"];
+const illinoisAveState = ["unowned", false, "none"];
+const atlanticAveState = ["unowned", false, "none"];
+const ventnorAveState = ["unowned", false, "none"];
+const marvinGardensState = ["unowned", false, "none"];
+const pacificAveState = ["unowned", false, "none"];
+const northCarolinaAveState = ["unowned", false, "none"];
+const pennsylvaniaAveState = ["unowned", false, "none"];
+const parkPlaceState = ["unowned", false, "none"];
+const boardwalkState = ["unowned", false, "none"];
+
+// price data for all addresses
+// [price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage] 
+
+const mediterraneanAvePrices = [60, 50, 2, 10, 30, 90, 160, 250, 30];
+const balticAvePrices = [60, 50, 4, 20, 60, 180, 320, 450, 30];
+const orientalAvePrices = [100, 50, 6, 30, 90, 270, 400, 550, 50];
+const vermontAvePrices = [100, 50, 6, 30, 90, 270, 400, 550, 50];
+const connecticutAvePrices = [120, 50, 8, 40, 100, 300, 450, 600, 60];
+const stCharlesPlacePrices = [140, 100, 10, 50, 150, 450, 625, 750, 70];
+const statesAvePrices = [140, 100, 10, 50, 150, 450, 625, 750, 70];
+const virginiaAvePrices = [160, 100, 12, 60, 180, 500, 700, 900, 80];
+const stJamesPlacePrices = [180, 100, 14, 70, 200, 550, 750, 950, 90];
+const tennesseeAvePrices = [180, 100, 14, 70, 200, 550, 750, 950, 90];
+const newYorkAvePrices = [200, 100, 16, 80, 220, 600, 800, 1000, 100];
+const kentuckyAvePrices = [220, 150, 18, 90, 250, 700, 875, 1050, 110];
+const indianaAvePrices = [220, 150, 18, 90, 250, 700, 875, 1050, 110];
+const illinoisAvePrices = [240, 150, 20, 100, 300, 750, 925, 1100, 120];
+const atlanticAvePrices = [260, 150, 22, 110, 330, 800, 975, 1150, 130];
+const ventnorAvePrices = [260, 150, 22, 110, 330, 800, 975, 1150, 130];
+const marvinGardensPrices = [280, 150, 24, 120, 360, 850, 1025, 1200, 140];
+const pacificAvePrices = [300, 200, 26, 130, 390, 900, 1100, 1275, 150];
+const northCarolinaAvePrices = [300, 200, 26, 130, 390, 900, 1100, 1275, 150];
+const pennsylvaniaAvePrices = [320, 200, 28, 150, 450, 1000, 1200, 1400, 160];
+const parkPlacePrices = [350, 200, 35, 175, 500, 1100, 1300, 1500, 175];
+const boardwalkPrices = [400, 200, 50, 200, 600, 1400, 1700, 2000, 200];
+
 // player data is stored as follows:
 // [positionx, positiony, direction, money, rr owned, utilities owned]
 
@@ -150,21 +200,6 @@ function createBasePlayerData () {
         player2CashText.setAttribute("class", "cash");
         player2CashText.setAttribute("id", "cash2");
         document.body.appendChild(player2CashText);
-}
-
-function createLocationArray() {
-    for (var i=1; i < 11; i++){
-        locationArray.push(i + ",1");
-    }
-    for (var i=1; i < 11; i++){
-        locationArray.push("10,"+ i);
-    }
-    for (var i=10; i > 0; i--){
-        locationArray.push(i + ",10");
-    }
-    for (var i=10; i > 0; i--){
-        locationArray.push("1," + i);
-    }
 }
 
 function rollDice () {
@@ -480,8 +515,1294 @@ function movePlayers() {
             locationUpdate.innerHTML = "Location: " + locationName;
             break;
     }
+    // Check Location That The Player Arrived at And Take Action
+    checkLocation(locationName);
 }
 
+function checkLocation(location){
+    switch (location){
+        case "Go":
+            switch (currentTurn){
+                case 1:
+                    playerInfo1[3] = playerInfo1[3] + 200;
+                    break;
+                case 2:
+                    playerInfo2[3] = playerInfo2[3] + 200;
+                    break;
+                case 3:
+                    playerInfo3[3] = playerInfo3[3] + 200;
+                    break;
+                case 4:
+                    playerInfo4[3] = playerInfo4[3] + 200;
+                    break;
+            }
+            break;
+        case "Mediterranean Avenue":
+            switch(mediterraneanAveState[0]) {
+                case "unowned":
+                    //prompt buy command
+                    buyCommand(location);
+                    break;
+                case "player1":
+                    // Owned By The Current Player
+                    // Do Nothing, Allow All Commands before switching turns
+                case "player2":
+                    switch(currentTurn){
+                        case 1:
+                            switch(mediterraneanAveState[2]){
+                                case "none":
+                                    if (mediterraneanAveState[1] === true){
+                                        var rentToPay = mediterraneanAvePrices[2] * 2;
+                                    } else {
+                                        var rentToPay = mediterraneanAvePrices[2];
+                                    }
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on Mediterranean Ave");
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 1:
+                                    var rentToPay = mediterraneanAvePrices[3];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on Mediterranean Ave");
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 2:
+                                    var rentToPay = mediterraneanAvePrices[4];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on Mediterranean Ave");
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 3:
+                                    var rentToPay = mediterraneanAvePrices[5];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on Mediterranean Ave");
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case 4:
+                                    var rentToPay = mediterraneanAvePrices[6];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on Mediterranean Ave");
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "hotel":
+                                    var rentToPay = mediterraneanAvePrices[7];
+                                    playerInfo1[3] = playerInfo1[3] - rentToPay;
+                                    playerInfo2[3] = playerInfo2[3] + rentToPay;
+                                    // Alert User That Rent Was Paid
+                                    alert("Player 1 paid " + rentToPay + " to Player 2 for rent on Mediterranean Ave");
+                                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo1[3];
+                                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo2[3];
+                                    break;
+                                case "mortgaged":
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                    }
+                    break;
+                case "player3":
+                    switch(currentTurn){
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                    }
+                    break;
+                case "player4":
+                    switch(currentTurn){
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                    }
+                    break;
+            }
+            break;
+        case "Community Chest Browns":
+            break;
+        case "Baltic Avenue":
+            buyCommand(location);
+            break;
+        case "Income Tax":
+            break;
+        case "Reading Railroad":
+            break;
+        case "Oriental Avenue":
+            buyCommand(location);
+            break;
+        case "Chance Light Blues":
+            break;
+        case "Vermont Avenue":
+            buyCommand(location);
+            break;
+        case "Connecticut Avenue":
+            buyCommand(location);
+            break;
+        case "Just Visiting":
+            break;
+        case "St. Charles Place":
+            buyCommand(location);
+            break;
+        case "Electric Company":
+            break;
+        case "States Avenue":
+            buyCommand(location);
+            break;
+        case "Virginia Avenue":
+            buyCommand(location);
+            break;
+        case "Pennsylvania Railroad":
+            break;
+        case "St. James Place":
+            buyCommand(location);
+            break;
+        case "Community Chest Oranges":
+            break;
+        case "Tennessee Avenue":
+            buyCommand(location);
+            break;
+        case "New York Avenue":
+            buyCommand(location);
+            break;
+        case "Free Parking":
+            break;
+        case "Kentucky Avenue":
+            buyCommand(location);
+            break;
+        case "Chance Reds":
+            break;
+        case "Indiana Avenue":
+            buyCommand(location);
+            break;
+        case "Illinois Avenue":
+            buyCommand(location);
+            break;
+        case "B & O Railroad":
+            break;
+        case "Atlantic Avenue":
+            buyCommand(location);
+            break;
+        case "Ventnor Avenue":
+            buyCommand(location);
+            break;
+        case "Water Works":
+            break;
+        case "Marvin Gardens":
+            buyCommand(location);
+            break;
+        case "Go To Jail":
+            break;
+        case "Pacific Avenue":
+            buyCommand(location);
+            break;
+        case "North Carolina Avenue":
+            buyCommand(location);
+            break;
+        case "Community Chest Greens":
+            break;
+        case "Pennsylvania Avenue":
+            buyCommand(location);
+            break;
+        case "Short Line":
+            break;
+        case "Chance Blues":
+            break;
+        case "Park Place":
+            buyCommand(location);
+            break;
+        case "Luxury Tax":
+            break;
+        case "Boardwalk":
+            buyCommand(location);
+            break;
+        default:
+            alert("switch statement problem");
+            break;
+    }
+}
+
+function buyCommand(location){
+    var intentToBuy = confirm(location + " is available! Press Ok to Continue, Press Cancel To Decline");
+    if (intentToBuy === true){
+    switch (location){
+        case "Mediterranean Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + mediterraneanAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - mediterraneanAvePrices[0];
+                        mediterraneanAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (mediterraneanAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            mediterraneanAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Browns");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - mediterraneanAvePrices[0];
+                        mediterraneanAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (mediterraneanAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            mediterraneanAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Browns");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - mediterraneanAvePrices[0];
+                        mediterraneanAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (mediterraneanAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            mediterraneanAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Browns");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - mediterraneanAvePrices[0];
+                        mediterraneanAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (mediterraneanAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            mediterraneanAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Browns");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Baltic Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + balticAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - balticAvePrices[0];
+                        balticAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (balticAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            balticAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Browns");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - balticAvePrices[0];
+                        balticAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (balticAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            balticAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Browns");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - balticAvePrices[0];
+                        balticAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (balticAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            balticAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Browns");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - balticAvePrices[0];
+                        balticAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (balticAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            balticAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Browns");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Reading Railroad":
+            break;
+        case "Oriental Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + orientalAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - orientalAvePrices[0];
+                        orientalAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (orientalAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            orientalAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Light Blues");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - orientalAvePrices[0];
+                        orientalAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (orientalAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            orientalAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Light Blues");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - orientalAvePrices[0];
+                        orientalAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (orientalAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            orientalAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Light Blues");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - orientalAvePrices[0];
+                        orientalAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (orientalAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            orientalAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Light Blues");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Vermont Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + vermontAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - vermontAvePrices[0];
+                        vermontAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (vermontAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            vermontAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Light Blues");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - vermontAvePrices[0];
+                        vermontAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (vermontAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            vermontAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Light Blues");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - vermontAvePrices[0];
+                        vermontAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (vermontAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            vermontAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Light Blues");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - vermontAvePrices[0];
+                        vermontAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (vermontAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            vermontAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Light Blues");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Connecticut Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + connecticutAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - connecticutAvePrices[0];
+                        connecticutAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (connecticutAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            connecticutAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Light Blues");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - connecticutAvePrices[0];
+                        connecticutAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (connecticutAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            connecticutAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Light Blues");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - connecticutAvePrices[0];
+                        connecticutAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (connecticutAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            connecticutAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Light Blues");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - connecticutAvePrices[0];
+                        connecticutAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (connecticutAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            connecticutAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Light Blues");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "St. Charles Place":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + stCharlesPlacePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - stCharlesPlacePrices[0];
+                        stCharlesPlaceState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (stCharlesPlaceState[0] === "player1" && balticAveState[0] === "player1"){
+                            stCharlesPlaceState[1] = true;
+                            alert("Player 1 has a monopoly on the Purples");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - stCharlesPlacePrices[0];
+                        stCharlesPlaceState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (stCharlesPlaceState[0] === "player2" && balticAveState[0] === "player2"){
+                            stCharlesPlaceState[1] = true;
+                            alert("Player 2 has a monopoly on the Purples");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - stCharlesPlacePrices[0];
+                        stCharlesPlaceState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (stCharlesPlaceState[0] === "player3" && balticAveState[0] === "player3"){
+                            stCharlesPlaceState[1] = true;
+                            alert("Player 3 has a monopoly on the Purples");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - stCharlesPlacePrices[0];
+                        stCharlesPlaceState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (stCharlesPlaceState[0] === "player4" && balticAveState[0] === "player4"){
+                            stCharlesPlaceState[1] = true;
+                            alert("Player 4 has a monopoly on the Purples");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "States Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + statesAvenuePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - statesAvenuePrices[0];
+                        statesAvenueState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (statesAvenueState[0] === "player1" && balticAveState[0] === "player1"){
+                            statesAvenueState[1] = true;
+                            alert("Player 1 has a monopoly on the Purples");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - statesAvenuePrices[0];
+                        statesAvenueState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (statesAvenueState[0] === "player2" && balticAveState[0] === "player2"){
+                            statesAvenueState[1] = true;
+                            alert("Player 2 has a monopoly on the Purples");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - statesAvenuePrices[0];
+                        statesAvenueState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (statesAvenueState[0] === "player3" && balticAveState[0] === "player3"){
+                            statesAvenueState[1] = true;
+                            alert("Player 3 has a monopoly on the Purples");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - statesAvenuePrices[0];
+                        statesAvenueState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (statesAvenueState[0] === "player4" && balticAveState[0] === "player4"){
+                            statesAvenueState[1] = true;
+                            alert("Player 4 has a monopoly on the Purples");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Virginia Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + virginiaAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - virginiaAvePrices[0];
+                        virginiaAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (virginiaAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            virginiaAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Purples");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - virginiaAvePrices[0];
+                        virginiaAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (virginiaAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            virginiaAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Purples");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - virginiaAvePrices[0];
+                        virginiaAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (virginiaAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            virginiaAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Purples");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - virginiaAvePrices[0];
+                        virginiaAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (virginiaAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            virginiaAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Purples");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Pennsylvania Railroad":
+            break;
+        case "St. James Place":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + stJamesPlacePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - stJamesPlacePrices[0];
+                        stJamesPlaceState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (stJamesPlaceState[0] === "player1" && balticAveState[0] === "player1"){
+                            stJamesPlaceState[1] = true;
+                            alert("Player 1 has a monopoly on the Oranges");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - stJamesPlacePrices[0];
+                        stJamesPlaceState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (stJamesPlaceState[0] === "player2" && balticAveState[0] === "player2"){
+                            stJamesPlaceState[1] = true;
+                            alert("Player 2 has a monopoly on the Oranges");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - stJamesPlacePrices[0];
+                        stJamesPlaceState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (stJamesPlaceState[0] === "player3" && balticAveState[0] === "player3"){
+                            stJamesPlaceState[1] = true;
+                            alert("Player 3 has a monopoly on the Oranges");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - stJamesPlacePrices[0];
+                        stJamesPlaceState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (stJamesPlaceState[0] === "player4" && balticAveState[0] === "player4"){
+                            stJamesPlaceState[1] = true;
+                            alert("Player 4 has a monopoly on the Oranges");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Tennessee Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + tennesseeAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - tennesseeAvePrices[0];
+                        tennesseeAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (tennesseeAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            tennesseeAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Oranges");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - tennesseeAvePrices[0];
+                        tennesseeAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (tennesseeAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            tennesseeAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Oranges");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - tennesseeAvePrices[0];
+                        tennesseeAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (tennesseeAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            tennesseeAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Oranges");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - tennesseeAvePrices[0];
+                        tennesseeAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (tennesseeAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            tennesseeAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Oranges");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "New York Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + newYorkAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - newYorkAvePrices[0];
+                        newYorkAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (newYorkAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            newYorkAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Oranges");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - newYorkAvePrices[0];
+                        newYorkAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (newYorkAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            newYorkAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Oranges");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - newYorkAvePrices[0];
+                        newYorkAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (newYorkAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            newYorkAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Oranges");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - newYorkAvePrices[0];
+                        newYorkAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (newYorkAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            newYorkAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Oranges");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Kentucky Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + kentuckyAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - kentuckyAvePrices[0];
+                        kentuckyAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (kentuckyAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            kentuckyAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Reds");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - kentuckyAvePrices[0];
+                        kentuckyAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (kentuckyAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            kentuckyAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Reds");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - kentuckyAvePrices[0];
+                        kentuckyAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (kentuckyAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            kentuckyAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Reds");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - kentuckyAvePrices[0];
+                        kentuckyAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (kentuckyAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            kentuckyAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Reds");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Indiana Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + indianaAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - indianaAvePrices[0];
+                        indianaAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (indianaAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            indianaAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Reds");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - indianaAvePrices[0];
+                        indianaAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (indianaAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            indianaAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Reds");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - indianaAvePrices[0];
+                        indianaAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (indianaAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            indianaAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Reds");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - indianaAvePrices[0];
+                        indianaAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (indianaAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            indianaAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Reds");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Illinois Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + illinoisAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - illinoisAvePrices[0];
+                        illinoisAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (illinoisAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            illinoisAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Reds");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - illinoisAvePrices[0];
+                        illinoisAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (illinoisAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            illinoisAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Reds");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - illinoisAvePrices[0];
+                        illinoisAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (illinoisAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            illinoisAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Reds");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - illinoisAvePrices[0];
+                        illinoisAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (illinoisAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            illinoisAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Reds");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "B & O Railroad":
+            break;
+        case "Atlantic Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + atlanticAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - atlanticAvePrices[0];
+                        atlanticAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (atlanticAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            atlanticAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Yellows");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - atlanticAvePrices[0];
+                        atlanticAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (atlanticAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            atlanticAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Yellows");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - atlanticAvePrices[0];
+                        atlanticAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (atlanticAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            atlanticAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Yellows");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - atlanticAvePrices[0];
+                        atlanticAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (atlanticAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            atlanticAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Yellows");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Ventnor Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + ventnorAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - ventnorAvePrices[0];
+                        ventnorAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (ventnorAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            ventnorAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Yellows");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - ventnorAvePrices[0];
+                        ventnorAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (ventnorAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            ventnorAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Yellows");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - ventnorAvePrices[0];
+                        ventnorAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (ventnorAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            ventnorAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Yellows");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - ventnorAvePrices[0];
+                        ventnorAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (ventnorAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            ventnorAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Yellows");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Water Works":
+            break;
+        case "Marvin Gardens":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + marvinGardensPrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - marvinGardensPrices[0];
+                        marvinGardensState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (marvinGardensState[0] === "player1" && balticAveState[0] === "player1"){
+                            marvinGardensState[1] = true;
+                            alert("Player 1 has a monopoly on the Yellows");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - marvinGardensPrices[0];
+                        marvinGardensState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (marvinGardensState[0] === "player2" && balticAveState[0] === "player2"){
+                            marvinGardensState[1] = true;
+                            alert("Player 2 has a monopoly on the Yellows");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - marvinGardensPrices[0];
+                        marvinGardensState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (marvinGardensState[0] === "player3" && balticAveState[0] === "player3"){
+                            marvinGardensState[1] = true;
+                            alert("Player 3 has a monopoly on the Yellows");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - marvinGardensPrices[0];
+                        marvinGardensState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (marvinGardensState[0] === "player4" && balticAveState[0] === "player4"){
+                            marvinGardensState[1] = true;
+                            alert("Player 4 has a monopoly on the Yellows");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Pacific Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + pacificAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - pacificAvePrices[0];
+                        pacificAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (pacificAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            pacificAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Greens");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - pacificAvePrices[0];
+                        pacificAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (pacificAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            pacificAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Greens");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - pacificAvePrices[0];
+                        pacificAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (pacificAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            pacificAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Greens");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - pacificAvePrices[0];
+                        pacificAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (pacificAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            pacificAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Greens");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "North Carolina Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + northCarolinaAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - northCarolinaAvePrices[0];
+                        northCarolinaAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (northCarolinaAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            northCarolinaAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Greens");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - northCarolinaAvePrices[0];
+                        northCarolinaAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (northCarolinaAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            northCarolinaAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Greens");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - northCarolinaAvePrices[0];
+                        northCarolinaAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (northCarolinaAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            northCarolinaAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Greens");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - northCarolinaAvePrices[0];
+                        northCarolinaAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (northCarolinaAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            northCarolinaAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Greens");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Pennsylvania Avenue":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + pennsylvaniaAvePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - pennsylvaniaAvePrices[0];
+                        pennsylvaniaAveState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (pennsylvaniaAveState[0] === "player1" && balticAveState[0] === "player1"){
+                            pennsylvaniaAveState[1] = true;
+                            alert("Player 1 has a monopoly on the Greens");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - pennsylvaniaAvePrices[0];
+                        pennsylvaniaAveState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (pennsylvaniaAveState[0] === "player2" && balticAveState[0] === "player2"){
+                            pennsylvaniaAveState[1] = true;
+                            alert("Player 2 has a monopoly on the Greens");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - pennsylvaniaAvePrices[0];
+                        pennsylvaniaAveState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (pennsylvaniaAveState[0] === "player3" && balticAveState[0] === "player3"){
+                            pennsylvaniaAveState[1] = true;
+                            alert("Player 3 has a monopoly on the Greens");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - pennsylvaniaAvePrices[0];
+                        pennsylvaniaAveState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (pennsylvaniaAveState[0] === "player4" && balticAveState[0] === "player4"){
+                            pennsylvaniaAveState[1] = true;
+                            alert("Player 4 has a monopoly on the Greens");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Short Line":
+            break;
+        case "Park Place":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + parkPlacePrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - parkPlacePrices[0];
+                        parkPlaceState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (parkPlaceState[0] === "player1" && balticAveState[0] === "player1"){
+                            parkPlaceState[1] = true;
+                            alert("Player 1 has a monopoly on the Dark Blues");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - parkPlacePrices[0];
+                        parkPlaceState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (parkPlaceState[0] === "player2" && balticAveState[0] === "player2"){
+                            parkPlaceState[1] = true;
+                            alert("Player 2 has a monopoly on the Dark Blues");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - parkPlacePrices[0];
+                        parkPlaceState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (parkPlaceState[0] === "player3" && balticAveState[0] === "player3"){
+                            parkPlaceState[1] = true;
+                            alert("Player 3 has a monopoly on the Dark Blues");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - parkPlacePrices[0];
+                        parkPlaceState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (parkPlaceState[0] === "player4" && balticAveState[0] === "player4"){
+                            parkPlaceState[1] = true;
+                            alert("Player 4 has a monopoly on the Dark Blues");
+                        }
+                        break;
+                }
+            }
+            break;
+        case "Boardwalk":
+            var confirmPurchase = confirm("The Price of " + location + " is: " + boardwalkPrices[0]+ "\nPress Okay to Purchase, Cancel to Decline");
+            if (confirmPurchase === true){
+                switch(currentTurn){
+                    case 1:
+                        playerInfo1[3] = playerInfo1[3] - boardwalkPrices[0];
+                        boardwalkState[0] = "player1";
+                        alert(location + "purchased by Player 1");
+                        //Check For Monopoly
+                        if (boardwalkState[0] === "player1" && balticAveState[0] === "player1"){
+                            boardwalkState[1] = true;
+                            alert("Player 1 has a monopoly on the Dark Blues");
+                        }
+                        break;
+                    case 2:
+                        playerInfo2[3] = playerInfo2[3] - boardwalkPrices[0];
+                        boardwalkState[0] = "player2";
+                        alert(location + "purchased by Player 2");
+                        //Check For Monopoly
+                        if (boardwalkState[0] === "player2" && balticAveState[0] === "player2"){
+                            boardwalkState[1] = true;
+                            alert("Player 2 has a monopoly on the Dark Blues");
+                        }
+                        break;
+                    case 3:
+                        playerInfo3[3] = playerInfo3[3] - boardwalkPrices[0];
+                        boardwalkState[0] = "player3";
+                        alert(location + "purchased by Player 3");
+                        //Check For Monopoly
+                        if (boardwalkState[0] === "player3" && balticAveState[0] === "player3"){
+                            boardwalkState[1] = true;
+                            alert("Player 3 has a monopoly on the Dark Blues");
+                        }
+                        break;
+                    case 4:
+                        playerInfo4[3] = playerInfo4[3] - boardwalkPrices[0];
+                        boardwalkState[0] = "player4";
+                        alert(location + "purchased by Player 4");
+                        //Check For Monopoly
+                        if (boardwalkState[0] === "player4" && balticAveState[0] === "player4"){
+                            boardwalkState[1] = true;
+                            alert("Player 4 has a monopoly on the Dark Blues");
+                        }
+                        break;
+                }
+            }
+            break;
+        default:
+            alert("switch statement problem");
+            break;
+        }
+    }
+}
 
 function coordToLocationName (coord) {
     var name;
