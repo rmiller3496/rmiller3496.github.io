@@ -7,7 +7,7 @@ var playerIndex = currentTurn - 1;
 var freeParkingAmount = 0;
 
 // Info for All Addresses
-//[owned or not (if owned -> player number), monopoly or not, num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage]
+//[owned or not (if owned -> player number), monopoly or not *not actually being used as of now* , num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage]
 //[0]                                      [1]              [2]                             [3]    [4]              [5]    [6]      [7]     [8]         [9]      [10]   [11]     
 const mediterraneanAveInfo =  ["unowned", false, "none", 60, 50, 2, 10, 30, 90, 160, 250, 30];
 const balticAveInfo =  ["unowned", false, "none", 60, 50, 4, 20, 60, 180, 320, 450, 30];
@@ -52,6 +52,7 @@ const waterWorksInfo = ["unowned", false, 4, 10, 75, 150];
 // [0]         [1]        [2]        [3]   [4]        [5]
 const playerInfo = [[1, 1, "left", 1500, 0, 0], [1, 1, "left", 1500, 0, 0], [1, 1, "left", 1500, 0, 0], [1, 1, "left", 1500, 0, 0]]
 const playerProperties = [[], [], [], []];
+const playerMonopolies = [[], [], [], []];
 
 
 // Stuff to Do On Start
@@ -373,8 +374,6 @@ function movePlayers() {
 
 // Coord to Location Name
 
-
-
 function coordToLocationName (coord) {
     var name;
     switch (coord){
@@ -514,12 +513,12 @@ function checkLocation (location){
             alert('Collected 200 for Passing Go')
             break;
         case "Mediterranean Avenue":
-            locationOptions(mediterraneanAveInfo, location, "regular");
+            locationOptions(mediterraneanAveInfo, location, "regular", "browns");
             break;
         case "Community Chest Browns":
             break;
         case "Baltic Avenue":
-            locationOptions(balticAveInfo, location, "regular");
+            locationOptions(balticAveInfo, location, "regular", "browns");
             break;
         case "Income Tax":
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 200;
@@ -531,43 +530,43 @@ function checkLocation (location){
             locationOptions(readingRailRoadInfo, location, "railroad");
             break;
         case "Oriental Avenue":
-            locationOptions(orientalAveInfo, location, "regular");
+            locationOptions(orientalAveInfo, location, "regular", "light blues");
             break;
         case "Chance Light Blues":
             break;
         case "Vermont Avenue":
-            locationOptions(vermontAveInfo, location, "regular");
+            locationOptions(vermontAveInfo, location, "regular", "light blues");
             break;
         case "Connecticut Avenue":
-            locationOptions(connecticutAveInfo, location, "regular");
+            locationOptions(connecticutAveInfo, location, "regular", "light blues");
             break;
         case "Just Visiting":
             break;
         case "St. Charles Place":
-            locationOptions(stCharlesPlaceInfo, location, "regular");
+            locationOptions(stCharlesPlaceInfo, location, "regular", "purples");
             break;
         case "Electric Company":
             locationOptions(electricCompanyInfo, location, "utilities")
             break;
         case "States Avenue":
-            locationOptions(statesAveInfo, location, "regular");
+            locationOptions(statesAveInfo, location, "regular", "purples");
             break;
         case "Virginia Avenue":
-            locationOptions(virginiaAveInfo, location, "regular");
+            locationOptions(virginiaAveInfo, location, "regular", "purples");
             break;
         case "Pennsylvania Railroad":
             locationOptions(pennsylvaniaRailRoadInfo, location, "railroad");
             break;
         case "St. James Place":
-            locationOptions(stJamesPlaceInfo, location, "regular");
+            locationOptions(stJamesPlaceInfo, location, "regular", "oranges");
             break;
         case "Community Chest Oranges":
             break;
         case "Tennessee Avenue":
-            locationOptions(tennesseeAveInfo, location, "regular");
+            locationOptions(tennesseeAveInfo, location, "regular", "oranges");
             break;
         case "New York Avenue":
-            locationOptions(newYorkAveInfo, location, "regular");
+            locationOptions(newYorkAveInfo, location, "regular", "oranges");
             break;
         case "Free Parking":
             var playerIndex = currentTurn - 1;
@@ -576,43 +575,43 @@ function checkLocation (location){
             freeParkingAmount = 0;
             break;
         case "Kentucky Avenue":
-            locationOptions(kentuckyAveInfo, location, "regular");
+            locationOptions(kentuckyAveInfo, location, "regular", "reds");
             break;
         case "Chance Reds":
             break;
         case "Indiana Avenue":
-            locationOptions(indianaAveInfo, location, "regular");
+            locationOptions(indianaAveInfo, location, "regular", "reds");
             break;
         case "Illinois Avenue":
-            locationOptions(illinoisAveInfo, location, "regular");
+            locationOptions(illinoisAveInfo, location, "regular", "reds");
             break;
         case "B & O Railroad":
             locationOptions(bandoRailRoadInfo, location, "railroad");
             break;
         case "Atlantic Avenue":
-            locationOptions(atlanticAveInfo, location, "regular");
+            locationOptions(atlanticAveInfo, location, "regular", "yellows");
             break;
         case "Ventnor Avenue":
-            locationOptions(ventnorAveInfo, location, "regular");
+            locationOptions(ventnorAveInfo, location, "regular", "yellows");
             break;
         case "Water Works":
             locationOptions(waterWorksInfo, location, "utilities")
             break;
         case "Marvin Gardens":
-            locationOptions(marvinGardensInfo, location, "regular");
+            locationOptions(marvinGardensInfo, location, "regular", "yellows");
             break;
         case "Go To Jail":
             break;
         case "Pacific Avenue":
-            locationOptions(pacificAveInfo, location, "regular");
+            locationOptions(pacificAveInfo, location, "regular", "greens");
             break;
         case "North Carolina Avenue":
-            locationOptions(northCarolinaAveInfo, location, "regular");
+            locationOptions(northCarolinaAveInfo, location, "regular", "greens");
             break;
         case "Community Chest Greens":
             break;
         case "Pennsylvania Avenue":
-            locationOptions(pennsylvaniaAveInfo, location, "regular");
+            locationOptions(pennsylvaniaAveInfo, location, "regular", "greens");
             break;
         case "Short Line":
             locationOptions(shortLineInfo, location, "railroad");
@@ -620,7 +619,7 @@ function checkLocation (location){
         case "Chance Dark Blues":
             break;
         case "Park Place":
-            locationOptions(parkPlaceInfo, location, "regular");
+            locationOptions(parkPlaceInfo, location, "regular", "dark blues");
             break;
         case "Luxury Tax":
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 100;
@@ -629,7 +628,7 @@ function checkLocation (location){
             alert("Paid 100 for Luxury Tax");
             break;
         case "Boardwalk":
-            locationOptions(boardwalkInfo, location, "regular");
+            locationOptions(boardwalkInfo, location, "regular", "dark blues");
             break;
         default:
             alert("switch statement problem");
@@ -637,13 +636,13 @@ function checkLocation (location){
     }
 }
 
-function locationOptions(locationArray, location, locationType){
+function locationOptions(locationArray, location, locationType, region){
     switch (locationType){
         case "regular":
             if (locationArray[0] === currentTurn){
                 alert("Location Owned By Current Player");
             } else if (locationArray[0] === "unowned"){
-                buyPrompt(locationArray, location);
+                buyPrompt(locationArray, location, region);
             } else {
                 rentDue(locationArray, location);
             }
@@ -761,7 +760,7 @@ function payRentRailroads(locationArray, location){
     }
 }
 
-function buyPrompt (locationArray, location) {
+function buyPrompt (locationArray, location, region) {
     var intentToBuy = confirm(location + " is available! Press Ok to Continue, Press Cancel To Decline");
     var playerIndex = currentTurn - 1;
     if (intentToBuy === true){
@@ -772,7 +771,8 @@ function buyPrompt (locationArray, location) {
                 playerProperties[playerIndex].push(location);
                 locationArray[0] = currentTurn;
                 alert("Player " + currentTurn + " purchased " + location);
-                document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3]; 
+                document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                checkForMonopoly(region); 
             } else {
                 alert("Insufficient Funds");
             }
@@ -838,5 +838,66 @@ function viewProperties () {
         alert('Player 1 Properties: ' + player1Properties +"\nPlayer 2 Properties: " + player2Properties +'\nPlayer 3 Properties: ' + player3Properties);
     } else if (numPlayers === 4){
         alert('Player 1 Properties: ' + player1Properties + "\nPlayer 2 Properties: " + player2Properties + '\nPlayer 3 Properties: ' + player3Properties +'\nPlayer 4 Properties: ' + player4Properties);
+    }
+}
+
+function checkForMonopoly(region){
+    var comparer;
+    var playerIndex = currentTurn - 1;
+    switch(region){
+        case "browns":
+            if (mediterraneanAveInfo[0] === balticAveInfo[0]){
+                playerMonopolies[playerIndex].push("browns");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            break;
+        case "light blues":
+            comparer = orientalAveInfo[0];
+            if (vermontAveInfo[0] === comparer && connecticutAveInfo[0] === comparer){
+                playerMonopolies[playerIndex].push("light blues");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            break;
+        case "purples":
+            comparer = stCharlesPlaceInfo[0];
+            if (statesAveInfo[0] === comparer && virginiaAveInfo[0] === comparer){
+                playerMonopolies[playerIndex].push("purples");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            break;
+        case "oranges":
+            comparer = stJamesPlaceInfo[0];
+            if (tennesseeAveInfo[0] === comparer && newYorkAveInfo[0] === comparer){
+                playerMonopolies[playerIndex].push("oranges");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            break;
+        case "reds":
+            comparer = kentuckyAveInfo[0];
+            if (indianaAveInfo[0] === comparer && illinoisAveInfo[0] === comparer){
+                playerMonopolies[playerIndex].push("reds");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            break;
+        case "yellows":
+            comparer = atlanticAveInfo[0];
+            if (ventnorAveInfo[0] === comparer && marvinGardensAveInfo[0] === comparer){
+                playerMonopolies[playerIndex].push("yellows");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            break;
+        case "greens":
+            comparer = pacificAveInfo[0];
+            if (northCarolinaAveInfo[0] === comparer && pennsylvaniaAveInfo[0] === comparer){
+                playerMonopolies[playerIndex].push("greens");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            break;
+        case "dark blues":
+            if (parkPlaceInfo[0] === boardwalkInfo[0]){
+                playerMonopolies[playerIndex].push("dark blues");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            break;
     }
 }
