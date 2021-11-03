@@ -4,7 +4,7 @@ var roll1;
 var roll2;
 var currentTurn = 1;
 
-// State for All Addresses
+// Info for All Addresses
 //[owned or not (if owned -> player name), monopoly or not, num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage]
 //[0]                                      [1]              [2]                             [3]    [4]              [5]    [6]      [7]     [8]         [9]      [10]   [11]     
 const mediterraneanAveInfo =  ["unowned", false, "none", 60, 50, 2, 10, 30, 90, 160, 250, 30];
@@ -30,12 +30,13 @@ const pennsylvaniaAveInfo =  ["unowned", false, "none", 320, 200, 28, 150, 450, 
 const parkPlaceInfo =  ["unowned", false, "none", 350, 200, 35, 175, 500, 1100, 1300, 1500, 175];
 const boardwalkInfo =  ["unowned", false, "none", 400, 200, 50, 200, 600, 1400, 1700, 2000, 200];
 
-
 // player data is stored as follows:
 // [positionx, positiony, direction, money]
 // [0]         [1]        [2]        [3] 
 const playerInfo= [[1, 1, "left", 1500, "", ""], [1, 1, "left", 1500, "", ""], [1, 1, "left", 1500, "", ""], [1, 1, "left", 1500, "", ""]]
 const playerProperties = [[], [], [], []];
+
+
 // Stuff to Do On Start
 function initialize() {
     numPlayers = prompt("Enter A Number Between 2 and 4 for the number of players");
