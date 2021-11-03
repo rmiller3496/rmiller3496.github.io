@@ -3,6 +3,7 @@ var numPlayers;
 var roll1;
 var roll2;
 var currentTurn = 1;
+var playerIndex = currentTurn - 1;
 
 // Info for All Addresses
 //[owned or not (if owned -> player name), monopoly or not, num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage]
@@ -261,251 +262,69 @@ function drawDice() {
 
 
 function movePlayers() {
+    
     var totalRoll = roll1 + roll2;
-    switch(currentTurn){
-        case 1:
-            var locationX = playerInfo[0][0];
-            var locationY = playerInfo[0][1];
-            var change;
-            var direction = playerInfo[0][2];
-            switch (direction){
-                case "left":
-                    locationX = locationX + totalRoll;
-                    if (locationX > 11){
-                        change = locationX - 11;
-                        direction = "up";
-                        locationX = 11;
-                        locationY = 1 + change;
-                    } 
-                    playerInfo[0][0] = locationX;
-                    playerInfo[0][1] = locationY;
-                    playerInfo[0][2] = direction;
-                    break;
-                case "up":
-                    locationY = locationY + totalRoll;
-                    if (locationY > 11){
-                        change = locationY - 11;
-                        direction = "right";
-                        locationY = 11;
-                        locationX = 11 - change;
-                    } 
-                    playerInfo[0][0] = locationX;
-                    playerInfo[0][1] = locationY;
-                    playerInfo[0][2] = direction;
-                    break;
-                case "right":
-                    locationX = locationX - totalRoll;
-                    if (locationX < 1){
-                        change = 1 - locationX;
-                        direction = "down";
-                        locationX = 1;
-                        locationY = 11 - change;
-                    } 
-                    playerInfo[0][0] = locationX;
-                    playerInfo[0][1] = locationY;
-                    playerInfo[0][2] = direction;
-                    break;
-                case "down":
-                    locationY = locationY - totalRoll;
-                    if (locationY < 1){
-                        change = 1 - locationX;
-                        direction = "left";
-                        locationY = 1;
-                        locationX = 1 + change;
-                    } 
-                    playerInfo[0][0] = locationX;
-                    playerInfo[0][1] = locationY;
-                    playerInfo[0][2] = direction;
-                    break;
-            }
-            var locationIdentifer = locationX + "," + locationY;
-            var locationName = coordToLocationName(locationIdentifer);
-            var locationUpdate = document.getElementById("location1");
-            locationUpdate.innerHTML = "Location: " + locationName;
-            break;
-        case 2:
-            var locationX = playerInfo[1][0];
-            var locationY = playerInfo[1][1];
-            var change;
-            var direction = playerInfo[1][2];
-            switch (direction){
-                case "left":
-                    locationX = locationX + totalRoll;
-                    if (locationX > 11){
-                        change = locationX - 11;
-                        direction = "up";
-                        locationX = 11;
-                        locationY = 1 + change;
-                    } 
-                    playerInfo[1][0] = locationX;
-                    playerInfo[1][1] = locationY;
-                    playerInfo[1][2] = direction;
-                    break;
-                case "up":
-                    locationY = locationY + totalRoll;
-                    if (locationY > 11){
-                        change = locationY - 11;
-                        direction = "right";
-                        locationY = 11;
-                        locationX = 11 - change;
-                    } 
-                    playerInfo[1][0] = locationX;
-                    playerInfo[1][1] = locationY;
-                    playerInfo[1][2] = direction;
-                    break;
-                case "right":
-                    locationX = locationX - totalRoll;
-                    if (locationX < 1){
-                        change = 1 - locationX;
-                        direction = "down";
-                        locationX = 1;
-                        locationY = 11 - change;
-                    } 
-                    playerInfo[1][0] = locationX;
-                    playerInfo[1][1] = locationY;
-                    playerInfo[1][2] = direction;
-                    break;
-                case "down":
-                    locationY = locationY - totalRoll;
-                    if (locationY < 1){
-                        change = 1 - locationX;
-                        direction = "left";
-                        locationY = 1;
-                        locationX = 1 + change;
-                    } 
-                    playerInfo[1][0] = locationX;
-                    playerInfo[1][1] = locationY;
-                    playerInfo[1][2] = direction;
-                    break;
-            }
-            var locationIdentifer = locationX + "," + locationY;
-            var locationName = coordToLocationName(locationIdentifer);
-            var locationUpdate = document.getElementById("location2");
-            locationUpdate.innerHTML = "Location: " + locationName;
-            break;
-        case 3:
-            var locationX = playerInfo[2][0];
-            var locationY = playerInfo[2][1];
-            var change;
-            var direction = playerInfo[2][2];
-            switch (direction){
-                case "left":
-                    locationX = locationX + totalRoll;
-                    if (locationX > 11){
-                        change = locationX - 11;
-                        direction = "up";
-                        locationX = 11;
-                        locationY = 1 + change;
-                    } 
-                    playerInfo[2][0] = locationX;
-                    playerInfo[2][1] = locationY;
-                    playerInfo[2][2] = direction;
-                    break;
-                case "up":
-                    locationY = locationY + totalRoll;
-                    if (locationY > 11){
-                        change = locationY - 11;
-                        direction = "right";
-                        locationY = 11;
-                        locationX = 11 - change;
-                    } 
-                    playerInfo[2][0] = locationX;
-                    playerInfo[2][1] = locationY;
-                    playerInfo[2][2] = direction;
-                    break;
-                case "right":
-                    locationX = locationX - totalRoll;
-                    if (locationX < 1){
-                        change = 1 - locationX;
-                        direction = "down";
-                        locationX = 1;
-                        locationY = 11 - change;
-                    } 
-                    playerInfo[2][0] = locationX;
-                    playerInfo[2][1] = locationY;
-                    playerInfo[2][2] = direction;
-                    break;
-                case "down":
-                    locationY = locationY - totalRoll;
-                    if (locationY < 1){
-                        change = 1 - locationX;
-                        direction = "left";
-                        locationY = 1;
-                        locationX = 1 + change;
-                    } 
-                    playerInfo[2][0] = locationX;
-                    playerInfo[2][1] = locationY;
-                    playerInfo[2][2] = direction;
-                    break;
-            }
-            var locationIdentifer = locationX + "," + locationY;
-            var locationName = coordToLocationName(locationIdentifer);
-            var locationUpdate = document.getElementById("location3");
-            locationUpdate.innerHTML = "Location: " + locationName;
-            break;
-        case 4:
-            var locationX = playerInfo[3][0];
-            var locationY = playerInfo[3][1];
-            var change;
-            var direction = playerInfo[3][2];
-            switch (direction){
-                case "left":
-                    locationX = locationX + totalRoll;
-                    if (locationX > 11){
-                        change = locationX - 11;
-                        direction = "up";
-                        locationX = 11;
-                        locationY = 1 + change;
-                    } 
-                    playerInfo[3][0] = locationX;
-                    playerInfo[3][1] = locationY;
-                    playerInfo[3][2] = direction;
-                    break;
-                case "up":
-                    locationY = locationY + totalRoll;
-                    if (locationY > 11){
-                        change = locationY - 11;
-                        direction = "right";
-                        locationY = 11;
-                        locationX = 11 - change;
-                    } 
-                    playerInfo[3][0] = locationX;
-                    playerInfo[3][1] = locationY;
-                    playerInfo[3][2] = direction;
-                    break;
-                case "right":
-                    locationX = locationX - totalRoll;
-                    if (locationX < 1){
-                        change = 1 - locationX;
-                        direction = "down";
-                        locationX = 1;
-                        locationY = 11 - change;
-                    } 
-                    playerInfo[3][0] = locationX;
-                    playerInfo[3][1] = locationY;
-                    playerInfo[3][2] = direction;
-                    break;
-                case "down":
-                    locationY = locationY - totalRoll;
-                    if (locationY < 1){
-                        change = 1 - locationX;
-                        direction = "left";
-                        locationY = 1;
-                        locationX = 1 + change;
-                    } 
-                    playerInfo[3][0] = locationX;
-                    playerInfo[3][1] = locationY;
-                    playerInfo[3][2] = direction;
-                    break;
-            }
-            var locationIdentifer = locationX + "," + locationY;
-            var locationName = coordToLocationName(locationIdentifer);
-            var locationUpdate = document.getElementById("location4");
-            locationUpdate.innerHTML = "Location: " + locationName;
-            break;
+    var locationX = playerInfo[playerIndex][0];
+    var locationY = playerInfo[playerIndex][1];
+    var change;
+    var direction = playerInfo[playerIndex][2];
+    switch (direction){
+        case "left":
+            locationX = locationX + totalRoll;
+            if (locationX > 11){
+                change = locationX - 11;
+                direction = "up";
+                locationX = 11;
+                locationY = 1 + change;
+            } 
+            playerInfo[playerIndex][0] = locationX;
+            playerInfo[playerIndex][1] = locationY;
+            playerInfo[playerIndex][2] = direction;
+        break;
+    case "up":
+        locationY = locationY + totalRoll;
+        if (locationY > 11){
+            change = locationY - 11;
+            direction = "right";
+            locationY = 11;
+            locationX = 11 - change;
+        } 
+        playerInfo[playerIndex][0] = locationX;
+        playerInfo[playerIndex][1] = locationY;
+        playerInfo[playerIndex][2] = direction;
+        break;
+    case "right":
+        locationX = locationX - totalRoll;
+        if (locationX < 1){
+            change = 1 - locationX;
+            direction = "down";
+            locationX = 1;
+            locationY = 11 - change;
+        } 
+        playerInfo[playerIndex][0] = locationX;
+        playerInfo[playerIndex][1] = locationY;
+        playerInfo[playerIndex][2] = direction;
+        break;
+    case "down":
+        locationY = locationY - totalRoll;
+        if (locationY < 1){
+            change = 1 - locationX;
+            direction = "left";
+            locationY = 1;
+            locationX = 1 + change;
+        } 
+        playerInfo[playerIndex][0] = locationX;
+        playerInfo[playerIndex][1] = locationY;
+        playerInfo[playerIndex][2] = direction;
+        break;
     }
+    var locationIdentifer = locationX + "," + locationY;
+    var locationName = coordToLocationName(locationIdentifer);
+    var locationUpdate = document.getElementById("location1");
+    locationUpdate.innerHTML = "Location: " + locationName;
     // Check Location That The Player Arrived at And Take Action
     checkLocation(locationName);
+            
 }
 
 
@@ -650,24 +469,9 @@ function checkLocation (location){
     // If mortgaged, do nothing
     switch (location){
         case "Go":
-            switch (currentTurn){
-                case 1:
-                    playerInfo[0][3] = playerInfo[0][3] + 200;
-                    document.getElementById("cash1").innerHTML = "Cash: " + playerInfo[0][3];
-                    break;
-                case 2:
-                    playerInfo[1][3] = playerInfo[1][3] + 200;
-                    document.getElementById("cash2").innerHTML = "Cash: " + playerInfo[1][3];
-                    break;
-                case 3:
-                    playerInfo[2][3] = playerInfo[2][3] + 200;
-                    document.getElementById("cash3").innerHTML = "Cash: " + playerInfo[2][3];
-                    break;
-                case 4:
-                    playerInfo[3][3] = playerInfo[3][3] + 200;
-                    document.getElementById("cash4").innerHTML = "Cash: " + playerInfo[3][3];
-                    break;
-            }
+            
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            document.getElementById("cash1").innerHTML = "Cash: " + playerInfo[playerIndex][3];
             break;
         case "Mediterranean Avenue":
             locationOptions(mediterraneanAveInfo, location);
@@ -784,7 +588,7 @@ function locationOptions(locationArray, location){
 }
 
 function buyPrompt (locationArray, location) {
-    var playerIndex = currentTurn - 1;
+    
     var intentToBuy = confirm(location + " is available! Press Ok to Continue, Press Cancel To Decline");
     if (intentToBuy === true){
         var confirmPurchase = confirm("The Price of " + location + " is: " + locationArray[3]+ "\nPress Okay to Purchase, Cancel to Decline");
