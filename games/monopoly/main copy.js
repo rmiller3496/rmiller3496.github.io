@@ -6,7 +6,7 @@ var currentTurn = 1;
 var playerIndex = currentTurn - 1;
 
 // Info for All Addresses
-//[owned or not (if owned -> player name), monopoly or not, num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage]
+//[owned or not (if owned -> player number), monopoly or not, num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage]
 //[0]                                      [1]              [2]                             [3]    [4]              [5]    [6]      [7]     [8]         [9]      [10]   [11]     
 const mediterraneanAveInfo =  ["unowned", false, "none", 60, 50, 2, 10, 30, 90, 160, 250, 30];
 const balticAveInfo =  ["unowned", false, "none", 60, 50, 4, 20, 60, 180, 320, 450, 30];
@@ -34,7 +34,7 @@ const boardwalkInfo =  ["unowned", false, "none", 400, 200, 50, 200, 600, 1400, 
 // player data is stored as follows:
 // [positionx, positiony, direction, money]
 // [0]         [1]        [2]        [3] 
-const playerInfo= [[1, 1, "left", 1500, "", ""], [1, 1, "left", 1500, "", ""], [1, 1, "left", 1500, "", ""], [1, 1, "left", 1500, "", ""]]
+const playerInfo = [[1, 1, "left", 1500, "", ""], [1, 1, "left", 1500, "", ""], [1, 1, "left", 1500, "", ""], [1, 1, "left", 1500, "", ""]]
 const playerProperties = [[], [], [], []];
 
 
@@ -262,7 +262,7 @@ function drawDice() {
 
 
 function movePlayers() {
-    
+    var playerIndex = currentTurn - 1
     var totalRoll = roll1 + roll2;
     var locationX = playerInfo[playerIndex][0];
     var locationY = playerInfo[playerIndex][1];
@@ -320,7 +320,7 @@ function movePlayers() {
     }
     var locationIdentifer = locationX + "," + locationY;
     var locationName = coordToLocationName(locationIdentifer);
-    var locationUpdate = document.getElementById("location1");
+    var locationUpdate = document.getElementById("location" + (currentTurn));
     locationUpdate.innerHTML = "Location: " + locationName;
     // Check Location That The Player Arrived at And Take Action
     checkLocation(locationName);
@@ -467,108 +467,108 @@ function checkLocation (location){
     // If it returns anything but "available" or "mortgaged", calculate and do rent
     // If "available", call buy fxn
     // If mortgaged, do nothing
+    var playerIndex = currentTurn - 1;
     switch (location){
         case "Go":
-            
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
-            document.getElementById("cash1").innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
             break;
         case "Mediterranean Avenue":
-            locationOptions(mediterraneanAveInfo, location);
+            locationOptions(mediterraneanAveInfo, location, "regular");
             break;
         case "Baltic Avenue":
-            locationOptions(balticAveInfo, location);
+            locationOptions(balticAveInfo, location, "regular");
         case "Income Tax":
             break;
         case "Reading Railroad":
             break;
         case "Oriental Avenue":
-            locationOptions(orientalAveInfo, location);
+            locationOptions(orientalAveInfo, location, "regular");
             break;
         case "Chance Light Blues":
             break;
         case "Vermont Avenue":
-            locationOptions(vermontAveInfo, location);
+            locationOptions(vermontAveInfo, location, "regular");
             break;
         case "Connecticut Avenue":
-            locationOptions(connecticutAveInfo, location);
+            locationOptions(connecticutAveInfo, location, "regular");
             break;
         case "Just Visiting":
             break;
         case "St. Charles Place":
-            locationOptions(stCharlesPlaceInfo, location);
+            locationOptions(stCharlesPlaceInfo, location, "regular");
             break;
         case "Electric Company":
             break;
         case "States Avenue":
-            locationOptions(statesAveInfo, location);
+            locationOptions(statesAveInfo, location, "regular");
             break;
         case "Virginia Avenue":
-            locationOptions(virginiaAveInfo, location);
+            locationOptions(virginiaAveInfo, location, "regular");
             break;
         case "Pennsylvania Railroad":
             break;
         case "St. James Place":
-            locationOptions(stJamesPlaceInfo, location);
+            locationOptions(stJamesPlaceInfo, location, "regular");
             break;
         case "Community Chest Oranges":
             break;
         case "Tennessee Avenue":
-            locationOptions(tennesseeAveInfo, location);
+            locationOptions(tennesseeAveInfo, location, "regular");
             break;
         case "New York Avenue":
-            locationOptions(newYorkAveInfo, location);
+            locationOptions(newYorkAveInfo, location, "regular");
             break;
         case "Free Parking":
             break;
         case "Kentucky Avenue":
-            locationOptions(kentuckyAveInfo, location);
+            locationOptions(kentuckyAveInfo, location, "regular");
             break;
         case "Chance Reds":
             break;
         case "Indiana Avenue":
-            locationOptions(indianaAveInfo, location);
+            locationOptions(indianaAveInfo, location, "regular");
             break;
         case "Illinois Avenue":
-            locationOptions(illinoisAveInfo, location);
+            locationOptions(illinoisAveInfo, location, "regular");
             break;
         case "B & O Railroad":
             break;
         case "Atlantic Avenue":
-            locationOptions(atlanticAveInfo, location);
+            locationOptions(atlanticAveInfo, location, "regular");
             break;
         case "Ventnor Avenue":
-            locationOptions(ventnorAveInfo, location);
+            locationOptions(ventnorAveInfo, location, "regular");
             break;
         case "Water Works":
             break;
         case "Marvin Gardens":
-            locationOptions(marvinGardensInfo, location);
+            locationOptions(marvinGardensInfo, location, "regular");
             break;
         case "Go To Jail":
             break;
         case "Pacific Avenue":
-            locationOptions(pacificAveInfo, location);
+            locationOptions(pacificAveInfo, location, "regular");
             break;
         case "North Carolina Avenue":
-            locationOptions(northCarolinaAveInfo, location);
+            locationOptions(northCarolinaAveInfo, location, "regular");
             break;
         case "Community Chest Greens":
             break;
         case "Pennsylvania Avenue":
-            locationOptions(pennsylvaniaAveInfo, location);
+            locationOptions(pennsylvaniaAveInfo, location, "regular");
             break;
         case "Short Line":
             break;
         case "Chance Dark Blues":
             break;
         case "Park Place":
-            locationOptions(parkPlaceInfo, location);
+            locationOptions(parkPlaceInfo, location, "regular");
             break;
         case "Luxury Tax":
             break;
         case "Boardwalk":
-            locationOptions(boardwalkInfo, location);
+            locationOptions(boardwalkInfo, location, "regular");
             break;
         default:
             alert("switch statement problem");
@@ -576,20 +576,33 @@ function checkLocation (location){
     }
 }
 
-function locationOptions(locationArray, location){
-    if (locationArray[0] === currentTurn){
-        alert("Location Owned By Current Player");
-    } else if (locationArray[0] === "unowned"){
-        buyPrompt(locationArray, location);
-    } else {
-        return "Rent Due";
-        // Call Rent Prompt
+function locationOptions(locationArray, location, locationType){
+    switch (locationType){
+        case "regular":
+            if (locationArray[0] === currentTurn){
+                alert("Location Owned By Current Player");
+            } else if (locationArray[0] === "unowned"){
+                buyPrompt(locationArray, location);
+            } else {
+                rentDue(locationArray, location);
+            }
+            break;
+        case "railroads":
+            break;
+        case "utilities":
+            break;
+        case "chance":
+            break;
+        case "community chest":
+            break;
+        case "taxes":
+            break;
     }
 }
 
 function buyPrompt (locationArray, location) {
-    
     var intentToBuy = confirm(location + " is available! Press Ok to Continue, Press Cancel To Decline");
+    var playerIndex = currentTurn - 1;
     if (intentToBuy === true){
         var confirmPurchase = confirm("The Price of " + location + " is: " + locationArray[3]+ "\nPress Okay to Purchase, Cancel to Decline");
         if (confirmPurchase === true){
@@ -600,4 +613,51 @@ function buyPrompt (locationArray, location) {
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
         }
     }
+}
+
+function rentDue (locationArray, location){
+    var ownerIndex = locationArray[0] - 1;
+    var landerIndex = currentTurn - 1
+    var rentToPay;
+    switch (locationArray[2]){
+        case "none":
+            if (locationArray[1] === true){
+                rentToPay = locationArray[5] * 2;
+            } else {
+                rentToPay = locationArray[5];
+            }
+            completeRentTransaction(landerIndex, ownerIndex, rentToPay);
+            break;
+        case 1:
+            rentToPay = locationArray[6];
+            completeRentTransaction(landerIndex, ownerIndex, rentToPay);
+            break;
+        case 2:
+            rentToPay = locationArray[7];
+            completeRentTransaction(landerIndex, ownerIndex, rentToPay);
+            break;
+        case 3:
+            rentToPay = locationArray[8];
+            completeRentTransaction(landerIndex, ownerIndex, rentToPay);
+            break;
+        case 4:
+            rentToPay = locationArray[9];
+            completeRentTransaction(landerIndex, ownerIndex, rentToPay);
+            break;
+        case "hotel":
+            rentToPay = locationArray[10];
+            completeRentTransaction(landerIndex, ownerIndex, rentToPay);
+            break;
+        case "mortgaged":
+            alert(location + " is Mortgaged");
+            break;
+    }
+    alert("Player " + (landerIndex + 1) + " paid " + rentToPay + " to Player " + (ownerIndex + 1) + " for rent on " + location);
+}
+
+function completeRentTransaction (landerIndex, ownerIndex, rentToPay){
+    playerInfo[landerIndex][3] = playerInfo[landerIndex][3] - rentToPay;
+    playerInfo[ownerIndex][3] = playerInfo[ownerIndex][3] + rentToPay;
+    document.getElementById("cash" + (ownerIndex + 1)).innerHTML = "Cash: " + playerInfo[ownerIndex][3];
+    document.getElementById("cash" + (landerIndex + 1)).innerHTML = "Cash: " + playerInfo[landerIndex][3];
 }
