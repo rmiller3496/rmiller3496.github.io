@@ -148,7 +148,8 @@ function changeTurn () {
                     break;
             }
             break;
-    }   
+        
+        }document.getElementById("turnIndicator").innerHTML("Turn: Player " + currentTurn);   
 }
 
 
