@@ -5,10 +5,12 @@ var roll2;
 var currentTurn = 1;
 var playerIndex = currentTurn - 1;
 var freeParkingAmount = 0;
+var unmortgaged = [];
+var mortgaged = [];
 
 // Info for All Addresses
-//[owned or not (if owned -> player number), monopoly or not *not actually being used as of now* , num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage]
-//[0]                                      [1]              [2]                             [3]    [4]              [5]    [6]      [7]     [8]         [9]      [10]   [11]     
+//[owned or not (if owned -> player number), monopoly or not *not actually being used as of now* , num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage refund]
+//[0]                                      [1]                                                      [2]                             [3]    [4]             [5]   [6]    [7]         [8]       [9]      [10]     [11]     
 const mediterraneanAveInfo =  ["unowned", false, "none", 60, 50, 2, 10, 30, 90, 160, 250, 30];
 const balticAveInfo =  ["unowned", false, "none", 60, 50, 4, 20, 60, 180, 320, 450, 30];
 const orientalAveInfo =  ["unowned", false, "none", 100, 50, 6, 30, 90, 270, 400, 550, 50];
@@ -33,7 +35,7 @@ const parkPlaceInfo =  ["unowned", false, "none", 350, 200, 35, 175, 500, 1100, 
 const boardwalkInfo =  ["unowned", false, "none", 400, 200, 50, 200, 600, 1400, 1700, 2000, 200];
 
 // Info For Railroads
-// [owned or not (if owned -> player number), mortaged or not (bool), rent 1 rr, 2rr, 3rr, 4rr, mortgage value, cost]
+// [owned or not (if owned -> player number), mortaged or not (bool), rent 1 rr, 2rr, 3rr, 4rr, mortgage refund, cost]
 // [0]                                        [1]                     [2]       [3]   [4]  [5]  [6]             [7]
 const readingRailRoadInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
 const pennsylvaniaRailRoadInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
@@ -41,7 +43,7 @@ const bandoRailRoadInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
 const shortLineInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
 
 // Info for Utilities
-//[owned or not (if owned -> player number), mortgaged or not (bool), 1 multiplier, 2 multiplier, mortgage value, cost]
+//[owned or not (if owned -> player number), mortgaged or not (bool), 1 multiplier, 2 multiplier, mortgage refund, cost]
 //[0]                                        [1]                      [2]           [3]           [4]             [5]
 const electricCompanyInfo = ["unowned", false, 4, 10, 75, 150];
 const waterWorksInfo = ["unowned", false, 4, 10, 75, 150];
@@ -899,6 +901,282 @@ function checkForMonopoly(region){
                 playerMonopolies[playerIndex].push("dark blues");
                 alert("Player " + currentTurn + " has a monopoly on the " + region);
             }
+            break;
+    }
+}
+
+function resetAndGrabLists() {
+    var unmortgaged = [];
+    var mortgaged = [];
+    for (var i=0; i < playerProperties[playerIndex]; i++){
+        alert("ran");
+        if (playerProperties[playerIndex][i] === "Electric Company" || playerProperties[playerIndex][i] === "Water Works"){
+            if (checkStateOfProperty(playerProperties[playerIndex][i], 1) === false){
+                alert("added to unmortgaged");
+                unmortgaged.push(playerProperties[playerIndex][i]);
+            } else {
+                alert("added to mortgaged");
+                mortgaged.push(playerProperties[playerIndex][i]); 
+            }
+        } else if (playerProperties[playerIndex][i] === "B & O Railroad" ||playerProperties[playerIndex][i] === "Reading Railroad" ||playerProperties[playerIndex][i] === "Pennsylvania Railroad" ||playerProperties[playerIndex][i] === "Short Line"){
+            if (checkStateOfProperty(playerProperties[playerIndex][i], 1) === false){
+                unmortgaged.push(playerProperties[playerIndex][i]);
+                alert("added to unmortgaged");
+            } else {
+                mortgaged.push(playerProperties[playerIndex][i]);
+                alert("added to mortgaged"); 
+            }
+        } else {
+            if (checkStateOfProperty(playerProperties[playerIndex][i], 4) === "mortgaged"){
+                mortgaged.push(playerProperties[playerIndex][i]);
+                alert("added to mortgaged");
+            } else {
+                unmortgaged.push(playerProperties[playerIndex][i]); 
+                alert("added to unmortgaged");
+            }
+        }
+    }
+}
+
+function mortgageProperty() {
+    playerIndex = currentTurn - 1;
+    var option1 = prompt("Type 'mortgage' to mortgage a property. Type 'unmortgage' to unmortgage a property");
+    if (option1 !== null){
+        option1 = option1.toLowerCase();
+        resetAndGrabLists();
+        switch (option1){
+            case "mortgage":
+                var chooseLocation = prompt("Enter Location Name as it is displayed to mortgage the property\n" + "Unmortgaged: " + unmortgaged + "\nMortgaged: " + mortgaged);
+                if (unmortgaged.includes(chooseLocation)){
+                    if (chooseLocation === "Electric Company" || chooseLocation === "Water Works"){
+                        var amount = checkStateOfProperty(chooseLocation, 4);
+                        changeStateOfProperty(chooseLocation, 1, true);
+                    } else if (chooseLocation === "B & O Railroad" ||chooseLocation === "Reading Railroad" ||chooseLocation === "Pennsylvania Railroad" ||chooseLocation === "Short Line"){
+                        var amount = checkStateOfProperty(chooseLocation, 6);
+                        changeStateOfProperty(chooseLocation, 1, true);
+                    } else {
+                        var amount = checkStateOfProperty(chooseLocation, 11);
+                        changeStateOfProperty(chooseLocation, 4, "mortgaged");
+                    }
+                    playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + amount;
+                    document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                } else {
+                    alert("Invalid Location Selection");
+                }
+                break;
+            case "unmortgage":
+                var chooseLocation = prompt("Enter Location Name as it is displayed to mortgage the property\n" + "Unmortgaged: " + unmortgaged + "\nMortgaged: " + mortgaged);
+                if (mortgaged.includes(chooseLocation)){
+                    if (chooseLocation === "Electric Company" || chooseLocation === "Water Works"){
+                        var amount = checkStateOfProperty(chooseLocation, 4);
+                        changeStateOfProperty(chooseLocation, 1, false);
+                    } else if (chooseLocation === "B & O Railroad" ||chooseLocation === "Reading Railroad" ||chooseLocation === "Pennsylvania Railroad" ||chooseLocation === "Short Line"){
+                        var amount = checkStateOfProperty(chooseLocation, 6);
+                        changeStateOfProperty(chooseLocation, 1, false);
+                    } else {
+                        var amount = checkStateOfProperty(chooseLocation, 11);
+                        changeStateOfProperty(chooseLocation, 4, "none");
+                    }
+                    amount = amount * 1.1;
+                    if (playerInfo[playerIndex][3] >= amount){
+                        playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + amount;
+                        document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                    } else {
+                        alert("Insufficent Funds");
+                    }
+                } else {
+                    alert("Invalid Location Selection");
+                }
+                break;
+            case "default":
+                alert("Invalid Selection");
+                break;
+        }
+    } else {
+        alert("No selection made");
+    }
+}
+
+
+function changeStateOfProperty (location, index, newValue){
+    switch (location){
+        case "Mediterranean Avenue":
+            mediterraneanAveInfo[index] = newValue;
+            break;
+        case "Baltic Avenue":
+            balticAveInfo[index] = newValue;
+            break;
+        case "Reading Railroad":
+            readingRailRoadInfo[index] = newValue;
+            break;
+        case "Oriental Avenue":
+            orientalAveInfo[index] = newValue;
+            break;
+        case "Vermont Avenue":
+            vermontAveInfo[index] = newValue;
+            break;
+        case "Connecticut Avenue":
+            connecticutAveInfo[index] = newValue;
+            break;
+        case "St. Charles Place":
+            stCharlesPlaceInfo[index] = newValue;
+            break;
+        case "Electric Company":
+            electricCompanyInfo[index] = newValue;
+            break;
+        case "States Avenue":
+            statesAveInfo[index] = newValue;
+            break;
+        case "Virginia Avenue":
+            virginiaAveInfo[index] = newValue;
+            break;
+        case "Pennsylvania Railroad":
+            pennsylvaniaAveInfo[index] = newValue;
+            break;
+        case "St. James Place":
+            stJamesPlaceInfo[index] = newValue;
+            break;
+        case "Tennessee Avenue":
+            tennesseeAveInfo[index] = newValue;
+            break;
+        case "New York Avenue":
+            newYorkAveInfo[index] = newValue;
+            break;
+        case "Kentucky Avenue":
+            kentuckyAveInfo[index] = newValue;
+            break;
+        case "Indiana Avenue":
+            indianaAveInfo[index] = newValue;
+            break;
+        case "Illinois Avenue":
+            illinoisAveInfo[index] = newValue;
+            break;
+        case "B & O Railroad":
+            bandoRailRoadInfo[index] = newValue;
+            break;
+        case "Atlantic Avenue":
+            atlanticAveInfo[index] = newValue;
+            break;
+        case "Ventnor Avenue":
+            ventnorAveInfo[index] = newValue;
+            break;
+        case "Water Works":
+            waterWorksInfo[index] = newValue;
+            break;
+        case "Marvin Gardens":
+            marvinGardensInfo[index] = newValue;
+            break;
+        case "Pacific Avenue":
+            pacificAveInfo[index] = newValue;
+            break;
+        case "North Carolina Avenue":
+            northCarolinaAveInfo[index] = newValue;
+            break;
+        case "Pennsylvania Avenue":
+            pennsylvaniaAveInfo[index] = newValue;
+            break;
+        case "Short Line":
+            shortLineInfo[index] = newValue;
+            break;
+        case "Park Place":
+            parkPlaceInfo[index] = newValue;
+            break;
+        case "Boardwalk":
+            boardwalkInfo[index] = newValue;
+            break;
+        default:
+            alert("switch statement problem");
+            break;
+    }
+}
+
+function checkStateOfProperty (location, index){
+    switch (location){
+        case "Mediterranean Avenue":
+            return mediterraneanAveInfo[index];
+        case "Baltic Avenue":
+            return balticAveInfo[index];
+            
+        case "Reading Railroad":
+            return readingRailRoadInfo[index];
+            
+        case "Oriental Avenue":
+            return orientalAveInfo[index];
+            
+        case "Vermont Avenue":
+            return vermontAveInfo[index];
+            
+        case "Connecticut Avenue":
+            return connecticutAveInfo[index];
+            
+        case "St. Charles Place":
+            return stCharlesPlaceInfo[index];
+            
+        case "Electric Company":
+            return electricCompanyInfo[index];
+            
+        case "States Avenue":
+            return statesAveInfo[index];
+            
+        case "Virginia Avenue":
+            return virginiaAveInfo[index];
+            
+        case "Pennsylvania Railroad":
+            return pennsylvaniaAveInfo[index];
+            
+        case "St. James Place":
+            return stJamesPlaceInfo[index];
+            
+        case "Tennessee Avenue":
+            return tennesseeAveInfo[index];
+            
+        case "New York Avenue":
+            return newYorkAveInfo[index];
+            
+        case "Kentucky Avenue":
+            return kentuckyAveInfo[index];
+            
+        case "Indiana Avenue":
+            return indianaAveInfo[index];
+            
+        case "Illinois Avenue":
+            return illinoisAveInfo[index];
+            
+        case "B & O Railroad":
+            return bandoRailRoadInfo[index];
+            
+        case "Atlantic Avenue":
+            return atlanticAveInfo[index];
+            
+        case "Ventnor Avenue":
+            return ventnorAveInfo[index];
+            
+        case "Water Works":
+            return waterWorksInfo[index];
+            
+        case "Marvin Gardens":
+            return marvinGardensInfo[index];
+            
+        case "Pacific Avenue":
+            return pacificAveInfo[index];
+            
+        case "North Carolina Avenue":
+            return northCarolinaAveInfo[index];
+            
+        case "Pennsylvania Avenue":
+            return pennsylvaniaAveInfo[index];
+            
+        case "Short Line":
+            return shortLineInfo[index];
+            
+        case "Park Place":
+            return parkPlaceInfo[index];
+            
+        case "Boardwalk":
+            return boardwalkInfo[index];
+            
+        default:
+            alert("switch statement problem");
             break;
     }
 }

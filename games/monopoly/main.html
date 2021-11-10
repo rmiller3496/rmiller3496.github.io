@@ -35,6 +35,16 @@
             width: 100%;
             height: auto;
         }
+        #mortgageProperty{
+            position: absolute;
+            bottom: 20px;
+            left: 5px;
+        }
+        #addHouses{
+            position: absolute;
+            bottom: 20px;
+            left: 225px;
+        }
     </style>
 
     <title>Capitalism Simulator</title>
@@ -50,5 +60,7 @@
         <button type="button" onclick="changeTurn()">End Turn</button>
         <p id="turnIndicator">It is Player 1's turn</p>
         <button type="button" id="viewProperties" onclick="viewProperties()">View Properties of All Players</button>
+        <button type="button" id="mortgageProperty" onclick="mortgageProperty()">Mortgage/Unmortgage A Property</button>
+        <button type="button" id="addHouses" onclick="addHouses()">Add Houses/Hotels</button>
     </div>
 </body>
