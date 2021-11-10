@@ -7,6 +7,7 @@ var playerIndex = currentTurn - 1;
 var freeParkingAmount = 0;
 var unmortgaged = [];
 var mortgaged = [];
+var doublesCounter;
 
 // Info for All Addresses
 //[owned or not (if owned -> player number), monopoly or not *not actually being used as of now* , num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage refund]
@@ -151,7 +152,10 @@ function changeTurn () {
             }
             break;
         
-        }document.getElementById("turnIndicator").innerHTML("Turn: Player " + currentTurn);   
+        }document.getElementById("turnIndicator").innerHTML("Turn: Player " + currentTurn);
+    doublesCounter = 0;
+    var button = document.getElementById("diceRoll");
+    button.disabled = false;   
 }
 
 
@@ -234,13 +238,22 @@ function createBasePlayerData () {
 
 
 // Dice Functions
-
-
 function rollDice () {
     roll1 = Math.floor(Math.random() * (6 - 1) + 1);
     roll2 = Math.floor(Math.random() * (6 - 1) + 1);
     drawDice();
     movePlayers();
+    if (roll1 === roll2){
+        doublesCounter += 1;
+        if (doublesCounter === 3){
+            // Go To Jail
+        } else {
+            rollDice();
+        }
+    } else {
+        var button = document.getElementById("diceRoll");
+        button.disabled = false; 
+    }
 }
 
 function drawDice() {
@@ -906,36 +919,32 @@ function checkForMonopoly(region){
 }
 
 function resetAndGrabLists() {
+    var playerIndex = currentTurn - 1;
     var unmortgaged = [];
     var mortgaged = [];
-    for (var i=0; i < playerProperties[playerIndex]; i++){
-        alert("ran");
-        if (playerProperties[playerIndex][i] === "Electric Company" || playerProperties[playerIndex][i] === "Water Works"){
-            if (checkStateOfProperty(playerProperties[playerIndex][i], 1) === false){
-                alert("added to unmortgaged");
-                unmortgaged.push(playerProperties[playerIndex][i]);
+    for (var i=0; i < playerProperties[playerIndex].length; i++){
+        var locationInfo = playerProperties[playerIndex][i];
+        if (locationInfo === "Electric Company" || locationInfo === "Water Works"){
+            if (checkStateOfProperty(locationInfo, 1) === false){
+                unmortgaged.push(locationInfo);
             } else {
-                alert("added to mortgaged");
-                mortgaged.push(playerProperties[playerIndex][i]); 
+                mortgaged.push(locationInfo); 
             }
-        } else if (playerProperties[playerIndex][i] === "B & O Railroad" ||playerProperties[playerIndex][i] === "Reading Railroad" ||playerProperties[playerIndex][i] === "Pennsylvania Railroad" ||playerProperties[playerIndex][i] === "Short Line"){
-            if (checkStateOfProperty(playerProperties[playerIndex][i], 1) === false){
-                unmortgaged.push(playerProperties[playerIndex][i]);
-                alert("added to unmortgaged");
+        } else if (locationInfo === "B & O Railroad" ||locationInfo === "Reading Railroad" ||locationInfo === "Pennsylvania Railroad" ||locationInfo === "Short Line"){
+            if (checkStateOfProperty(locationInfo, 1) === false){
+                unmortgaged.push(locationInfo);
             } else {
-                mortgaged.push(playerProperties[playerIndex][i]);
-                alert("added to mortgaged"); 
+                mortgaged.push(locationInfo);
             }
         } else {
-            if (checkStateOfProperty(playerProperties[playerIndex][i], 4) === "mortgaged"){
-                mortgaged.push(playerProperties[playerIndex][i]);
-                alert("added to mortgaged");
+            if (checkStateOfProperty(locationInfo, 4) === "mortgaged"){
+                mortgaged.push(locationInfo);
             } else {
-                unmortgaged.push(playerProperties[playerIndex][i]); 
-                alert("added to unmortgaged");
+                unmortgaged.push(locationInfo);
             }
         }
     }
+    return [unmortgaged, mortgaged];
 }
 
 function mortgageProperty() {
@@ -943,11 +952,11 @@ function mortgageProperty() {
     var option1 = prompt("Type 'mortgage' to mortgage a property. Type 'unmortgage' to unmortgage a property");
     if (option1 !== null){
         option1 = option1.toLowerCase();
-        resetAndGrabLists();
+        var houseData = resetAndGrabLists();
         switch (option1){
             case "mortgage":
-                var chooseLocation = prompt("Enter Location Name as it is displayed to mortgage the property\n" + "Unmortgaged: " + unmortgaged + "\nMortgaged: " + mortgaged);
-                if (unmortgaged.includes(chooseLocation)){
+                var chooseLocation = prompt("Enter Location Name as it is displayed to mortgage the property\n" + "Unmortgaged: " +houseData[0]+ "\nMortgaged: " + mortgaged);
+                if (houseData[0].includes(chooseLocation)){
                     if (chooseLocation === "Electric Company" || chooseLocation === "Water Works"){
                         var amount = checkStateOfProperty(chooseLocation, 4);
                         changeStateOfProperty(chooseLocation, 1, true);
@@ -960,13 +969,14 @@ function mortgageProperty() {
                     }
                     playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + amount;
                     document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                    alert("Action Complete");
                 } else {
                     alert("Invalid Location Selection");
                 }
                 break;
             case "unmortgage":
-                var chooseLocation = prompt("Enter Location Name as it is displayed to mortgage the property\n" + "Unmortgaged: " + unmortgaged + "\nMortgaged: " + mortgaged);
-                if (mortgaged.includes(chooseLocation)){
+                var chooseLocation = prompt("Enter Location Name as it is displayed to mortgage the property\n" + "Unmortgaged: " +houseData[0]+ "\nMortgaged: " + houseData[1]);
+                if (houseData[1].includes(chooseLocation)){
                     if (chooseLocation === "Electric Company" || chooseLocation === "Water Works"){
                         var amount = checkStateOfProperty(chooseLocation, 4);
                         changeStateOfProperty(chooseLocation, 1, false);
@@ -979,8 +989,9 @@ function mortgageProperty() {
                     }
                     amount = amount * 1.1;
                     if (playerInfo[playerIndex][3] >= amount){
-                        playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + amount;
+                        playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - amount;
                         document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                        alert("Action Complete");
                     } else {
                         alert("Insufficent Funds");
                     }
