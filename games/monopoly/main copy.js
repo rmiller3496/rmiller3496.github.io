@@ -152,10 +152,9 @@ function changeTurn () {
             }
             break;
         
-        }document.getElementById("turnIndicator").innerHTML("Turn: Player " + currentTurn);
+        }document.getElementById("turnIndicator").innerHTML = "Turn: Player " + currentTurn;
     doublesCounter = 0;
-    var button = document.getElementById("diceRoll");
-    button.disabled = false;   
+    document.getElementById("diceRoll").disabled = false;
 }
 
 
@@ -247,13 +246,12 @@ function rollDice () {
         doublesCounter += 1;
         if (doublesCounter === 3){
             // Go To Jail
+            alert("To Jail");
         } else {
             alert("Doubles!!");
-            rollDice();
         }
     } else {
-        var button = document.getElementById("diceRoll");
-        button.disabled = false; 
+        document.getElementById("diceRoll").disabled = true;
     }
 }
 
@@ -369,10 +367,13 @@ function movePlayers() {
     case "down":
         locationY = locationY - totalRoll;
         if (locationY < 1){
-            change = 1 - locationX;
+            change = 1 - locationY;
             direction = "left";
             locationY = 1;
             locationX = 1 + change;
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            alert('Collected 200 for Passing Go');
         } 
         playerInfo[playerIndex][0] = locationX;
         playerInfo[playerIndex][1] = locationY;
@@ -527,7 +528,7 @@ function checkLocation (location){
         case "Go":
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
-            alert('Collected 200 for Passing Go')
+            alert('Collected 200 for Passing Go');
             break;
         case "Mediterranean Avenue":
             locationOptions(mediterraneanAveInfo, location, "regular", "browns");

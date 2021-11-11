@@ -13,23 +13,24 @@
         }
         #diceImg1{
             position: absolute;
-            bottom: 100px;
-            left: 300px;
-            width: 100px;
-            height: 100px;
+            top: 160px;
+            left: 200px;
+            width: 150px;
+            height: 150px;
         }
         #diceImg2 {
             position: absolute;
-            bottom: 100px;
-            left: 175px;
-            width: 100px;
-            height: 100px;
+            top: 160px;
+            left: 375px;
+            width: 150px;
+            height: 150px;
         }
         #turnIndicator {
             position: absolute;
-            top: 25px;
-            left: 250px;
-
+            top: 60px;
+            left: 300px;
+            text-decoration: underline;
+            font-size: larger;
         }
         #allStuff {
             width: 100%;
@@ -37,13 +38,36 @@
         }
         #mortgageProperty{
             position: absolute;
-            bottom: 20px;
-            left: 5px;
+            left: 130px;
+            top: 380px;
         }
         #addHouses{
             position: absolute;
-            bottom: 20px;
-            left: 225px;
+            left: 470px;
+            top: 380px;
+
+        }
+        #diceRoll {
+            position: absolute;
+            left: 285px;
+            top: 115px;
+        }
+        #changeTurn {
+            position: absolute;
+            left: 370px;
+            top: 115px;
+        }
+        #viewProperties{
+            position: absolute;
+            left: 280px;
+            top: 380px;
+        }
+        #label1{
+            position: absolute;
+            top: 315px;
+            left: 285px;
+            text-decoration: underline;
+            font-size: larger;
         }
     </style>
 
@@ -54,13 +78,15 @@
     <div id="allStuff">
         <h1>Capitalism Simulator</h1>
         <script src="main copy.js"></script>
-        <button type="button" id="diceRoll" onclick="rollDice()">Roll Dice</button>
+        <button type="button" id="diceRoll" onclick="rollDice()" aria-disabled="false">Roll Dice</button>
         <img id="diceImg1">
         <img id="diceImg2">
-        <button type="button" onclick="changeTurn()">End Turn</button>
-        <p id="turnIndicator">It is Player 1's turn</p>
-        <button type="button" id="viewProperties" onclick="viewProperties()">View Properties of All Players</button>
-        <button type="button" id="mortgageProperty" onclick="mortgageProperty()">Mortgage/Unmortgage A Property</button>
-        <button type="button" id="addHouses" onclick="addHouses()">Add Houses/Hotels</button>
+        <button type="button" id="changeTurn" onclick="changeTurn()">End Turn</button>
+        <p id="turnIndicator">Turn: Player 1</p>
+        <button type="button" id="viewProperties" onclick="viewProperties()">View Properties of Players</button>
+        <button type="button" id="mortgageProperty" onclick="mortgageProperty()">Manage Mortgages</button>
+        <button type="button" id="addHouses" onclick="addHouses()">Build on Properties</button>
+        <p id="label1">Property Management</p>
+        <SPAN STYLE="font-size:2.0pt"><BR></SPAN>
     </div>
 </body>
