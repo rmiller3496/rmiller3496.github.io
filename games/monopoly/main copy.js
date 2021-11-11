@@ -248,6 +248,7 @@ function rollDice () {
         if (doublesCounter === 3){
             // Go To Jail
         } else {
+            alert("Doubles!!");
             rollDice();
         }
     } else {
@@ -937,7 +938,7 @@ function resetAndGrabLists() {
                 mortgaged.push(locationInfo);
             }
         } else {
-            if (checkStateOfProperty(locationInfo, 4) === "mortgaged"){
+            if (checkStateOfProperty(locationInfo, 2) === "mortgaged"){
                 mortgaged.push(locationInfo);
             } else {
                 unmortgaged.push(locationInfo);
@@ -965,7 +966,7 @@ function mortgageProperty() {
                         changeStateOfProperty(chooseLocation, 1, true);
                     } else {
                         var amount = checkStateOfProperty(chooseLocation, 11);
-                        changeStateOfProperty(chooseLocation, 4, "mortgaged");
+                        changeStateOfProperty(chooseLocation, 2, "mortgaged");
                     }
                     playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + amount;
                     document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
@@ -985,7 +986,7 @@ function mortgageProperty() {
                         changeStateOfProperty(chooseLocation, 1, false);
                     } else {
                         var amount = checkStateOfProperty(chooseLocation, 11);
-                        changeStateOfProperty(chooseLocation, 4, "none");
+                        changeStateOfProperty(chooseLocation, 2, "none");
                     }
                     amount = amount * 1.1;
                     if (playerInfo[playerIndex][3] >= amount){
@@ -1189,5 +1190,323 @@ function checkStateOfProperty (location, index){
         default:
             alert("switch statement problem");
             break;
+    }
+}
+
+function addHouses() {
+    var playerIndex = currentTurn - 1;
+    var option4 = confirm("These are the sets of properties that are available to build on " + playerMonopolies[playerIndex]);
+    if (playerMonopolies[playerIndex].includes(option4)){
+        switch (option4){
+            case "browns":
+                if (checkIfMortgaged(option4) === true){
+                    alert("Property/Properties Are Mortgaged. Please Unmortgage to Build");
+                } else {
+                    var numHouses = balticAveInfo[2];
+                    if (numHouses !== "hotel"){
+                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (balticAveInfo[4] * 2) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        if (afirm === true){
+                            if (numHouses === "none"){
+                                var newNumHouses = 1;
+                            } else if (numHouses !== 4){
+                                var newNumHouses = numHouses + 1;
+                            } else {
+                                var newNumHouses = "hotel";
+                            }
+                            changeStateOfProperty(balticAveInfo, 2, newNumHouses);
+                            changeStateOfProperty(mediterraneanAveInfo, 2, newNumHouses);
+                            if (checkIfEnoughMoney(balticAveInfo[4] * 2, playerIndex) === true){
+                                playerInfo[playerIndex][3] -= balticAveInfo[4] * 2;
+                                document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                                alert("Property Upgraded");
+                            } else {
+                                alert("Not Enough Money");
+                            }
+                        }
+                    } else {
+                        alert("Unable to Upgrade Futher");
+                    }
+                }
+                break;
+            case "light blues":
+                if (checkIfMortgaged(option4) === true){
+                    alert("Property/Properties Are Mortgaged. Please Unmortgage to Build");
+                } else {
+                    var numHouses = orientalAveInfo[2];
+                    if (numHouses !== "hotel"){
+                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (orientalAveInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        if (afirm === true){
+                            if (numHouses === "none"){
+                                var newNumHouses = 1;
+                            } else if (numHouses !== 4){
+                                var newNumHouses = numHouses + 1;
+                            } else {
+                                var newNumHouses = "hotel";
+                            }
+                            changeStateOfProperty(vermontAveInfo, 2, newNumHouses);
+                            changeStateOfProperty(orientalAveInfo, 2, newNumHouses);
+                            changeStateOfProperty(connecticutAveInfo, 2, newNumHouses);
+                            if (checkIfEnoughMoney(vermontAveInfo[4] * 3, playerIndex) === true){
+                                playerInfo[playerIndex][3] -= vermontAveInfo[4] * 3;
+                                document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                                alert("Property Upgraded");
+                            } else {
+                                alert("Not Enough Money");
+                            }
+                        }
+                    } else {
+                        alert("Unable to Upgrade Futher");
+                    }
+                }
+                break;
+            case "purples":
+                if (checkIfMortgaged(option4) === true){
+                    alert("Property/Properties Are Mortgaged. Please Unmortgage to Build");
+                } else {
+                    var numHouses = stCharlesPlaceInfo[2];
+                    if (numHouses !== "hotel"){
+                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (stCharlesPlaceInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        if (afirm === true){
+                            if (numHouses === "none"){
+                                var newNumHouses = 1;
+                            } else if (numHouses !== 4){
+                                var newNumHouses = numHouses + 1;
+                            } else {
+                                var newNumHouses = "hotel";
+                            }
+                            changeStateOfProperty(stCharlesPlaceInfo, 2, newNumHouses);
+                            changeStateOfProperty(statesAveInfo, 2, newNumHouses);
+                            changeStateOfProperty(virginiaAveInfo, 2, newNumHouses);
+                            if (checkIfEnoughMoney(stCharlesPlaceInfo[4] * 3, playerIndex) === true){
+                                playerInfo[playerIndex][3] -= stCharlesPlaceInfo[4] * 3;
+                                document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                                alert("Property Upgraded");
+                            } else {
+                                alert("Not Enough Money");
+                            }
+                        }
+                    } else {
+                        alert("Unable to Upgrade Futher");
+                    }
+                }
+                break;
+            case "oranges":
+                if (checkIfMortgaged(option4) === true){
+                    alert("Property/Properties Are Mortgaged. Please Unmortgage to Build");
+                } else {
+                    var numHouses = stJamesPlaceInfo[2];
+                    if (numHouses !== "hotel"){
+                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (stJamesPlaceInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        if (afirm === true){
+                            if (numHouses === "none"){
+                                var newNumHouses = 1;
+                            } else if (numHouses !== 4){
+                                var newNumHouses = numHouses + 1;
+                            } else {
+                                var newNumHouses = "hotel";
+                            }
+                            changeStateOfProperty(stJamesPlaceInfo, 2, newNumHouses);
+                            changeStateOfProperty(tennesseeAveInfo, 2, newNumHouses);
+                            changeStateOfProperty(newYorkAveInfo, 2, newNumHouses);
+                            if (checkIfEnoughMoney(stJamesPlaceInfo[4] * 3, playerIndex) === true){
+                                playerInfo[playerIndex][3] -= stJamesPlaceInfo[4] * 3;
+                                document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                                alert("Property Upgraded");
+                            } else {
+                                alert("Not Enough Money");
+                            }
+                        }
+                    } else {
+                        alert("Unable to Upgrade Futher");
+                    }
+                }
+                break;
+            case "reds":
+                if (checkIfMortgaged(option4) === true){
+                    alert("Property/Properties Are Mortgaged. Please Unmortgage to Build");
+                } else {
+                    var numHouses = kentuckyAveInfo[2];
+                    if (numHouses !== "hotel"){
+                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (kentuckyAveInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        if (afirm === true){
+                            if (numHouses === "none"){
+                                var newNumHouses = 1;
+                            } else if (numHouses !== 4){
+                                var newNumHouses = numHouses + 1;
+                            } else {
+                                var newNumHouses = "hotel";
+                            }
+                            changeStateOfProperty(kentuckyAveInfo, 2, newNumHouses);
+                            changeStateOfProperty(indianaAveInfo, 2, newNumHouses);
+                            changeStateOfProperty(illinoisAveInfo, 2, newNumHouses);
+                            if (checkIfEnoughMoney(kentuckyAveInfo[4] * 3, playerIndex) === true){
+                                playerInfo[playerIndex][3] -= kentuckyAveInfo[4] * 3;
+                                document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                                alert("Property Upgraded");
+                            } else {
+                                alert("Not Enough Money");
+                            }
+                        }
+                    } else {
+                        alert("Unable to Upgrade Futher");
+                    }
+                }
+                break;
+            case "yellows":
+                if (checkIfMortgaged(option4) === true){
+                    alert("Property/Properties Are Mortgaged. Please Unmortgage to Build");
+                } else {
+                    var numHouses = marvinGardensInfo[2];
+                    if (numHouses !== "hotel"){
+                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (marvinGardensInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        if (afirm === true){
+                            if (numHouses === "none"){
+                                var newNumHouses = 1;
+                            } else if (numHouses !== 4){
+                                var newNumHouses = numHouses + 1;
+                            } else {
+                                var newNumHouses = "hotel";
+                            }
+                            changeStateOfProperty(marvinGardensInfo, 2, newNumHouses);
+                            changeStateOfProperty(ventnorAveInfo, 2, newNumHouses);
+                            changeStateOfProperty(atlanticAveInfo, 2, newNumHouses);
+                            if (checkIfEnoughMoney(marvinGardensInfo[4] * 3, playerIndex) === true){
+                                playerInfo[playerIndex][3] -= marvinGardensInfo[4] * 3;
+                                document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                                alert("Property Upgraded");
+                            } else {
+                                alert("Not Enough Money");
+                            }
+                        }
+                    } else {
+                        alert("Unable to Upgrade Futher");
+                    }
+                }
+                break;
+            case "greens":
+                if (checkIfMortgaged(option4) === true){
+                    alert("Property/Properties Are Mortgaged. Please Unmortgage to Build");
+                } else {
+                    var numHouses = pacificAveInfo[2];
+                    if (numHouses !== "hotel"){
+                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (pacificAveInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        if (afirm === true){
+                            if (numHouses === "none"){
+                                var newNumHouses = 1;
+                            } else if (numHouses !== 4){
+                                var newNumHouses = numHouses + 1;
+                            } else {
+                                var newNumHouses = "hotel";
+                            }
+                            changeStateOfProperty(pacificAveInfo, 2, newNumHouses);
+                            changeStateOfProperty(northCarolinaAveInfo, 2, newNumHouses);
+                            changeStateOfProperty(pennsylvaniaAveInfo, 2, newNumHouses);
+                            if (checkIfEnoughMoney(pacificAveInfo[4] * 3, playerIndex) === true){
+                                playerInfo[playerIndex][3] -= pacificAveInfo[4] * 3;
+                                document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                                alert("Property Upgraded");
+                            } else {
+                                alert("Not Enough Money");
+                            }
+                        }
+                    } else {
+                        alert("Unable to Upgrade Futher");
+                    }
+                }
+                break;
+            case "dark blues":
+                if (checkIfMortgaged(option4) === true){
+                    alert("Property/Properties Are Mortgaged. Please Unmortgage to Build");
+                } else {
+                    var numHouses = parkPlaceInfo[2];
+                    if (numHouses !== "hotel"){
+                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (parkPlaceInfo[4] * 2) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        if (afirm === true){
+                            if (numHouses === "none"){
+                                var newNumHouses = 1;
+                            } else if (numHouses !== 4){
+                                var newNumHouses = numHouses + 1;
+                            } else {
+                                var newNumHouses = "hotel";
+                            }
+                            changeStateOfProperty(parkPlaceInfo, 2, newNumHouses);
+                            changeStateOfProperty(boardwalkInfo, 2, newNumHouses);
+                            if (checkIfEnoughMoney(parkPlaceInfo[4] * 2, playerIndex) === true){
+                                playerInfo[playerIndex][3] -= parkPlaceInfo[4] * 2;
+                                document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+                                alert("Property Upgraded");
+                            } else {
+                                alert("Not Enough Money");
+                            }
+
+                        }
+                    } else {
+                        alert("Unable to Upgrade Futher");
+                    }
+                }
+                break;
+                
+        }
+    }
+}
+
+function checkIfMortgaged (region){
+    switch (region){
+        case "browns":
+            if (mediterraneanAveInfo[2] === "mortgaged" || balticAveInfo[2] === "mortgaged"){
+                return true
+            } else {
+                return false
+            }
+        case "light blues":
+            if (connecticutAveInfo[2] === "mortgaged" || vermontAveInfo[2] === "mortgaged" || orientalAveInfo[2] === "mortgaged"){
+                return true
+            } else {
+                return false
+            }
+        case "purples":
+            if (stCharlesPlaceInfo[2] === "mortgaged" || statesAveInfo[2] === "mortgaged" || virginiaAveInfo[2] === "mortgaged"){
+                return true
+            } else {
+                return false
+            }
+        case "oranges":
+            if (stJamesPlaceInfo[2] === "mortgaged" || tennesseeAveInfo[2] === "mortgaged" || newYorkAveInfo[2] === "mortgaged"){
+                return true
+            } else {
+                return false
+            }
+        case "reds":
+            if (kentuckyAveInfo[2] === "mortgaged" || indianaAveInfo[2] === "mortgaged" || illinoisAveInfo[2] === "mortgaged"){
+                return true
+            } else {
+                return false
+            }
+        case "yellows":
+            if (marvinGardensInfo[2] === "mortgaged" || ventnorAveInfo[2] === "mortgaged" || atlanticAveInfo[2] === "mortgaged"){
+                return true
+            } else {
+                return false
+            }
+        case "greens":
+            if (pennsylvaniaAveInfo[2] === "mortgaged" || northCarolinaAveInfo[2] === "mortgaged" || pacificAveInfo[2] === "mortgaged"){
+                return true
+            } else {
+                return false
+            }
+        case "dark blues":
+            if (parkPlaceInfo[2] === "mortgaged" || boardwalkInfo[2] === "mortgaged"){
+                return true
+            } else {
+                return false
+            }
+    }
+}
+
+function checkIfEnoughMoney (price, playerIndex){
+    if (playerInfo[playerIndex][3] > price){
+        return true;
+    } else {
+        return false;
     }
 }
