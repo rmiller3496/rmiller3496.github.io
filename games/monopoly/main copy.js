@@ -8,6 +8,7 @@ var freeParkingAmount = 0;
 var unmortgaged = [];
 var mortgaged = [];
 var doublesCounter;
+var devMode = false;
 
 // Info for All Addresses
 //[owned or not (if owned -> player number), monopoly or not *not actually being used as of now* , num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage refund]
@@ -258,7 +259,9 @@ function rollDice () {
             alert("Doubles!!");
         }
     } else {
-        document.getElementById("diceRoll").disabled = true;
+        if (devMode === false){
+            document.getElementById("diceRoll").disabled = true;
+        }
     }
 }
 
@@ -1859,4 +1862,8 @@ function payToGetOut(){
     roll1 = Math.floor(Math.random() * (6 - 1) + 1);
     roll2 = Math.floor(Math.random() * (6 - 1) + 1);
     getOutOfJail(roll1, roll2);
+}
+
+function devMode(){
+    devMode = true;
 }
