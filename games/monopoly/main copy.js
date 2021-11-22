@@ -51,9 +51,9 @@ const waterWorksInfo = ["unowned", false, 4, 10, 75, 150];
 
 
 // player data is stored as follows:
-// [positionx, positiony, direction, money, rr owned, utilities owned]
-// [0]         [1]        [2]        [3]   [4]        [5]
-const playerInfo = [[1, 1, "left", 1500, 0, 0], [1, 1, "left", 1500, 0, 0], [1, 1, "left", 1500, 0, 0], [1, 1, "left", 1500, 0, 0]]
+// [positionx, positiony, direction, money, rr owned, utilities owned, num houses, num hotels, num get out of jail free cards]
+// [0]         [1]        [2]        [3]   [4]        [5]             [6]          [7]        [8]
+const playerInfo = [[1, 1, "left", 1500, 0, 0, 0, 0, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0]]
 const playerProperties = [[], [], [], []];
 const playerMonopolies = [[], [], [], []];
 
@@ -522,13 +522,13 @@ function coordToLocationName (coord) {
     return name;
 }
 
-function checkLocation (location){
+function checkLocation (location, special){
     var playerIndex = currentTurn - 1;
     switch (location){
         case "Go":
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
-            alert('Collected 200 for Passing Go');
+            alert('Collected 200 for Landing on Go');
             break;
         case "Mediterranean Avenue":
             locationOptions(mediterraneanAveInfo, location, "regular", "browns");
@@ -545,12 +545,13 @@ function checkLocation (location){
             alert("Paid 200 for Income Tax");
             break;
         case "Reading Railroad":
-            locationOptions(readingRailRoadInfo, location, "railroad");
+            locationOptions(readingRailRoadInfo, location, "railroad", special);
             break;
         case "Oriental Avenue":
             locationOptions(orientalAveInfo, location, "regular", "light blues");
             break;
         case "Chance Light Blues":
+            handleChance("light blue");
             break;
         case "Vermont Avenue":
             locationOptions(vermontAveInfo, location, "regular", "light blues");
@@ -564,7 +565,7 @@ function checkLocation (location){
             locationOptions(stCharlesPlaceInfo, location, "regular", "purples");
             break;
         case "Electric Company":
-            locationOptions(electricCompanyInfo, location, "utilities")
+            locationOptions(electricCompanyInfo, location, "utilities", special)
             break;
         case "States Avenue":
             locationOptions(statesAveInfo, location, "regular", "purples");
@@ -573,7 +574,7 @@ function checkLocation (location){
             locationOptions(virginiaAveInfo, location, "regular", "purples");
             break;
         case "Pennsylvania Railroad":
-            locationOptions(pennsylvaniaRailRoadInfo, location, "railroad");
+            locationOptions(pennsylvaniaRailRoadInfo, location, "railroad", special);
             break;
         case "St. James Place":
             locationOptions(stJamesPlaceInfo, location, "regular", "oranges");
@@ -596,6 +597,7 @@ function checkLocation (location){
             locationOptions(kentuckyAveInfo, location, "regular", "reds");
             break;
         case "Chance Reds":
+            handleChance("reds");
             break;
         case "Indiana Avenue":
             locationOptions(indianaAveInfo, location, "regular", "reds");
@@ -604,7 +606,7 @@ function checkLocation (location){
             locationOptions(illinoisAveInfo, location, "regular", "reds");
             break;
         case "B & O Railroad":
-            locationOptions(bandoRailRoadInfo, location, "railroad");
+            locationOptions(bandoRailRoadInfo, location, "railroad", special);
             break;
         case "Atlantic Avenue":
             locationOptions(atlanticAveInfo, location, "regular", "yellows");
@@ -613,7 +615,7 @@ function checkLocation (location){
             locationOptions(ventnorAveInfo, location, "regular", "yellows");
             break;
         case "Water Works":
-            locationOptions(waterWorksInfo, location, "utilities")
+            locationOptions(waterWorksInfo, location, "utilities", special)
             break;
         case "Marvin Gardens":
             locationOptions(marvinGardensInfo, location, "regular", "yellows");
@@ -635,6 +637,7 @@ function checkLocation (location){
             locationOptions(shortLineInfo, location, "railroad");
             break;
         case "Chance Dark Blues":
+            handleChance("dark blue");
             break;
         case "Park Place":
             locationOptions(parkPlaceInfo, location, "regular", "dark blues");
@@ -655,6 +658,7 @@ function checkLocation (location){
 }
 
 function locationOptions(locationArray, location, locationType, region){
+    //region is also used as special multiplier for chance
     switch (locationType){
         case "regular":
             if (locationArray[0] === currentTurn){
@@ -671,7 +675,7 @@ function locationOptions(locationArray, location, locationType, region){
             } else if (locationArray[0] === "unowned"){
                 buyRRPrompt(locationArray, location);
             } else {
-                payRentRailroads(locationArray, location);
+                payRentRailroads(locationArray, location, region);
             }
             break;
         case "utilities":
@@ -680,7 +684,7 @@ function locationOptions(locationArray, location, locationType, region){
             } else if (locationArray[0] === "unowned"){
                 buyUtilityPrompt(locationArray, location);
             } else {
-                payRentUtility(locationArray, location);
+                payRentUtility(locationArray, location, region);
             }
             break;
         case "chance":
@@ -710,7 +714,7 @@ function buyUtilityPrompt(locationArray, location){
     }
 }
 
-function payRentUtility(locationArray, location){
+function payRentUtility(locationArray, location, region){
     var ownerIndex = locationArray[0] - 1;
     var landerIndex = currentTurn - 1;
     var numberOfUtilityOwned = playerInfo[ownerIndex][5];
@@ -719,6 +723,9 @@ function payRentUtility(locationArray, location){
         switch (numberOfUtilityOwned){
             case 1:
                 rentToPay = locationArray[2] * (roll1 + roll2);
+                if (region === 10){
+                    rentToPay = locationArray[3] * (roll1 + roll2);
+                }
                 completeRentTransaction (landerIndex, ownerIndex, rentToPay)
                 break;
             case 2:
@@ -750,7 +757,7 @@ function buyRRPrompt(locationArray, location){
     }
 }
 
-function payRentRailroads(locationArray, location){
+function payRentRailroads(locationArray, location, region){
     var ownerIndex = locationArray[0] - 1;
     var landerIndex = currentTurn - 1;
     var numberOfRROwned = playerInfo[ownerIndex][4];
@@ -758,19 +765,35 @@ function payRentRailroads(locationArray, location){
     if (locationArray[1] === false){
         switch (numberOfRROwned){
             case 1:
-                rentToPay = locationArray[2];
+                if (region === 2){
+                    rentToPay = 2 * locationArray[2];
+                } else {
+                    rentToPay = locationArray[2];
+                }
                 completeRentTransaction (landerIndex, ownerIndex, rentToPay)
                 break;
             case 2:
-                rentToPay = locationArray[3];
+                if (region === 2){
+                    rentToPay = 2 * locationArray[3];
+                } else {
+                    rentToPay = locationArray[3];
+                }
                 completeRentTransaction (landerIndex, ownerIndex, rentToPay)
                 break;
             case 3:
-                rentToPay = locationArray[4];
+                if (region === 2){
+                    rentToPay = 2 * locationArray[4];
+                } else {
+                    rentToPay = locationArray[4];
+                }
                 completeRentTransaction (landerIndex, ownerIndex, rentToPay)
                 break;
             case 4:
-                rentToPay = locationArray[5];
+                if (region === 2){
+                    rentToPay = 2 * locationArray[5];
+                } else {
+                    rentToPay = locationArray[5];
+                }
                 completeRentTransaction (landerIndex, ownerIndex, rentToPay)
                 break;
         }
@@ -1209,10 +1232,14 @@ function addHouses() {
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
+                                playerInfo[playerIndex][6]++
                             } else if (numHouses !== 4){
                                 var newNumHouses = numHouses + 1;
+                                playerInfo[playerIndex][6]++
                             } else {
                                 var newNumHouses = "hotel";
+                                playerInfo[playerIndex][6] -= 4;
+                                playerInfo[playerIndex][7]++;
                             }
                             changeStateOfProperty(balticAveInfo, 2, newNumHouses);
                             changeStateOfProperty(mediterraneanAveInfo, 2, newNumHouses);
@@ -1239,10 +1266,14 @@ function addHouses() {
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
+                                playerInfo[playerIndex][6]++
                             } else if (numHouses !== 4){
                                 var newNumHouses = numHouses + 1;
+                                playerInfo[playerIndex][6]++
                             } else {
                                 var newNumHouses = "hotel";
+                                playerInfo[playerIndex][6] -= 4;
+                                playerInfo[playerIndex][7]++;
                             }
                             changeStateOfProperty(vermontAveInfo, 2, newNumHouses);
                             changeStateOfProperty(orientalAveInfo, 2, newNumHouses);
@@ -1270,10 +1301,14 @@ function addHouses() {
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
+                                playerInfo[playerIndex][6]++
                             } else if (numHouses !== 4){
                                 var newNumHouses = numHouses + 1;
+                                playerInfo[playerIndex][6]++
                             } else {
                                 var newNumHouses = "hotel";
+                                playerInfo[playerIndex][6] -= 4;
+                                playerInfo[playerIndex][7]++;
                             }
                             changeStateOfProperty(stCharlesPlaceInfo, 2, newNumHouses);
                             changeStateOfProperty(statesAveInfo, 2, newNumHouses);
@@ -1301,10 +1336,14 @@ function addHouses() {
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
+                                playerInfo[playerIndex][6]++
                             } else if (numHouses !== 4){
                                 var newNumHouses = numHouses + 1;
+                                playerInfo[playerIndex][6]++
                             } else {
                                 var newNumHouses = "hotel";
+                                playerInfo[playerIndex][6] -= 4;
+                                playerInfo[playerIndex][7]++;
                             }
                             changeStateOfProperty(stJamesPlaceInfo, 2, newNumHouses);
                             changeStateOfProperty(tennesseeAveInfo, 2, newNumHouses);
@@ -1332,10 +1371,14 @@ function addHouses() {
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
+                                playerInfo[playerIndex][6]++
                             } else if (numHouses !== 4){
                                 var newNumHouses = numHouses + 1;
+                                playerInfo[playerIndex][6]++
                             } else {
                                 var newNumHouses = "hotel";
+                                playerInfo[playerIndex][6] -= 4;
+                                playerInfo[playerIndex][7]++;
                             }
                             changeStateOfProperty(kentuckyAveInfo, 2, newNumHouses);
                             changeStateOfProperty(indianaAveInfo, 2, newNumHouses);
@@ -1363,10 +1406,14 @@ function addHouses() {
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
+                                playerInfo[playerIndex][6]++
                             } else if (numHouses !== 4){
                                 var newNumHouses = numHouses + 1;
+                                playerInfo[playerIndex][6]++
                             } else {
                                 var newNumHouses = "hotel";
+                                playerInfo[playerIndex][6] -= 4;
+                                playerInfo[playerIndex][7]++;
                             }
                             changeStateOfProperty(marvinGardensInfo, 2, newNumHouses);
                             changeStateOfProperty(ventnorAveInfo, 2, newNumHouses);
@@ -1394,10 +1441,14 @@ function addHouses() {
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
+                                playerInfo[playerIndex][6]++
                             } else if (numHouses !== 4){
                                 var newNumHouses = numHouses + 1;
+                                playerInfo[playerIndex][6]++
                             } else {
                                 var newNumHouses = "hotel";
+                                playerInfo[playerIndex][6] -= 4;
+                                playerInfo[playerIndex][7]++;
                             }
                             changeStateOfProperty(pacificAveInfo, 2, newNumHouses);
                             changeStateOfProperty(northCarolinaAveInfo, 2, newNumHouses);
@@ -1425,10 +1476,14 @@ function addHouses() {
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
+                                playerInfo[playerIndex][6]++
                             } else if (numHouses !== 4){
                                 var newNumHouses = numHouses + 1;
+                                playerInfo[playerIndex][6]++
                             } else {
                                 var newNumHouses = "hotel";
+                                playerInfo[playerIndex][6] -= 4;
+                                playerInfo[playerIndex][7]++;
                             }
                             changeStateOfProperty(parkPlaceInfo, 2, newNumHouses);
                             changeStateOfProperty(boardwalkInfo, 2, newNumHouses);
@@ -1510,4 +1565,173 @@ function checkIfEnoughMoney (price, playerIndex){
     } else {
         return false;
     }
+}
+
+function getRandomBetween(min, max) {
+    return parseInt(Math.random() * (max - min) + min);
+}
+
+//                                  Chance And Community Chest
+
+var chanceCardsArray = [["toLocation", "Chance: Advance to Boardwalk", 1, 2], ["toLocation", "Chance: Advance to Go", 1, 1], ["toLocation", "Chance: Advance to Illinois Avenue. If you pass Go, collect 200.", 7, 11], ["toLocation", "Chance: Advance to St. Charles Place. If you pass Go, collect 200.", 7, 11], ["toLocation", "Chance: Go to Jail, Do Not Collect 200", 1, 11], ["toLocation", "Chance: Advance to Reading Railroad. If you pass Go, collect 200.", 6, 1], ["spaces", "Chance: Move Back 3 Spaces"], ["nearestRailroad", "Chance: Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay owner twice the rental to which they are otherwise entitled."], ["nearestRailroad", "Chance: Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay owner twice the rental to which they are otherwise entitled."], ["nearestUtility", "Chance: Advance to nearest Utility. If unowned, you may buy it from the Bank. If owned, pay the owner a total ten times amount thrown."], ["payment", "Chance: Bank pays you dividend of $50", 50], ["payment", "Chance: Speeding fine $15", -15], ["payment", "Chance: Your building loan matures. Collect $150", 150], ["housesAndHotels", "Chance: Make general repairs on all your properties. For each house pay $25. For each hotel pay $100"], ["goojf", "Chance: You have been awarded a Get Out of Jail Free Card"], ["chairman", "Chance: You have been elected Chairman of the Board. Pay each player $50"]];
+
+function handleChance(locale){
+    var card = chanceCardsArray[getRandomBetween(0, chanceCardsArray.length)];
+    playerIndex = currentTurn - 1;
+    if (card[0] === "toLocation"){
+        toLocation(card);
+    } else if (card[0] === "spaces"){
+        moveSpaces(locale, card);
+    } else if (card[0] === "nearestRailroad"){
+        nearestRailroad(card, locale);
+    } else if(card[0] === "nearestUtility"){
+        nearestUtility(card, locale);
+    } else if(card[0] === "payment"){
+        chancePayment(card);
+    } else if (card[0] === "housesAndHotels"){
+        housesAndHotels(card);
+    } else if (card[0] === "goojf"){
+        playerInfo[playerIndex][8] = playerInfo[playerIndex][8] + 1;
+    } else if (card[0] === "chairman"){
+        chairman(card);
+    }
+}
+
+function toLocation(card) {
+    var playerIndex = currentTurn - 1;
+    alert(card[1]);
+    //check if player needs +200
+    if (card[1] === "Advance to Illinois Avenue. If you pass Go, collect 200."){
+        // check if passed to the left
+        if (playerInfo[playerIndex][0] > 7 && playerInfo[playerIndex][1] <= 11 && playerInfo[playerIndex][1] !== 1){
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            alert('Collected 200 for Passing Go');
+        }
+    } else if (card[1] === "Advance to St. Charles Place. If you pass Go, collect 200."){
+        if (playerInfo[playerIndex][1] > 1){
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            alert('Collected 200 for Passing Go');
+        }
+    } else if (card[1] === "Advance to Reading Railroad. If you pass Go, collect 200."){
+        if (playerInfo[playerIndex][0] >= 6 && playerInfo[playerIndex][1] >= 1){
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            alert('Collected 200 for Passing Go');
+        } else if (playerInfo[playerIndex][1] > 1){
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            alert('Collected 200 for Passing Go');
+        }
+    }
+    playerInfo[playerIndex][0] = card[2]; // change x val
+    playerInfo[playerIndex][1] = card[3]; // change y val
+    // code from movePlayer()
+    var locationIdentifer = card[2] + "," + card[3];
+    var locationName = coordToLocationName(locationIdentifer);
+    var locationUpdate = document.getElementById("location" + (currentTurn));
+    locationUpdate.innerHTML = "Location: " + locationName;
+    // Check Location That The Player Arrived at And Take Action
+    checkLocation(locationName);
+}
+
+function moveSpaces (location, card){
+    if (location === "dark blue"){
+        card[2] = 1;
+        card[3] = 8;
+    } else if (location === "reds"){
+        card[2] = 11;
+        card[3] = 10;
+    } else if (location === "light blue"){
+        card[2] = 5;
+        card[3] = 1;
+    }
+    playerInfo[playerIndex][0] = card[2]; // change x val
+    playerInfo[playerIndex][1] = card[3]; // change y val
+    // code from movePlayer()
+    var locationIdentifer = card[2] + "," + card[3];
+    var locationName = coordToLocationName(locationIdentifer);
+    var locationUpdate = document.getElementById("location" + (currentTurn));
+    locationUpdate.innerHTML = "Location: " + locationName;
+    // Check Location That The Player Arrived at And Take Action
+    checkLocation(locationName);
+}
+
+function nearestRailroad(card, locale) {
+    playerIndex = currentTurn - 1;
+    alert(card[1])
+    switch(locale){
+        case "dark blue":
+            card[2] = 6;
+            card[3] = 1;
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            alert('Collected 200 for Passing Go');
+            break;
+        case "reds":
+            card[2] = 6;
+            card[3] = 11;
+            break;
+        case "light blue":
+            card[2] = 11;
+            card[3] = 6;
+            break;
+    }
+    var locationIdentifer = card[2] + "," + card[3];
+    var locationName = coordToLocationName(locationIdentifer);
+    var locationUpdate = document.getElementById("location" + (currentTurn));
+    locationUpdate.innerHTML = "Location: " + locationName;
+    // Check Location That The Player Arrived at And Take Action
+    checkLocation(locationName, 2);
+}
+
+function nearestUtility(card, locale){
+    playerIndex = currentTurn - 1
+    alert(card[1]);
+    if (locale === "dark blue" || locale === "light blue"){
+        card[2] = 11;
+        card[3] = 3;
+        if (locale === "dark blue"){
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+            alert('Collected 200 for Passing Go');
+        }
+        // add 200 for passing go for dark blue only
+    } else if (locale === "reds"){
+        card[2] = 3;
+        card[3] = 11;
+    }
+    var locationIdentifer = card[2] + "," + card[3];
+    var locationName = coordToLocationName(locationIdentifer);
+    var locationUpdate = document.getElementById("location" + (currentTurn));
+    locationUpdate.innerHTML = "Location: " + locationName;
+    // Check Location That The Player Arrived at And Take Action
+    checkLocation(locationName, 10);
+}
+
+function chancePayment(card){
+    playerIndex = currentTurn - 1;
+    alert(card[1]);
+    playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + (card[2]);
+    document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+}
+
+function housesAndHotels(card){
+    playerIndex = currentTurn - 1;
+    alert(card[1])
+    var housesCost = playerInfo[playerIndex][6] * 25;
+    var hotelsCost = playerInfo[playerIndex][7] * 100;
+    var totalCost = housesCost + hotelsCost;
+    playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - totalCost;
+    document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+}
+
+function chairman(card){
+    playerIndex = currentTurn - 1;
+    alert(card[1]);
+    for (var i = 1; i <= numPlayers; i++){
+        playerInfo[i][3] = playerInfo[i][3] + 50;
+    }
+    playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - (50 * numPlayers);
 }
