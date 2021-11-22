@@ -544,6 +544,7 @@ function checkLocation (location, special){
             locationOptions(mediterraneanAveInfo, location, "regular", "browns");
             break;
         case "Community Chest Browns":
+            handleCommunityChest();
             break;
         case "Baltic Avenue":
             locationOptions(balticAveInfo, location, "regular", "browns");
@@ -590,6 +591,7 @@ function checkLocation (location, special){
             locationOptions(stJamesPlaceInfo, location, "regular", "oranges");
             break;
         case "Community Chest Oranges":
+            handleCommunityChest();
             break;
         case "Tennessee Avenue":
             locationOptions(tennesseeAveInfo, location, "regular", "oranges");
@@ -640,6 +642,7 @@ function checkLocation (location, special){
             locationOptions(northCarolinaAveInfo, location, "regular", "greens");
             break;
         case "Community Chest Greens":
+            handleCommunityChest();
             break;
         case "Pennsylvania Avenue":
             locationOptions(pennsylvaniaAveInfo, location, "regular", "greens");
