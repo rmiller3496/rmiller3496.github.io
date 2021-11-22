@@ -51,9 +51,9 @@ const waterWorksInfo = ["unowned", false, 4, 10, 75, 150];
 
 
 // player data is stored as follows:
-// [positionx, positiony, direction, money, rr owned, utilities owned, num houses, num hotels, num get out of jail free cards]
-// [0]         [1]        [2]        [3]   [4]        [5]             [6]          [7]        [8]
-const playerInfo = [[1, 1, "left", 1500, 0, 0, 0, 0, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0]]
+// [positionx, positiony, direction, money, rr owned, utilities owned, num houses, num hotels, num get out of jail free cards, in jail (bool), jail roll counter]
+// [0]         [1]        [2]        [3]   [4]        [5]             [6]          [7]        [8]                             [9]
+const playerInfo = [[1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0]]
 const playerProperties = [[], [], [], []];
 const playerMonopolies = [[], [], [], []];
 
@@ -73,6 +73,7 @@ function initialize() {
             } else {
                 alert(numPlayers + " selected");
                 createPlayerData();
+                outJailButtons();
             }
         }
     }
@@ -155,6 +156,12 @@ function changeTurn () {
         }document.getElementById("turnIndicator").innerHTML = "Turn: Player " + currentTurn;
     doublesCounter = 0;
     document.getElementById("diceRoll").disabled = false;
+    playerIndex = currentTurn - 1;
+    if (playerInfo[playerIndex][9] === true){
+        inJailButtons();
+    } else{
+        outJailButtons();
+    }
 }
 
 
@@ -241,11 +248,11 @@ function rollDice () {
     roll1 = Math.floor(Math.random() * (6 - 1) + 1);
     roll2 = Math.floor(Math.random() * (6 - 1) + 1);
     drawDice();
-    movePlayers();
+    movePlayers(roll1, roll2);
     if (roll1 === roll2){
         doublesCounter += 1;
         if (doublesCounter === 3){
-            // Go To Jail
+            goToJail();
             alert("To Jail");
         } else {
             alert("Doubles!!");
@@ -320,7 +327,7 @@ function drawDice() {
 // Move Function
 
 
-function movePlayers() {
+function movePlayers(roll1, roll2) {
     var playerIndex = currentTurn - 1
     var totalRoll = roll1 + roll2;
     var locationX = playerInfo[playerIndex][0];
@@ -621,6 +628,7 @@ function checkLocation (location, special){
             locationOptions(marvinGardensInfo, location, "regular", "yellows");
             break;
         case "Go To Jail":
+            goToJail();
             break;
         case "Pacific Avenue":
             locationOptions(pacificAveInfo, location, "regular", "greens");
@@ -1574,7 +1582,23 @@ function getRandomBetween(min, max) {
 //                                  Chance And Community Chest
 
 var chanceCardsArray = [["toLocation", "Chance: Advance to Boardwalk", 1, 2], ["toLocation", "Chance: Advance to Go", 1, 1], ["toLocation", "Chance: Advance to Illinois Avenue. If you pass Go, collect 200.", 7, 11], ["toLocation", "Chance: Advance to St. Charles Place. If you pass Go, collect 200.", 7, 11], ["toLocation", "Chance: Go to Jail, Do Not Collect 200", 1, 11], ["toLocation", "Chance: Advance to Reading Railroad. If you pass Go, collect 200.", 6, 1], ["spaces", "Chance: Move Back 3 Spaces"], ["nearestRailroad", "Chance: Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay owner twice the rental to which they are otherwise entitled."], ["nearestRailroad", "Chance: Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay owner twice the rental to which they are otherwise entitled."], ["nearestUtility", "Chance: Advance to nearest Utility. If unowned, you may buy it from the Bank. If owned, pay the owner a total ten times amount thrown."], ["payment", "Chance: Bank pays you dividend of $50", 50], ["payment", "Chance: Speeding fine $15", -15], ["payment", "Chance: Your building loan matures. Collect $150", 150], ["housesAndHotels", "Chance: Make general repairs on all your properties. For each house pay $25. For each hotel pay $100"], ["goojf", "Chance: You have been awarded a Get Out of Jail Free Card"], ["chairman", "Chance: You have been elected Chairman of the Board. Pay each player $50"]];
+var communityChestArray = [["toLocation", "Community Chest: Advance to Go, Collect $200", 1, 1], ["toLocation", "Community Chest: Go to Jail. Go directly to jail, do not collect 200", 1, 11], ["payment", "Community Chest: Bank error in your favor. Collect $200", 200], ["payment", "Community Chest: Doctor’s fee. Pay $50", -50], ["payment", "Community Chest: From sale of stock you get $50", 50], ["payment", "Community Chest: Holiday fund matures. Receive $100", 100], ["payment", "Community Chest: Income tax refund. Collect $20", 20], ["payment", "Community Chest: Life insurance matures. Collect $100", 100], ["payment", "Community Chest: Pay hospital fees of $100", -100], ["payment", "Community Chest: Pay school fees of $50", -50], ["payment", "Community Chest: Receive $25 consultancy fee", 25], ["payment", "Community Chest: You have won second prize in a beauty contest. Collect $10", 10], ["payment", "Community Chest: You inherit $100", 100], ["goojf", "Community Chest: You have been awarded a Get Out of Jail Free Card"], ["housesAndHotels", "Community Chest: You are assessed for street repair. $40 per house. $115 per hotel"], ["birthday", "Community Chest: It is your birthday. Collect $10 from every player"]];
 
+function handleCommunityChest(){
+    var card = communityChestArray[getRandomBetween(0, communityChestArray.length)];
+    playerIndex = currentTurn - 1;
+    if (card[0] === "toLocation"){
+        toLocation(card);
+    } else if (card[0] === "payment"){
+        payment(card);
+    } else if (card[0] === "goojf"){
+        playerInfo[playerIndex][8] = playerInfo[playerIndex][8] + 1;
+    } else if (card[0] === "housesAndHotels"){
+        housesAndHotelsV2(card);
+    } else if (card[0] === "birthday"){
+        birthday(card);
+    }
+}
 function handleChance(locale){
     var card = chanceCardsArray[getRandomBetween(0, chanceCardsArray.length)];
     playerIndex = currentTurn - 1;
@@ -1587,7 +1611,7 @@ function handleChance(locale){
     } else if(card[0] === "nearestUtility"){
         nearestUtility(card, locale);
     } else if(card[0] === "payment"){
-        chancePayment(card);
+        payment(card);
     } else if (card[0] === "housesAndHotels"){
         housesAndHotels(card);
     } else if (card[0] === "goojf"){
@@ -1710,7 +1734,7 @@ function nearestUtility(card, locale){
     checkLocation(locationName, 10);
 }
 
-function chancePayment(card){
+function payment(card){
     playerIndex = currentTurn - 1;
     alert(card[1]);
     playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + (card[2]);
@@ -1734,4 +1758,105 @@ function chairman(card){
         playerInfo[i][3] = playerInfo[i][3] + 50;
     }
     playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - (50 * numPlayers);
+}
+
+function housesAndHotelsV2(card){
+    playerIndex = currentTurn - 1;
+    alert(card[1])
+    var housesCost = playerInfo[playerIndex][6] * 40;
+    var hotelsCost = playerInfo[playerIndex][7] * 115;
+    var totalCost = housesCost + hotelsCost;
+    playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - totalCost;
+    document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+}
+
+function birthday(card){
+    playerIndex = currentTurn - 1;
+    alert(card[1]);
+    for (var i = 1; i <= numPlayers; i++){
+        playerInfo[i][3] = playerInfo[i][3] - 10;
+    }
+    playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + (10 * numPlayers);
+}
+
+//                          Jail Functions
+
+function inJailButtons(){
+    document.getElementById("rollToGetOut").disabled = false;
+    document.getElementById("useGOOJF").disabled = false;
+    document.getElementById("addHouses").disabled = true;
+    document.getElementById("mortgageProperty").disabled = true;
+    document.getElementById("changeTurn").disabled = true;
+    document.getElementById("diceRoll").disabled = true;
+    document.getElementById("payToGetOut").disabled = false;
+}
+
+function outJailButtons(){
+    document.getElementById("rollToGetOut").disabled = true;
+    document.getElementById("useGOOJF").disabled = true;
+    document.getElementById("addHouses").disabled = false;
+    document.getElementById("mortgageProperty").disabled = false;
+    document.getElementById("changeTurn").disabled = false;
+    document.getElementById("diceRoll").disabled = false;
+    document.getElementById("payToGetOut").disabled = true;
+}
+
+function goToJail(){
+    playerIndex = currentTurn - 1;
+    playerInfo[playerIndex][9] = true;
+
+    playerInfo[playerIndex][0] = 11; // change x val
+    playerInfo[playerIndex][1] = 1; // change y val
+    // code from movePlayer()
+    var locationIdentifer = 11 + "," + 1;
+    var locationName = coordToLocationName(locationIdentifer);
+    var locationUpdate = document.getElementById("location" + (currentTurn));
+    locationUpdate.innerHTML = "Location: " + locationName;
+    // Check Location That The Player Arrived at And Take Action
+    checkLocation(locationName);
+
+    changeTurn();
+
+}
+
+function rollToGetOut(){
+    playerIndex = currentTurn - 1;
+    roll1 = Math.floor(Math.random() * (6 - 1) + 1);
+    roll2 = Math.floor(Math.random() * (6 - 1) + 1);
+    if (roll1 === roll2){
+        getOutOfJail(roll1, roll2)
+    } else {
+        if (playerInfo[playerIndex][10] === 3){
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 50;
+            getOutOfJail(roll1, roll2);
+        } else {
+            playerInfo[playerIndex][10] = playerInfo[playerIndex][10] + 1;
+            changeTurn();
+        }
+    }
+}
+
+function getOutOfJail(roll1, roll2){
+    playerInfo[playerIndex][9] = false;
+    playerInfo[playerIndex][10] = 0;
+    movePlayers(roll1, roll2);
+    alert("You are out of jail");
+}
+
+function useGOOJF(){
+    if (playerInfo[playerIndex][8] > 0){
+        playerInfo[playerIndex][8] = playerInfo[playerIndex][8] - 1;
+        roll1 = Math.floor(Math.random() * (6 - 1) + 1);
+        roll2 = Math.floor(Math.random() * (6 - 1) + 1);
+        getOutOfJail(roll1, roll2);
+    } else {
+        alert("No Card To Play");
+    }
+}
+
+function payToGetOut(){
+    playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 50;
+    roll1 = Math.floor(Math.random() * (6 - 1) + 1);
+    roll2 = Math.floor(Math.random() * (6 - 1) + 1);
+    getOutOfJail(roll1, roll2);
 }
