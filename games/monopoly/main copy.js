@@ -253,8 +253,8 @@ function rollDice () {
     if (roll1 === roll2){
         doublesCounter += 1;
         if (doublesCounter === 3){
+            alert("Go To Jail");
             goToJail();
-            alert("To Jail");
         } else {
             alert("Doubles!!");
         }
@@ -1828,7 +1828,7 @@ function goToJail(){
     var locationIdentifer = 11 + "," + 1;
     var locationName = coordToLocationName(locationIdentifer);
     var locationUpdate = document.getElementById("location" + (currentTurn));
-    locationUpdate.innerHTML = "Location: " + locationName;
+    locationUpdate.innerHTML = "Location: Jail";
     // Check Location That The Player Arrived at And Take Action
     checkLocation(locationName);
 
@@ -1840,8 +1840,9 @@ function rollToGetOut(){
     playerIndex = currentTurn - 1;
     roll1 = Math.floor(Math.random() * (6 - 1) + 1);
     roll2 = Math.floor(Math.random() * (6 - 1) + 1);
+    alert("Roll 1: " + roll1 +"\nRoll 2: " + roll2);
     if (roll1 === roll2){
-        getOutOfJail(roll1, roll2)
+        getOutOfJail(roll1, roll2);
     } else {
         if (playerInfo[playerIndex][10] === 3){
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 50;
