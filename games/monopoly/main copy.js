@@ -1255,8 +1255,8 @@ function addHouses() {
                                 playerInfo[playerIndex][6] -= 4;
                                 playerInfo[playerIndex][7]++;
                             }
-                            changeStateOfProperty(balticAveInfo, 2, newNumHouses);
-                            changeStateOfProperty(mediterraneanAveInfo, 2, newNumHouses);
+                            changeStateOfProperty("Baltic Avenue", 2, newNumHouses);
+                            changeStateOfProperty("Mediterranean Avenue", 2, newNumHouses);
                             if (checkIfEnoughMoney(balticAveInfo[4] * 2, playerIndex) === true){
                                 playerInfo[playerIndex][3] -= balticAveInfo[4] * 2;
                                 document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
@@ -1289,9 +1289,9 @@ function addHouses() {
                                 playerInfo[playerIndex][6] -= 4;
                                 playerInfo[playerIndex][7]++;
                             }
-                            changeStateOfProperty(vermontAveInfo, 2, newNumHouses);
-                            changeStateOfProperty(orientalAveInfo, 2, newNumHouses);
-                            changeStateOfProperty(connecticutAveInfo, 2, newNumHouses);
+                            changeStateOfProperty("Vermont Avenue", 2, newNumHouses);
+                            changeStateOfProperty("Oriental Avenue", 2, newNumHouses);
+                            changeStateOfProperty("Connecticut Avenue", 2, newNumHouses);
                             if (checkIfEnoughMoney(vermontAveInfo[4] * 3, playerIndex) === true){
                                 playerInfo[playerIndex][3] -= vermontAveInfo[4] * 3;
                                 document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
@@ -1324,9 +1324,9 @@ function addHouses() {
                                 playerInfo[playerIndex][6] -= 4;
                                 playerInfo[playerIndex][7]++;
                             }
-                            changeStateOfProperty(stCharlesPlaceInfo, 2, newNumHouses);
-                            changeStateOfProperty(statesAveInfo, 2, newNumHouses);
-                            changeStateOfProperty(virginiaAveInfo, 2, newNumHouses);
+                            changeStateOfProperty("St. Charles Place", 2, newNumHouses);
+                            changeStateOfProperty("States Avenue", 2, newNumHouses);
+                            changeStateOfProperty('Virginia Avenue', 2, newNumHouses);
                             if (checkIfEnoughMoney(stCharlesPlaceInfo[4] * 3, playerIndex) === true){
                                 playerInfo[playerIndex][3] -= stCharlesPlaceInfo[4] * 3;
                                 document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
@@ -1359,9 +1359,9 @@ function addHouses() {
                                 playerInfo[playerIndex][6] -= 4;
                                 playerInfo[playerIndex][7]++;
                             }
-                            changeStateOfProperty(stJamesPlaceInfo, 2, newNumHouses);
-                            changeStateOfProperty(tennesseeAveInfo, 2, newNumHouses);
-                            changeStateOfProperty(newYorkAveInfo, 2, newNumHouses);
+                            changeStateOfProperty("St. James Place", 2, newNumHouses);
+                            changeStateOfProperty("Tennessee Avenue", 2, newNumHouses);
+                            changeStateOfProperty("New York Avenue", 2, newNumHouses);
                             if (checkIfEnoughMoney(stJamesPlaceInfo[4] * 3, playerIndex) === true){
                                 playerInfo[playerIndex][3] -= stJamesPlaceInfo[4] * 3;
                                 document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
@@ -1394,9 +1394,9 @@ function addHouses() {
                                 playerInfo[playerIndex][6] -= 4;
                                 playerInfo[playerIndex][7]++;
                             }
-                            changeStateOfProperty(kentuckyAveInfo, 2, newNumHouses);
-                            changeStateOfProperty(indianaAveInfo, 2, newNumHouses);
-                            changeStateOfProperty(illinoisAveInfo, 2, newNumHouses);
+                            changeStateOfProperty("Kentucky Avenue", 2, newNumHouses);
+                            changeStateOfProperty("Indiana Avenue", 2, newNumHouses);
+                            changeStateOfProperty("Illinois Avenue", 2, newNumHouses);
                             if (checkIfEnoughMoney(kentuckyAveInfo[4] * 3, playerIndex) === true){
                                 playerInfo[playerIndex][3] -= kentuckyAveInfo[4] * 3;
                                 document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
@@ -1429,9 +1429,9 @@ function addHouses() {
                                 playerInfo[playerIndex][6] -= 4;
                                 playerInfo[playerIndex][7]++;
                             }
-                            changeStateOfProperty(marvinGardensInfo, 2, newNumHouses);
-                            changeStateOfProperty(ventnorAveInfo, 2, newNumHouses);
-                            changeStateOfProperty(atlanticAveInfo, 2, newNumHouses);
+                            changeStateOfProperty("Marvin Gardens", 2, newNumHouses);
+                            changeStateOfProperty("Ventnor Avenue", 2, newNumHouses);
+                            changeStateOfProperty("Atlantic Avenue", 2, newNumHouses);
                             if (checkIfEnoughMoney(marvinGardensInfo[4] * 3, playerIndex) === true){
                                 playerInfo[playerIndex][3] -= marvinGardensInfo[4] * 3;
                                 document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
@@ -1464,9 +1464,9 @@ function addHouses() {
                                 playerInfo[playerIndex][6] -= 4;
                                 playerInfo[playerIndex][7]++;
                             }
-                            changeStateOfProperty(pacificAveInfo, 2, newNumHouses);
-                            changeStateOfProperty(northCarolinaAveInfo, 2, newNumHouses);
-                            changeStateOfProperty(pennsylvaniaAveInfo, 2, newNumHouses);
+                            changeStateOfProperty("Pacific Avenue", 2, newNumHouses);
+                            changeStateOfProperty("North Carolina Avenue", 2, newNumHouses);
+                            changeStateOfProperty("Pennsylvania Avenue", 2, newNumHouses);
                             if (checkIfEnoughMoney(pacificAveInfo[4] * 3, playerIndex) === true){
                                 playerInfo[playerIndex][3] -= pacificAveInfo[4] * 3;
                                 document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
@@ -1499,8 +1499,8 @@ function addHouses() {
                                 playerInfo[playerIndex][6] -= 4;
                                 playerInfo[playerIndex][7]++;
                             }
-                            changeStateOfProperty(parkPlaceInfo, 2, newNumHouses);
-                            changeStateOfProperty(boardwalkInfo, 2, newNumHouses);
+                            changeStateOfProperty("Park Place", 2, newNumHouses);
+                            changeStateOfProperty("Boardwalk", 2, newNumHouses);
                             if (checkIfEnoughMoney(parkPlaceInfo[4] * 2, playerIndex) === true){
                                 playerInfo[playerIndex][3] -= parkPlaceInfo[4] * 2;
                                 document.getElementById("cash" + (playerIndex + 1)).innerHTML = "Cash: " + playerInfo[playerIndex][3];
@@ -1945,6 +1945,9 @@ function trade() {
                         var index2 = playerProperties[(playerChoice - 1)].indexOf(propertyChoice);
                         playerProperties[(playerChoice - 1)].splice(index2, 1);
                         playerProperties[(currentTurn - 1)].push(propertyChoice);
+                        // change property owner designation
+                        changeStateOfProperty(propertyChoice, 0, currentTurn);
+                        changeStateOfProperty(propertyToGive, 0, playerChoice);
                         checkForMonopolyV2();
                         alert("Trade Complete");
                     } else {
@@ -1963,43 +1966,37 @@ function trade() {
 function checkForMonopolyV2(){
     var comparer;
     var playerIndex = currentTurn - 1;
-            if (mediterraneanAveInfo[0] === balticAveInfo[0]){
+    comparer = currentTurn;
+            if (mediterraneanAveInfo[0] === comparer && balticAveInfo[0] === comparer){
                 playerMonopolies[playerIndex].push("browns");
-                alert("Player " + currentTurn + " has a monopoly on the " + region);
+                alert("Player " + currentTurn + " has a monopoly on the browns");
             }
-            comparer = orientalAveInfo[0];
-            if (vermontAveInfo[0] === comparer && connecticutAveInfo[0] === comparer){
+            if (vermontAveInfo[0] === comparer && connecticutAveInfo[0] === comparer && orientalAveInfo[0] === comparer){
                 playerMonopolies[playerIndex].push("light blues");
-                alert("Player " + currentTurn + " has a monopoly on the " + region);
+                alert("Player " + currentTurn + " has a monopoly on the light blues");
             }
-            comparer = stCharlesPlaceInfo[0];
-            if (statesAveInfo[0] === comparer && virginiaAveInfo[0] === comparer){
+            if (statesAveInfo[0] === comparer && virginiaAveInfo[0] === comparer && stCharlesPlaceInfo[0] === comparer){
                 playerMonopolies[playerIndex].push("purples");
-                alert("Player " + currentTurn + " has a monopoly on the " + region);
+                alert("Player " + currentTurn + " has a monopoly on the purples");
             }
-            comparer = stJamesPlaceInfo[0];
-            if (tennesseeAveInfo[0] === comparer && newYorkAveInfo[0] === comparer){
+            if (tennesseeAveInfo[0] === comparer && newYorkAveInfo[0] === comparer && stJamesPlaceInfo[0] === comparer){
                 playerMonopolies[playerIndex].push("oranges");
-                alert("Player " + currentTurn + " has a monopoly on the " + region);
+                alert("Player " + currentTurn + " has a monopoly on the oranges");
             }
-            comparer = kentuckyAveInfo[0];
-            if (indianaAveInfo[0] === comparer && illinoisAveInfo[0] === comparer){
+            if (indianaAveInfo[0] === comparer && illinoisAveInfo[0] === comparer && kentuckyAveInfo[0] === comparer){
                 playerMonopolies[playerIndex].push("reds");
-                alert("Player " + currentTurn + " has a monopoly on the " + region);
+                alert("Player " + currentTurn + " has a monopoly on the reds");
             }
-            comparer = atlanticAveInfo[0];
-            if (ventnorAveInfo[0] === comparer && marvinGardensAveInfo[0] === comparer){
+            if (ventnorAveInfo[0] === comparer && marvinGardensAveInfo[0] === comparer && atlanticAveInfo[0] === comparer){
                 playerMonopolies[playerIndex].push("yellows");
-                alert("Player " + currentTurn + " has a monopoly on the " + region);
+                alert("Player " + currentTurn + " has a monopoly on the yellows");
             }
-            comparer = pacificAveInfo[0];
-            if (northCarolinaAveInfo[0] === comparer && pennsylvaniaAveInfo[0] === comparer){
+            if (northCarolinaAveInfo[0] === comparer && pennsylvaniaAveInfo[0] === comparer && pacificAveInfo[0] === comparer){
                 playerMonopolies[playerIndex].push("greens");
-                alert("Player " + currentTurn + " has a monopoly on the " + region);
+                alert("Player " + currentTurn + " has a monopoly on the greens");
             }
-            if (parkPlaceInfo[0] === boardwalkInfo[0]){
+            if (parkPlaceInfo[0] === comparer && boardwalkInfo[0] === comparer){
                 playerMonopolies[playerIndex].push("dark blues");
-                alert("Player " + currentTurn + " has a monopoly on the " + region);
+                alert("Player " + currentTurn + " has a monopoly on the dark blues");
             }
-
 }
