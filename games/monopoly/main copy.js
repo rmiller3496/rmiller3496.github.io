@@ -1638,12 +1638,14 @@ function toLocation(card) {
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
             alert('Collected 200 for Passing Go');
         }
+        playerInfo[playerIndex][2] = "right";
     } else if (card[1] === "Advance to St. Charles Place. If you pass Go, collect 200."){
         if (playerInfo[playerIndex][1] > 1){
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
             alert('Collected 200 for Passing Go');
         }
+        playerInfo[playerIndex][2] = "up";
     } else if (card[1] === "Advance to Reading Railroad. If you pass Go, collect 200."){
         if (playerInfo[playerIndex][0] >= 6 && playerInfo[playerIndex][1] >= 1){
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
@@ -1654,6 +1656,11 @@ function toLocation(card) {
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
             alert('Collected 200 for Passing Go');
         }
+        playerInfo[playerIndex][2] = "left";
+    } else if (card[2] === 1 && card[3] === 1){
+        playerInfo[playerIndex][2] = "left";
+    } else if(card[2] === 1 && card[3] === 2){
+        playerInfo[playerIndex][2] = "down";
     }
     playerInfo[playerIndex][0] = card[2]; // change x val
     playerInfo[playerIndex][1] = card[3]; // change y val
@@ -1673,6 +1680,7 @@ function moveSpaces (location, card){
     } else if (location === "reds"){
         card[2] = 11;
         card[3] = 10;
+        playerInfo[playerIndex][2] = "up";
     } else if (location === "light blue"){
         card[2] = 5;
         card[3] = 1;
@@ -1698,6 +1706,7 @@ function nearestRailroad(card, locale) {
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
             alert('Collected 200 for Passing Go');
+            playerInfo[playerIndex][2] = "left";
             break;
         case "reds":
             card[2] = 6;
@@ -1706,6 +1715,7 @@ function nearestRailroad(card, locale) {
         case "light blue":
             card[2] = 11;
             card[3] = 6;
+            playerInfo[playerIndex][2] = "up";
             break;
     }
     var locationIdentifer = card[2] + "," + card[3];
@@ -1727,7 +1737,7 @@ function nearestUtility(card, locale){
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
             alert('Collected 200 for Passing Go');
         }
-        // add 200 for passing go for dark blue only
+        playerInfo[playerIndex][2] = "up";
     } else if (locale === "reds"){
         card[2] = 3;
         card[3] = 11;
@@ -1813,6 +1823,7 @@ function goToJail(){
 
     playerInfo[playerIndex][0] = 11; // change x val
     playerInfo[playerIndex][1] = 1; // change y val
+    playerInfo[playerIndex][2] = "up";
     // code from movePlayer()
     var locationIdentifer = 11 + "," + 1;
     var locationName = coordToLocationName(locationIdentifer);
