@@ -1891,3 +1891,114 @@ function updateAllPlayerCash(){
         document.getElementById("cash" + i).innerHTML = "Cash: " + playerInfo[(i - 1)][3];
     }
 }
+
+//                                      Trade
+
+// 7 - Remove Property from current player and add to second player
+// 8 - Do the same for other player
+// 9 - Check for monopoly (have a fxn already)
+
+function trade() {
+    // 1 and 2
+    var player1Properties = playerProperties[0];
+    var player2Properties = playerProperties[1];
+    var player3Properties = playerProperties[2];
+    var player4Properties = playerProperties[3];
+    if (numPlayers === 2){
+        var playerChoice = prompt('Player 1 Properties: ' + player1Properties + "\nPlayer 2 Properties: " + player2Properties + "\n\nType In Player Number that you would like to trade with.");
+    } else if (numPlayers === 3){
+        var playerChoice = prompt('Player 1 Properties: ' + player1Properties +"\nPlayer 2 Properties: " + player2Properties +'\nPlayer 3 Properties: ' + player3Properties + "\n\nType In Player Number that you would like to trade with.");
+    } else if (numPlayers === 4){
+        var playerChoice = prompt('Player 1 Properties: ' + player1Properties + "\nPlayer 2 Properties: " + player2Properties + '\nPlayer 3 Properties: ' + player3Properties +'\nPlayer 4 Properties: ' + player4Properties + "\n\nType In Player Number that you would like to trade with.");
+    }
+    // 3
+    if (playerChoice === currentTurn){
+        alert("Cannot Trade With Yourself");
+    } else {
+        if (playerChoice > numPlayers){
+            alert("Improper Player Selection");
+        } else {
+            switch(Number(playerChoice)){
+                case 1:
+                    var propertyChoice = prompt("Player 1 Properties: " + player1Properties + "\n What Property Would You Like?");
+                    break;
+                case 2:
+                    var propertyChoice = prompt("Player 2 Properties: " + player2Properties + "\n What Property Would You Like?");
+                    break;
+                case 3:
+                    var propertyChoice = prompt("Player 3 Properties: " + player3Properties + "\n What Property Would You Like?");
+                    break;
+                case 4:
+                    var propertyChoice = prompt("Player 4 Properties: " + player4Properties + "\n What Property Would You Like?");
+                    break;
+            }
+            if (playerProperties[(playerChoice - 1)].includes(propertyChoice)){
+                var propertyToGive = prompt("Current Player Properties: " + playerProperties[(currentTurn - 1)] + "\n\n Select Property to Give Away.")
+                if (playerProperties[(currentTurn - 1)].includes(propertyToGive)){
+                    var confirmTrade = confirm("Player " + currentTurn + " would like to trade their " + propertyToGive + " for Player " + playerChoice + "'s " + propertyChoice + "\n Press Okay to Confirm, Press Cancel to Decline");
+                    if (confirmTrade === true){
+                        //complete trade
+                        var index1 = playerProperties[(currentTurn - 1)].indexOf(propertyToGive);
+                        playerProperties[(currentTurn - 1)].splice(index1, 1);
+                        playerProperties[(playerChoice - 1)].push(propertyToGive);
+                        var index2 = playerProperties[(playerChoice - 1)].indexOf(propertyChoice);
+                        playerProperties[(playerChoice - 1)].splice(index2, 1);
+                        playerProperties[(currentTurn - 1)].push(propertyChoice);
+                        checkForMonopolyV2();
+                        alert("Trade Complete");
+                    } else {
+                        alert("Trade Canceled");
+                    }
+                } else {
+                    alert("Property Not Found");
+                }
+            } else {
+                alert("Property Not Found")
+            }
+        }
+    }
+}
+
+function checkForMonopolyV2(){
+    var comparer;
+    var playerIndex = currentTurn - 1;
+            if (mediterraneanAveInfo[0] === balticAveInfo[0]){
+                playerMonopolies[playerIndex].push("browns");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            comparer = orientalAveInfo[0];
+            if (vermontAveInfo[0] === comparer && connecticutAveInfo[0] === comparer){
+                playerMonopolies[playerIndex].push("light blues");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            comparer = stCharlesPlaceInfo[0];
+            if (statesAveInfo[0] === comparer && virginiaAveInfo[0] === comparer){
+                playerMonopolies[playerIndex].push("purples");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            comparer = stJamesPlaceInfo[0];
+            if (tennesseeAveInfo[0] === comparer && newYorkAveInfo[0] === comparer){
+                playerMonopolies[playerIndex].push("oranges");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            comparer = kentuckyAveInfo[0];
+            if (indianaAveInfo[0] === comparer && illinoisAveInfo[0] === comparer){
+                playerMonopolies[playerIndex].push("reds");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            comparer = atlanticAveInfo[0];
+            if (ventnorAveInfo[0] === comparer && marvinGardensAveInfo[0] === comparer){
+                playerMonopolies[playerIndex].push("yellows");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            comparer = pacificAveInfo[0];
+            if (northCarolinaAveInfo[0] === comparer && pennsylvaniaAveInfo[0] === comparer){
+                playerMonopolies[playerIndex].push("greens");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+            if (parkPlaceInfo[0] === boardwalkInfo[0]){
+                playerMonopolies[playerIndex].push("dark blues");
+                alert("Player " + currentTurn + " has a monopoly on the " + region);
+            }
+
+}
