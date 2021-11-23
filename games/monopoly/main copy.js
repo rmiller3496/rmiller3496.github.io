@@ -1754,7 +1754,7 @@ function payment(card){
     playerIndex = currentTurn - 1;
     alert(card[1]);
     playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + (card[2]);
-    document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+    updateAllPlayerCash();
 }
 
 function housesAndHotels(card){
@@ -1764,7 +1764,7 @@ function housesAndHotels(card){
     var hotelsCost = playerInfo[playerIndex][7] * 100;
     var totalCost = housesCost + hotelsCost;
     playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - totalCost;
-    document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+    updateAllPlayerCash();
 }
 
 function chairman(card){
@@ -1774,6 +1774,7 @@ function chairman(card){
         playerInfo[i][3] = playerInfo[i][3] + 50;
     }
     playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - (50 * numPlayers);
+    updateAllPlayerCash();
 }
 
 function housesAndHotelsV2(card){
@@ -1783,7 +1784,7 @@ function housesAndHotelsV2(card){
     var hotelsCost = playerInfo[playerIndex][7] * 115;
     var totalCost = housesCost + hotelsCost;
     playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - totalCost;
-    document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
+    updateAllPlayerCash();
 }
 
 function birthday(card){
@@ -1793,6 +1794,7 @@ function birthday(card){
         playerInfo[i][3] = playerInfo[i][3] - 10;
     }
     playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + (10 * numPlayers);
+    updateAllPlayerCash();
 }
 
 //                          Jail Functions
@@ -1846,6 +1848,7 @@ function rollToGetOut(){
     } else {
         if (playerInfo[playerIndex][10] === 3){
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 50;
+            updateAllPlayerCash();
             getOutOfJail(roll1, roll2);
         } else {
             playerInfo[playerIndex][10] = playerInfo[playerIndex][10] + 1;
@@ -1859,6 +1862,7 @@ function getOutOfJail(roll1, roll2){
     playerInfo[playerIndex][10] = 0;
     movePlayers(roll1, roll2);
     alert("You are out of jail");
+    changeTurn();
 }
 
 function useGOOJF(){
@@ -1876,9 +1880,16 @@ function payToGetOut(){
     playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 50;
     roll1 = Math.floor(Math.random() * (6 - 1) + 1);
     roll2 = Math.floor(Math.random() * (6 - 1) + 1);
+    updateAllPlayerCash();
     getOutOfJail(roll1, roll2);
 }
 
 function devMode(){
     devModeEnabled = true;
+}
+
+function updateAllPlayerCash(){
+    for (var i = 1; i <= numPlayers; i++){
+        document.getElementById("cash" + i).innerHTML = "Cash: " + playerInfo[(i - 1)][3];
+    }
 }
