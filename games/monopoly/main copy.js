@@ -936,7 +936,7 @@ function checkForMonopoly(region){
             break;
         case "yellows":
             comparer = atlanticAveInfo[0];
-            if (ventnorAveInfo[0] === comparer && marvinGardensAveInfo[0] === comparer){
+            if (ventnorAveInfo[0] === comparer && marvinGardensInfo[0] === comparer){
                 playerMonopolies[playerIndex].push("yellows");
                 alert("Player " + currentTurn + " has a monopoly on the " + region);
             }
@@ -1242,7 +1242,7 @@ function addHouses() {
                 } else {
                     var numHouses = balticAveInfo[2];
                     if (numHouses !== "hotel"){
-                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (balticAveInfo[4] * 2) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        var afirm = confirm("The " + option4 + " has " + numHouses + " houses.\nA upgrade costs " + (balticAveInfo[4] * 2) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
@@ -1276,7 +1276,7 @@ function addHouses() {
                 } else {
                     var numHouses = orientalAveInfo[2];
                     if (numHouses !== "hotel"){
-                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (orientalAveInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        var afirm = confirm("The " + option4 + " has " + numHouses + " houses.\nA upgrade costs " + (orientalAveInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
@@ -1311,7 +1311,7 @@ function addHouses() {
                 } else {
                     var numHouses = stCharlesPlaceInfo[2];
                     if (numHouses !== "hotel"){
-                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (stCharlesPlaceInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        var afirm = confirm("The " + option4 + " has " + numHouses + " houses.\nA upgrade costs " + (stCharlesPlaceInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
@@ -1346,7 +1346,7 @@ function addHouses() {
                 } else {
                     var numHouses = stJamesPlaceInfo[2];
                     if (numHouses !== "hotel"){
-                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (stJamesPlaceInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        var afirm = confirm("The " + option4 + " has " + numHouses + " houses.\nA upgrade costs " + (stJamesPlaceInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
@@ -1381,7 +1381,7 @@ function addHouses() {
                 } else {
                     var numHouses = kentuckyAveInfo[2];
                     if (numHouses !== "hotel"){
-                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (kentuckyAveInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        var afirm = confirm("The " + option4 + " has " + numHouses + " houses.\nA upgrade costs " + (kentuckyAveInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
@@ -1416,7 +1416,7 @@ function addHouses() {
                 } else {
                     var numHouses = marvinGardensInfo[2];
                     if (numHouses !== "hotel"){
-                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (marvinGardensInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        var afirm = confirm("The " + option4 + " has " + numHouses + " houses.\nA upgrade costs " + (marvinGardensInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
@@ -1451,7 +1451,7 @@ function addHouses() {
                 } else {
                     var numHouses = pacificAveInfo[2];
                     if (numHouses !== "hotel"){
-                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (pacificAveInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        var afirm = confirm("The " + option4 + " has " + numHouses + " houses.\nA upgrade costs " + (pacificAveInfo[4] * 3) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
@@ -1486,7 +1486,7 @@ function addHouses() {
                 } else {
                     var numHouses = parkPlaceInfo[2];
                     if (numHouses !== "hotel"){
-                        var afirm = confirm("The " + region + " has " + numHouses + " houses.\nA upgrade costs " + (parkPlaceInfo[4] * 2) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
+                        var afirm = confirm("The " + option4 + " has " + numHouses + " houses.\nA upgrade costs " + (parkPlaceInfo[4] * 2) +".\nPress Okay to Confirm Upgrade, Press Cancel to Cancel");
                         if (afirm === true){
                             if (numHouses === "none"){
                                 var newNumHouses = 1;
