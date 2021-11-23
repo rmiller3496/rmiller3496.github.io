@@ -1587,7 +1587,7 @@ function getRandomBetween(min, max) {
 
 //                                  Chance And Community Chest
 
-var chanceCardsArray = [["toLocation", "Chance: Advance to Boardwalk", 1, 2], ["toLocation", "Chance: Advance to Go", 1, 1], ["toLocation", "Chance: Advance to Illinois Avenue. If you pass Go, collect 200.", 7, 11], ["toLocation", "Chance: Advance to St. Charles Place. If you pass Go, collect 200.", 7, 11], ["toLocation", "Chance: Go to Jail, Do Not Collect 200", 1, 11], ["toLocation", "Chance: Advance to Reading Railroad. If you pass Go, collect 200.", 6, 1], ["spaces", "Chance: Move Back 3 Spaces"], ["nearestRailroad", "Chance: Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay owner twice the rental to which they are otherwise entitled."], ["nearestRailroad", "Chance: Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay owner twice the rental to which they are otherwise entitled."], ["nearestUtility", "Chance: Advance to nearest Utility. If unowned, you may buy it from the Bank. If owned, pay the owner a total ten times amount thrown."], ["payment", "Chance: Bank pays you dividend of $50", 50], ["payment", "Chance: Speeding fine $15", -15], ["payment", "Chance: Your building loan matures. Collect $150", 150], ["housesAndHotels", "Chance: Make general repairs on all your properties. For each house pay $25. For each hotel pay $100"], ["goojf", "Chance: You have been awarded a Get Out of Jail Free Card"], ["chairman", "Chance: You have been elected Chairman of the Board. Pay each player $50"]];
+var chanceCardsArray = [["toLocation", "Chance: Advance to Boardwalk", 1, 2], ["toLocation", "Chance: Advance to Go", 1, 1], ["toLocation", "Chance: Advance to Illinois Avenue. If you pass Go, collect 200.", 7, 11], ["toLocation", "Chance: Advance to St. Charles Place. If you pass Go, collect 200.", 11, 2], ["toLocation", "Chance: Go to Jail, Do Not Collect 200", 1, 11], ["toLocation", "Chance: Advance to Reading Railroad. If you pass Go, collect 200.", 6, 1], ["spaces", "Chance: Move Back 3 Spaces"], ["nearestRailroad", "Chance: Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay owner twice the rental to which they are otherwise entitled."], ["nearestRailroad", "Chance: Advance to the nearest Railroad. If unowned, you may buy it from the Bank. If owned, pay owner twice the rental to which they are otherwise entitled."], ["nearestUtility", "Chance: Advance to nearest Utility. If unowned, you may buy it from the Bank. If owned, pay the owner a total ten times amount thrown."], ["payment", "Chance: Bank pays you dividend of $50", 50], ["payment", "Chance: Speeding fine $15", -15], ["payment", "Chance: Your building loan matures. Collect $150", 150], ["housesAndHotels", "Chance: Make general repairs on all your properties. For each house pay $25. For each hotel pay $100"], ["goojf", "Chance: You have been awarded a Get Out of Jail Free Card"], ["chairman", "Chance: You have been elected Chairman of the Board. Pay each player $50"]];
 var communityChestArray = [["toLocation", "Community Chest: Advance to Go, Collect $200", 1, 1], ["toLocation", "Community Chest: Go to Jail. Go directly to jail, do not collect 200", 1, 11], ["payment", "Community Chest: Bank error in your favor. Collect $200", 200], ["payment", "Community Chest: Doctor’s fee. Pay $50", -50], ["payment", "Community Chest: From sale of stock you get $50", 50], ["payment", "Community Chest: Holiday fund matures. Receive $100", 100], ["payment", "Community Chest: Income tax refund. Collect $20", 20], ["payment", "Community Chest: Life insurance matures. Collect $100", 100], ["payment", "Community Chest: Pay hospital fees of $100", -100], ["payment", "Community Chest: Pay school fees of $50", -50], ["payment", "Community Chest: Receive $25 consultancy fee", 25], ["payment", "Community Chest: You have won second prize in a beauty contest. Collect $10", 10], ["payment", "Community Chest: You inherit $100", 100], ["goojf", "Community Chest: You have been awarded a Get Out of Jail Free Card"], ["housesAndHotels", "Community Chest: You are assessed for street repair. $40 per house. $115 per hotel"], ["birthday", "Community Chest: It is your birthday. Collect $10 from every player"]];
 
 function handleCommunityChest(){
@@ -1647,6 +1647,7 @@ function toLocation(card) {
         }
         playerInfo[playerIndex][2] = "up";
     } else if (card[1] === "Advance to Reading Railroad. If you pass Go, collect 200."){
+        playerInfo[playerIndex][2] = "left";
         if (playerInfo[playerIndex][0] >= 6 && playerInfo[playerIndex][1] >= 1){
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
@@ -1656,7 +1657,6 @@ function toLocation(card) {
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
             alert('Collected 200 for Passing Go');
         }
-        playerInfo[playerIndex][2] = "left";
     } else if (card[2] === 1 && card[3] === 1){
         playerInfo[playerIndex][2] = "left";
     } else if(card[2] === 1 && card[3] === 2){
@@ -1832,8 +1832,6 @@ function goToJail(){
     var locationUpdate = document.getElementById("location" + (currentTurn));
     locationUpdate.innerHTML = "Location: Jail";
     // Check Location That The Player Arrived at And Take Action
-    checkLocation(locationName);
-
     changeTurn();
 
 }
