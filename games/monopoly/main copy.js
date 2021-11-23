@@ -1631,7 +1631,7 @@ function toLocation(card) {
     var playerIndex = currentTurn - 1;
     alert(card[1]);
     //check if player needs +200
-    if (card[1] === "Advance to Illinois Avenue. If you pass Go, collect 200."){
+    if (card[1] === "Chance: Advance to Illinois Avenue. If you pass Go, collect 200."){
         // check if passed to the left
         if (playerInfo[playerIndex][0] > 7 && playerInfo[playerIndex][1] <= 11 && playerInfo[playerIndex][1] !== 1){
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
@@ -1639,15 +1639,16 @@ function toLocation(card) {
             alert('Collected 200 for Passing Go');
         }
         playerInfo[playerIndex][2] = "right";
-    } else if (card[1] === "Advance to St. Charles Place. If you pass Go, collect 200."){
+    } else if (card[1] === "Chance: Advance to St. Charles Place. If you pass Go, collect 200."){
         if (playerInfo[playerIndex][1] > 1){
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
             alert('Collected 200 for Passing Go');
         }
         playerInfo[playerIndex][2] = "up";
-    } else if (card[1] === "Advance to Reading Railroad. If you pass Go, collect 200."){
+    } else if (card[1] === "Chance: Advance to Reading Railroad. If you pass Go, collect 200."){
         playerInfo[playerIndex][2] = "left";
+        alert("it ran");
         if (playerInfo[playerIndex][0] >= 6 && playerInfo[playerIndex][1] >= 1){
             playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
