@@ -2054,7 +2054,6 @@ function updateScreenAfterLoad(){
         var locationX = playerInfo[(i - 1)][0];
         var locationY = playerInfo[(i - 1)][1];
         var locationIdentifer = locationX + "," + locationY;
-        alert(locationIdentifer);
         var locationName = coordToLocationName(locationIdentifer);
         var locationUpdate = document.getElementById("location" + i);
         locationUpdate.innerHTML = "Location: " + locationName;
