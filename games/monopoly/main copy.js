@@ -53,7 +53,7 @@ var waterWorksInfo = ["unowned", false, 4, 10, 75, 150];
 
 // player data is stored as follows:
 // [positionx, positiony, direction, money, rr owned, utilities owned, num houses, num hotels, num get out of jail free cards, in jail (bool), jail roll counter]
-// [0]         [1]        [2]        [3]   [4]        [5]             [6]          [7]        [8]                             [9]
+// [0]         [1]        [2]        [3]   [4]        [5]             [6]          [7]        [8]                             [9]             [10]
 var playerInfo = [[1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0]]
 var playerProperties = [[], [], [], []];
 var playerMonopolies = [[], [], [], []];
@@ -2002,6 +2002,10 @@ function checkForMonopolyV2(){
             }
 }
 
+var normalPlacesArray = [mediterraneanAveInfo, balticAveInfo, orientalAveInfo, vermontAveInfo, connecticutAveInfo,stCharlesPlaceInfo, statesAveInfo, virginiaAveInfo, stJamesPlaceInfo, tennesseeAveInfo, newYorkAveInfo, kentuckyAveInfo, indianaAveInfo, illinoisAveInfo,atlanticAveInfo, ventnorAveInfo,marvinGardensInfo, pacificAveInfo,northCarolinaAveInfo, pennsylvaniaAveInfo, parkPlaceInfo, boardwalkInfo]
+var rrArray = [readingRailRoadInfo, pennsylvaniaAveInfo, bandoRailRoadInfo, shortLineInfo, electricCompanyInfo];
+var utilArray = [electricCompanyInfo, waterWorksInfo];
+
 function convertTxtToData(str){
     var dataArray = [];
     dataArray = str.split("\n");
@@ -2045,9 +2049,57 @@ function convertTxtToData(str){
     playerMonopolies[1] = dataArray[37].split(",");
     playerMonopolies[2] = dataArray[38].split(",");
     playerMonopolies[3] = dataArray[39].split(",");
+    toNumber();
+    toBool();
     updateScreenAfterLoad();
 }
 
+function toNumber(){
+    for (var i = 0; i < normalPlacesArray.length; i++){
+        for (var j = 3; j < 10; j++){
+            normalPlacesArray[i][j] = Number(normalPlacesArray[i][j]);
+        }
+    }
+
+    for (var k = 0; k < rrArray.length; k++){
+        for (var l = 2; l < 8; l++){
+            rrArray[k][l] = Number(rrArray[k][l]);
+        }
+    }
+
+    for (var q = 0; q < utilArray.length; q++){
+        for (var r = 2; r < 6; r++){
+            utilArray[q][r] = Number(utilArray[q][r]);
+        }
+    }
+
+    for (var t = 0; t < 4; t++){
+        playerInfo[t][0] = Number(playerInfo[t][0]);
+        playerInfo[t][1] = Number(playerInfo[t][1]);
+        playerInfo[t][3] = Number(playerInfo[t][3]);
+        playerInfo[t][4] = Number(playerInfo[t][4]);
+        playerInfo[t][5] = Number(playerInfo[t][5]);
+        playerInfo[t][6] = Number(playerInfo[t][6]);
+        playerInfo[t][7] = Number(playerInfo[t][7]);
+        playerInfo[t][8] = Number(playerInfo[t][8]);
+        playerInfo[t][10] = Number(playerInfo[t][10]);
+    }
+}
+
+function toBool(){
+    for(var i = 0; i < normalPlacesArray.length; i++){
+        normalPlacesArray[i][1] = JSON.parse(normalPlacesArray[i][1]);
+    }
+    for (var j = 0; j < rrArray.length; j++){
+        rrArray[j][1] = JSON.parse(rrArray[j][1]); 
+    }
+    for (var k = 0; k < utilArray.length; k++){
+        utilArray[k][1] = JSON.parse(utilArray[k][1])
+    }
+    for (var o = 0; o < 4; o++){
+        playerInfo[o][9] = JSON.parse(playerInfo[o][9]);
+    }
+}
 function updateScreenAfterLoad(){
     //Update Player Locations
     for (var i = 1; i <= numPlayers; i++){
