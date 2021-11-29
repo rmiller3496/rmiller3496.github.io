@@ -13,55 +13,55 @@ var devModeEnabled = false;
 // Info for All Addresses
 //[owned or not (if owned -> player number), monopoly or not *not actually being used as of now* , num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage refund]
 //[0]                                      [1]                                                      [2]                             [3]    [4]             [5]   [6]    [7]         [8]       [9]      [10]     [11]     
-const mediterraneanAveInfo =  ["unowned", false, "none", 60, 50, 2, 10, 30, 90, 160, 250, 30];
-const balticAveInfo =  ["unowned", false, "none", 60, 50, 4, 20, 60, 180, 320, 450, 30];
-const orientalAveInfo =  ["unowned", false, "none", 100, 50, 6, 30, 90, 270, 400, 550, 50];
-const vermontAveInfo =  ["unowned", false, "none", 100, 50, 6, 30, 90, 270, 400, 550, 50];
-const connecticutAveInfo =  ["unowned", false, "none", 120, 50, 8, 40, 100, 300, 450, 600, 60];
-const stCharlesPlaceInfo =  ["unowned", false, "none", 140, 100, 10, 50, 150, 450, 625, 750, 70];
-const statesAveInfo =  ["unowned", false, "none", 140, 100, 10, 50, 150, 450, 625, 750, 70];
-const virginiaAveInfo =  ["unowned", false, "none", 160, 100, 12, 60, 180, 500, 700, 900, 80];
-const stJamesPlaceInfo =  ["unowned", false, "none", 180, 100, 14, 70, 200, 550, 750, 950, 90];
-const tennesseeAveInfo =  ["unowned", false, "none", 180, 100, 14, 70, 200, 550, 750, 950, 90];
-const newYorkAveInfo =  ["unowned", false, "none", 200, 100, 16, 80, 220, 600, 800, 1000, 100];
-const kentuckyAveInfo =  ["unowned", false, "none", 220, 150, 18, 90, 250, 700, 875, 1050, 110];
-const indianaAveInfo =  ["unowned", false, "none", 220, 150, 18, 90, 250, 700, 875, 1050, 110];
-const illinoisAveInfo =  ["unowned", false, "none", 240, 150, 20, 100, 300, 750, 925, 1100, 120];
-const atlanticAveInfo =  ["unowned", false, "none", 260, 150, 22, 110, 330, 800, 975, 1150, 130];
-const ventnorAveInfo =  ["unowned", false, "none", 260, 150, 22, 110, 330, 800, 975, 1150, 130];
-const marvinGardensInfo =  ["unowned", false, "none", 280, 150, 24, 120, 360, 850, 1025, 1200, 140];
-const pacificAveInfo =  ["unowned", false, "none", 300, 200, 26, 130, 390, 900, 1100, 1275, 150];
-const northCarolinaAveInfo =  ["unowned", false, "none", 300, 200, 26, 130, 390, 900, 1100, 1275, 150];
-const pennsylvaniaAveInfo =  ["unowned", false, "none", 320, 200, 28, 150, 450, 1000, 1200, 1400, 160];
-const parkPlaceInfo =  ["unowned", false, "none", 350, 200, 35, 175, 500, 1100, 1300, 1500, 175];
-const boardwalkInfo =  ["unowned", false, "none", 400, 200, 50, 200, 600, 1400, 1700, 2000, 200];
+var mediterraneanAveInfo =  ["unowned", false, "none", 60, 50, 2, 10, 30, 90, 160, 250, 30];
+var balticAveInfo =  ["unowned", false, "none", 60, 50, 4, 20, 60, 180, 320, 450, 30];
+var orientalAveInfo =  ["unowned", false, "none", 100, 50, 6, 30, 90, 270, 400, 550, 50];
+var vermontAveInfo =  ["unowned", false, "none", 100, 50, 6, 30, 90, 270, 400, 550, 50];
+var connecticutAveInfo =  ["unowned", false, "none", 120, 50, 8, 40, 100, 300, 450, 600, 60];
+var stCharlesPlaceInfo =  ["unowned", false, "none", 140, 100, 10, 50, 150, 450, 625, 750, 70];
+var statesAveInfo =  ["unowned", false, "none", 140, 100, 10, 50, 150, 450, 625, 750, 70];
+var virginiaAveInfo =  ["unowned", false, "none", 160, 100, 12, 60, 180, 500, 700, 900, 80];
+var stJamesPlaceInfo =  ["unowned", false, "none", 180, 100, 14, 70, 200, 550, 750, 950, 90];
+var tennesseeAveInfo =  ["unowned", false, "none", 180, 100, 14, 70, 200, 550, 750, 950, 90];
+var newYorkAveInfo =  ["unowned", false, "none", 200, 100, 16, 80, 220, 600, 800, 1000, 100];
+var kentuckyAveInfo =  ["unowned", false, "none", 220, 150, 18, 90, 250, 700, 875, 1050, 110];
+var indianaAveInfo =  ["unowned", false, "none", 220, 150, 18, 90, 250, 700, 875, 1050, 110];
+var illinoisAveInfo =  ["unowned", false, "none", 240, 150, 20, 100, 300, 750, 925, 1100, 120];
+var atlanticAveInfo =  ["unowned", false, "none", 260, 150, 22, 110, 330, 800, 975, 1150, 130];
+var ventnorAveInfo =  ["unowned", false, "none", 260, 150, 22, 110, 330, 800, 975, 1150, 130];
+var marvinGardensInfo =  ["unowned", false, "none", 280, 150, 24, 120, 360, 850, 1025, 1200, 140];
+var pacificAveInfo =  ["unowned", false, "none", 300, 200, 26, 130, 390, 900, 1100, 1275, 150];
+var northCarolinaAveInfo =  ["unowned", false, "none", 300, 200, 26, 130, 390, 900, 1100, 1275, 150];
+var pennsylvaniaAveInfo =  ["unowned", false, "none", 320, 200, 28, 150, 450, 1000, 1200, 1400, 160];
+var parkPlaceInfo =  ["unowned", false, "none", 350, 200, 35, 175, 500, 1100, 1300, 1500, 175];
+var boardwalkInfo =  ["unowned", false, "none", 400, 200, 50, 200, 600, 1400, 1700, 2000, 200];
 
 // Info For Railroads
 // [owned or not (if owned -> player number), mortaged or not (bool), rent 1 rr, 2rr, 3rr, 4rr, mortgage refund, cost]
 // [0]                                        [1]                     [2]       [3]   [4]  [5]  [6]             [7]
-const readingRailRoadInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
-const pennsylvaniaRailRoadInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
-const bandoRailRoadInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
-const shortLineInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
+var readingRailRoadInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
+var pennsylvaniaRailRoadInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
+var bandoRailRoadInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
+var shortLineInfo = ["unowned", false, 25, 50, 100, 200, 100, 200];
 
 // Info for Utilities
 //[owned or not (if owned -> player number), mortgaged or not (bool), 1 multiplier, 2 multiplier, mortgage refund, cost]
 //[0]                                        [1]                      [2]           [3]           [4]             [5]
-const electricCompanyInfo = ["unowned", false, 4, 10, 75, 150];
-const waterWorksInfo = ["unowned", false, 4, 10, 75, 150];
+var electricCompanyInfo = ["unowned", false, 4, 10, 75, 150];
+var waterWorksInfo = ["unowned", false, 4, 10, 75, 150];
 
 
 // player data is stored as follows:
 // [positionx, positiony, direction, money, rr owned, utilities owned, num houses, num hotels, num get out of jail free cards, in jail (bool), jail roll counter]
 // [0]         [1]        [2]        [3]   [4]        [5]             [6]          [7]        [8]                             [9]
-const playerInfo = [[1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0]]
-const playerProperties = [[], [], [], []];
-const playerMonopolies = [[], [], [], []];
+var playerInfo = [[1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0], [1, 1, "left", 1500, 0, 0, 0, 0, 0, false, 0]]
+var playerProperties = [[], [], [], []];
+var playerMonopolies = [[], [], [], []];
 
 
 // Stuff to Do On Start
 function initialize() {
-    numPlayers = prompt("Enter A Number Between 2 and 4 for the number of players");
+    numPlayers = prompt("Enter A Number Between 2 and 4 for the number of players.\nIf you are loading a previous save, enter the same number of players as the previous game.");
     if (numPlayers === null){
         alert("No Value Entered");
     } else {
@@ -1663,8 +1663,7 @@ function toLocation(card) {
     } else if(card[2] === 1 && card[3] === 2){
         playerInfo[playerIndex][2] = "down";
     }
-    playerInfo[playerIndex][0] = card[2]; // change x val
-    playerInfo[playerIndex][1] = card[3]; // change y val
+    updatePlayerLocation(playerIndex, card[2], card[3])
     // code from movePlayer()
     var locationIdentifer = card[2] + "," + card[3];
     var locationName = coordToLocationName(locationIdentifer);
@@ -1686,13 +1685,13 @@ function moveSpaces (location, card){
         card[2] = 5;
         card[3] = 1;
     }
-    playerInfo[playerIndex][0] = card[2]; // change x val
-    playerInfo[playerIndex][1] = card[3]; // change y val
+    
     // code from movePlayer()
     var locationIdentifer = card[2] + "," + card[3];
     var locationName = coordToLocationName(locationIdentifer);
     var locationUpdate = document.getElementById("location" + (currentTurn));
     locationUpdate.innerHTML = "Location: " + locationName;
+    updatePlayerLocation(playerIndex, card[2], card[3])
     // Check Location That The Player Arrived at And Take Action
     checkLocation(locationName);
 }
@@ -1723,6 +1722,7 @@ function nearestRailroad(card, locale) {
     var locationName = coordToLocationName(locationIdentifer);
     var locationUpdate = document.getElementById("location" + (currentTurn));
     locationUpdate.innerHTML = "Location: " + locationName;
+    updatePlayerLocation(playerIndex, card[2], card[3])
     // Check Location That The Player Arrived at And Take Action
     checkLocation(locationName, 2);
 }
@@ -1747,6 +1747,7 @@ function nearestUtility(card, locale){
     var locationName = coordToLocationName(locationIdentifer);
     var locationUpdate = document.getElementById("location" + (currentTurn));
     locationUpdate.innerHTML = "Location: " + locationName;
+    updatePlayerLocation(playerIndex, card[2], card[3])
     // Check Location That The Player Arrived at And Take Action
     checkLocation(locationName, 10);
 }
@@ -1999,4 +2000,70 @@ function checkForMonopolyV2(){
                 playerMonopolies[playerIndex].push("dark blues");
                 alert("Player " + currentTurn + " has a monopoly on the dark blues");
             }
+}
+
+function convertTxtToData(str){
+    var dataArray = [];
+    dataArray = str.split("\n");
+    mediterraneanAveInfo = dataArray[0].split(",");
+    balticAveInfo = dataArray[1].split(",");
+    orientalAveInfo = dataArray[2].split(",");
+    vermontAveInfo = dataArray[3].split(",");
+    connecticutAveInfo = dataArray[4].split(",");
+    stCharlesPlaceInfo = dataArray[5].split(",");
+    statesAveInfo = dataArray[6].split(",");
+    virginiaAveInfo = dataArray[7].split(",");
+    stJamesPlaceInfo = dataArray[8].split(",");
+    tennesseeAveInfo = dataArray[9].split(",");
+    newYorkAveInfo = dataArray[10].split(",");
+    kentuckyAveInfo = dataArray[11].split(",");
+    indianaAveInfo = dataArray[12].split(",");
+    illinoisAveInfo = dataArray[13].split(",");
+    atlanticAveInfo = dataArray[14].split(",");
+    ventnorAveInfo = dataArray[15].split(",");
+    marvinGardensInfo = dataArray[16].split(",");
+    pacificAveInfo = dataArray[17].split(",");
+    northCarolinaAveInfo = dataArray[18].split(",");
+    pennsylvaniaAveInfo = dataArray[19].split(",");
+    parkPlaceInfo = dataArray[20].split(",");
+    boardwalkInfo = dataArray[21].split(",");
+    readingRailRoadInfo = dataArray[22].split(",");
+    pennsylvaniaAveInfo = dataArray[23].split(",");
+    bandoRailRoadInfo = dataArray[24].split(",");
+    shortLineInfo = dataArray[25].split(",");
+    electricCompanyInfo = dataArray[26].split(",");
+    waterWorksInfo = dataArray[27].split(",");
+    playerInfo[0] = dataArray[28].split(",");
+    playerInfo[1] = dataArray[29].split(",");
+    playerInfo[2] = dataArray[30].split(",");
+    playerInfo[3] = dataArray[31].split(",");
+    playerProperties[0] = dataArray[32].split(",");
+    playerProperties[1] = dataArray[33].split(",");
+    playerProperties[2] = dataArray[34].split(",");
+    playerProperties[3] = dataArray[35].split(",");
+    playerMonopolies[0] = dataArray[36].split(",");
+    playerMonopolies[1] = dataArray[37].split(",");
+    playerMonopolies[2] = dataArray[38].split(",");
+    playerMonopolies[3] = dataArray[39].split(",");
+    updateScreenAfterLoad();
+}
+
+function updateScreenAfterLoad(){
+    //Update Player Locations
+    for (var i = 1; i <= numPlayers; i++){
+        var locationX = playerInfo[(i - 1)][0];
+        var locationY = playerInfo[(i - 1)][1];
+        var locationIdentifer = locationX + "," + locationY;
+        alert(locationIdentifer);
+        var locationName = coordToLocationName(locationIdentifer);
+        var locationUpdate = document.getElementById("location" + i);
+        locationUpdate.innerHTML = "Location: " + locationName;
+    }
+    // update all player cash
+    updateAllPlayerCash();
+}
+
+function updatePlayerLocation(playerNumber, xlocale, ylocale){
+    playerInfo[playerNumber][0] = xlocale;
+    playerInfo[playerNumber][1] = ylocale;
 }
