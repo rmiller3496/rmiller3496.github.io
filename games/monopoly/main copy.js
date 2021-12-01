@@ -1520,10 +1520,9 @@ function addHouses() {
                 }
                 break;
                 
+            }
         }
-    }
-    }
-    
+    } 
 }
 
 function checkIfMortgaged (region){
