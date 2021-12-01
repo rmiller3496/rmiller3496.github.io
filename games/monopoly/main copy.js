@@ -1234,7 +1234,10 @@ function checkStateOfProperty (location, index){
 
 function addHouses() {
     var playerIndex = currentTurn - 1;
-    var option4 = prompt("These are the sets of properties that are available to build on " + playerMonopolies[playerIndex]);
+    if (playerMonopolies[playerIndex].length === 0){
+        alert("No Monopolies to Build Upon");
+    } else {
+        var option4 = prompt("These are the sets of properties that are available to build on: \n" + playerMonopolies[playerIndex]);
     if (playerMonopolies[playerIndex].includes(option4)){
         switch (option4){
             case "browns":
@@ -1519,6 +1522,8 @@ function addHouses() {
                 
         }
     }
+    }
+    
 }
 
 function checkIfMortgaged (region){
