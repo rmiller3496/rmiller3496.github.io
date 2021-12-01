@@ -571,6 +571,7 @@ function checkLocation (location, special){
             locationOptions(connecticutAveInfo, location, "regular", "light blues");
             break;
         case "Just Visiting":
+            alert("Just Visiting");
             break;
         case "St. Charles Place":
             locationOptions(stCharlesPlaceInfo, location, "regular", "purples");
