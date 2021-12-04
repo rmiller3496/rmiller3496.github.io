@@ -273,7 +273,7 @@
     	randomCircleInArea: function (area, randomizeAlpha, addCross, borderColor, borderThickness, randomRadialProps) {
     	    var props, circle;
     	    
-    	    props = (randomRadialProps) ? randomRadialProps : draw.randomRadialProps(area);
+    	    props = (randomRadialProps) ? randomRadialProps : draw.randomRadialProps(area, undefined, undefined, undefined, undefined, undefined, "blue");
 			
 			if (addCross) {
 			    // always make sure the cross is visible - it won't be if randomizeAlpha is false //
@@ -297,10 +297,10 @@
 			return circle;
     	},
     	
-    	randomRadialProps: function (area, radiusMin, radiusMax, redMax, greenMax, blueMax) {
-    	    return {
+    	randomRadialProps: function (area, radiusMin, radiusMax, redMax, greenMax, blueMax, colorRange) {
+            return {
     	        radius: randomIntBetween(radiusMin || 5, radiusMax || 20),
-    	        color: randomColor(redMax || 255, greenMax || 255, blueMax || 255),
+    	        color: '#0000FF',
     	        x: randomIntBetween(0, area.width),
     	        y: randomIntBetween(0, area.height)
     	    };

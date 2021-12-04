@@ -9,6 +9,11 @@ var unmortgaged = [];
 var mortgaged = [];
 var doublesCounter;
 var devModeEnabled = false;
+var rollCounter = 0;
+var goMoney = 200;
+var jailCost = 50;
+var jailEnabled = true;
+var freeParkingEnabled = true;
 
 // Info for All Addresses
 //[owned or not (if owned -> player number), monopoly or not *not actually being used as of now* , num houses/hotels or mortgaged, price, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses, hotel, mortgage refund]
@@ -246,6 +251,8 @@ function createBasePlayerData () {
 
 // Dice Functions
 function rollDice () {
+    document.getElementById("editRules").disabled = true;
+    rollCounter++
     roll1 = Math.floor(Math.random() * (6 - 1) + 1);
     roll2 = Math.floor(Math.random() * (6 - 1) + 1);
     drawDice();
@@ -253,8 +260,10 @@ function rollDice () {
     if (roll1 === roll2){
         doublesCounter += 1;
         if (doublesCounter === 3){
-            alert("Go To Jail");
-            goToJail();
+            if (jailEnabled === true){
+                alert("Go To Jail");
+                goToJail();
+            }
         } else {
             alert("Doubles!!");
         }
@@ -381,9 +390,9 @@ function movePlayers(roll1, roll2) {
             direction = "left";
             locationY = 1;
             locationX = 1 + change;
-            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + goMoney;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
-            alert('Collected 200 for Passing Go');
+            alert('Collected ' + goMoney + ' for Passing Go');
         } 
         playerInfo[playerIndex][0] = locationX;
         playerInfo[playerIndex][1] = locationY;
@@ -536,9 +545,9 @@ function checkLocation (location, special){
     var playerIndex = currentTurn - 1;
     switch (location){
         case "Go":
-            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + goMoney;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
-            alert('Collected 200 for Landing on Go');
+            alert('Collected ' + goMoney + ' for Landing on Go');
             break;
         case "Mediterranean Avenue":
             locationOptions(mediterraneanAveInfo, location, "regular", "browns");
@@ -601,10 +610,16 @@ function checkLocation (location, special){
             locationOptions(newYorkAveInfo, location, "regular", "oranges");
             break;
         case "Free Parking":
-            var playerIndex = currentTurn - 1;
-            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + freeParkingAmount;
-            alert("Player " + currentTurn + " got " + freeParkingAmount + " from Free Parking");
-            freeParkingAmount = 0;
+            if (freeParkingEnabled === true){
+                var playerIndex = currentTurn - 1;
+                playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + freeParkingAmount;
+                alert("Player " + currentTurn + " got " + freeParkingAmount + " from Free Parking");
+                freeParkingAmount = 0;
+            } else if (freeParkingEnabled === false){
+                alert("Landed on Free Parking");
+            } else{
+                alert("Rule Change Error");
+            }
             break;
         case "Kentucky Avenue":
             locationOptions(kentuckyAveInfo, location, "regular", "reds");
@@ -634,7 +649,13 @@ function checkLocation (location, special){
             locationOptions(marvinGardensInfo, location, "regular", "yellows");
             break;
         case "Go To Jail":
-            goToJail();
+            if (jailEnabled === true){
+                goToJail();
+            } else if (jailEnabled == false){
+                alert("Landed on Go To Jail, but Jail is Disabled");
+            } else {
+                alert("rule change error: jail enabled")
+            }
             break;
         case "Pacific Avenue":
             locationOptions(pacificAveInfo, location, "regular", "greens");
@@ -1639,29 +1660,29 @@ function toLocation(card) {
     if (card[1] === "Chance: Advance to Illinois Avenue. If you pass Go, collect 200."){
         // check if passed to the left
         if (playerInfo[playerIndex][0] > 7 && playerInfo[playerIndex][1] <= 11 && playerInfo[playerIndex][1] !== 1){
-            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + goMoney;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
-            alert('Collected 200 for Passing Go');
+            alert('Collected '+ goMoney + 'for Passing Go');
         }
         playerInfo[playerIndex][2] = "right";
     } else if (card[1] === "Chance: Advance to St. Charles Place. If you pass Go, collect 200."){
         if (playerInfo[playerIndex][1] > 1){
-            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + goMoney;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
-            alert('Collected 200 for Passing Go');
+            alert('Collected '+ goMoney + 'for Passing Go');
         }
         playerInfo[playerIndex][2] = "up";
     } else if (card[1] === "Chance: Advance to Reading Railroad. If you pass Go, collect 200."){
         playerInfo[playerIndex][2] = "left";
         alert("it ran");
         if (playerInfo[playerIndex][0] >= 6 && playerInfo[playerIndex][1] >= 1){
-            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + goMoney;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
-            alert('Collected 200 for Passing Go');
+            alert('Collected '+ goMoney + 'for Passing Go');
         } else if (playerInfo[playerIndex][1] > 1){
-            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + goMoney;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
-            alert('Collected 200 for Passing Go');
+            alert('Collected '+ goMoney + 'for Passing Go');
         }
     } else if (card[2] === 1 && card[3] === 1){
         playerInfo[playerIndex][2] = "left";
@@ -1708,9 +1729,9 @@ function nearestRailroad(card, locale) {
         case "dark blue":
             card[2] = 6;
             card[3] = 1;
-            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + goMoney;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
-            alert('Collected 200 for Passing Go');
+            alert('Collected '+ goMoney + 'for Passing Go');
             playerInfo[playerIndex][2] = "left";
             break;
         case "reds":
@@ -1739,9 +1760,9 @@ function nearestUtility(card, locale){
         card[2] = 11;
         card[3] = 3;
         if (locale === "dark blue"){
-            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + 200;
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] + goMoney;
             document.getElementById("cash" + currentTurn).innerHTML = "Cash: " + playerInfo[playerIndex][3];
-            alert('Collected 200 for Passing Go');
+            alert('Collected '+ goMoney + 'for Passing Go');
         }
         playerInfo[playerIndex][2] = "up";
     } else if (locale === "reds"){
@@ -1852,7 +1873,7 @@ function rollToGetOut(){
         getOutOfJail(roll1, roll2);
     } else {
         if (playerInfo[playerIndex][10] === 3){
-            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 50;
+            playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - jailCost;
             updateAllPlayerCash();
             getOutOfJail(roll1, roll2);
         } else {
@@ -1882,7 +1903,7 @@ function useGOOJF(){
 }
 
 function payToGetOut(){
-    playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - 50;
+    playerInfo[playerIndex][3] = playerInfo[playerIndex][3] - jailCost;
     roll1 = Math.floor(Math.random() * (6 - 1) + 1);
     roll2 = Math.floor(Math.random() * (6 - 1) + 1);
     updateAllPlayerCash();
@@ -2054,6 +2075,10 @@ function convertTxtToData(str){
     playerMonopolies[1] = dataArray[37].split(",");
     playerMonopolies[2] = dataArray[38].split(",");
     playerMonopolies[3] = dataArray[39].split(",");
+    goMoney = Number(dataArray[40]);
+    jailCost = Number(dataArray[41]);
+    jailEnabled = JSON.parse(dataArray[42]);
+    freeParkingEnabled = JSON.parse(dataArray[43]);
     toNumber();
     toBool();
     updateScreenAfterLoad();
@@ -2122,4 +2147,100 @@ function updateScreenAfterLoad(){
 function updatePlayerLocation(playerNumber, xlocale, ylocale){
     playerInfo[playerNumber][0] = xlocale;
     playerInfo[playerNumber][1] = ylocale;
+}
+
+const normalRuleArray = [ , , , "price", "price per house", "rent", "1 house", "2 houses", "3 houses", "4 houses", "hotel", "mortgage refund"];
+const rrRuleArray = [ , , "rent 1 rr", "rent 2 rr", "rent 3 rr", "rent 4 rr", "mortgage refund", "cost"];
+const utilRuleArray = [ , , "1 owned multiplier", "2 owned multiplier", "mortgage refund", "cost"];
+
+function editRules() {
+    var typeOfRulesToEdit = prompt("Welcome to Edit Rules. Two types of rules are available to edit: \nGame Rules - Changing Go Money, Jail Settings, etc\nLocation Rules - Change the Prices to buy or change rent on any property\nType Game Rules to change game rules, Type Location Rules to change location rules");
+    switch(typeOfRulesToEdit){
+        case "Game Rules":
+            var ruleToEdit = prompt("Game Rules Edit\nThese are the rules available to edit:\nGo Money, Jail Cost, Jail Enabled, Free Parking Enabled\nEnter Rule Name To Edit");
+            switch (ruleToEdit){
+                case "Go Money":
+                    var newGoMoney = prompt("Enter New Value for Go Money");
+                    newGoMoney = Number(newGoMoney);
+                    if (isNaN(newGoMoney)){
+                        alert("Improper Input");
+                    } else {
+                        goMoney = newGoMoney;
+                    }
+                    break;
+                case "Jail Cost":
+                    var newJailCost = prompt("Enter New Value for Jail Cost");
+                    newJailCost = Number(newJailCost);
+                    if (isNaN(newJailCost)){
+                        alert("Improper Input");
+                    } else {
+                        jailCost = newJailCost;
+                    }
+                    break;
+                case "Jail Enabled":
+                    var newJailEnabled = prompt("Enter New Value for Jail Enabled. Options are true or false");
+                    newJailEnabled = JSON.parse(newJailEnabled);
+                    jailEnabled = newJailEnabled;
+                    break;
+                case "Free Parking Enabled":
+                    var newFreeParkingEnabled = prompt("Enter New Value for Free Parking Enabled. Options are true or false");
+                    newFreeParkingEnabled = JSON.parse(newFreeParkingEnabled);
+                    freeParkingEnabled = newFreeParkingEnabled;
+                    break;
+                default:
+                    alert("Improper Selection");
+            }
+            break;
+        case "Location Rules":
+            var locationTypeRule = prompt("Enter Type of Property. Options are:\nNormal, Utility, Railroad")
+            var locationRule = prompt("Enter Name for location that you would like to change");
+            switch (locationTypeRule){
+                case "Normal":
+                    var ruleIndex = prompt("To Change A Specific Rule, enter the number associated with the rule.\nprice, price per house, rent, 1 house, 2 houses, 3 houses, 4 houses\n[3]     [4]                       [5]     [6]         [7]            [8]          [9]\nhotel, mortgage refund\n[10]   [11]");
+                    break;
+                case "Railroad":
+                    var ruleIndex = prompt("To Change A Specific Rule, enter the number associated with the rule.\nrent 1 rr, 2rr, 3rr, 4rr, mortgage refund, cost\n[2]           [3]   [4]  [5]  [6]                       [7]");
+                    break;
+                case "Utility":
+                    var ruleIndex = prompt("To Change A Specific Rule, enter the number associated with the rule.\n1 Owned Multiplier, 2 Owned Multiplier, mortgage refund, cost\n[2]                           [3]                             [4]                          [5]");
+                    break;
+                default:
+                    alert("Improper Selection");
+            }
+            ruleIndex = Number(ruleIndex);
+            if(isNaN(ruleIndex)){
+                alert("Non Number Entered for Rule Number");
+            } else {
+                var currentValue = checkStateOfProperty(locationRule, ruleIndex);
+                if (currentValue === undefined){
+                    alert("Improper Location or Index");
+                } else {
+                    switch (locationTypeRule){
+                        case "Normal":
+                            var changedValue = prompt("The Current Rule for " + normalRuleArray[ruleIndex] + " at " + locationRule + " is: " + currentValue +"\nEnter New Value");
+                            break;
+                        case "Railroad":
+                            var changedValue = prompt("The Current Rule for " + rrRuleArray[ruleIndex] + " at " + locationRule + " is: " + currentValue +"\nEnter New Value");
+                            break;
+                        case "Utility":
+                            var changedValue = prompt("The Current Rule for " + utilRuleArray[ruleIndex] + " at " + locationRule + " is: " + currentValue +"\nEnter New Value");
+                            break;
+                    }
+                    changedValue = Number(changedValue);
+                    if (isNaN(changedValue)){
+                        alert("Non NUmber Entered For New Value");
+                    } else {
+                        changeStateOfProperty(locationRule, ruleIndex, changedValue);
+                        alert("Value Changed");
+                        var continueEdits = confirm("If you wish to continue editing rules, press OK, if not, press cancel");
+                        if (continueEdits === true){
+                            editRules();
+                        }
+                    }
+                }
+            }
+            break;
+        default:
+            alert("Improper Selection");
+    }
 }

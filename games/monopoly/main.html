@@ -133,7 +133,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
         <script>
             function saveFile(){       
-                var myFile = new File([mediterraneanAveInfo + "\n" + balticAveInfo + "\n" + orientalAveInfo + "\n" + vermontAveInfo + "\n" + connecticutAveInfo + "\n" + stCharlesPlaceInfo + "\n" + statesAveInfo + "\n" + virginiaAveInfo + "\n" + stJamesPlaceInfo + "\n" + tennesseeAveInfo + "\n" + newYorkAveInfo + "\n" + kentuckyAveInfo + "\n" + indianaAveInfo + "\n" + illinoisAveInfo + "\n" + atlanticAveInfo + "\n" + ventnorAveInfo + "\n" + marvinGardensInfo + "\n" + pacificAveInfo + "\n" + northCarolinaAveInfo + "\n" + pennsylvaniaAveInfo + "\n" + parkPlaceInfo + "\n" + boardwalkInfo + "\n" + readingRailRoadInfo + "\n" + pennsylvaniaAveInfo + "\n" + bandoRailRoadInfo + "\n" + shortLineInfo + "\n" + electricCompanyInfo + "\n" + waterWorksInfo + "\n" + playerInfo[0] + "\n" + playerInfo[1] + "\n" + playerInfo[2]  + "\n" + playerInfo[3] + "\n" + playerProperties[0] + "\n" + playerProperties[1]  + "\n" + playerProperties[2]  + "\n" + playerProperties[3]  + "\n" + playerMonopolies[0] + "\n" + playerMonopolies[1] + "\n" + playerMonopolies[2] + "\n" + playerMonopolies[3]], "monopolySave.txt", {type: "text/plain;charset=utf-8"});
+                var myFile = new File([mediterraneanAveInfo + "\n" + balticAveInfo + "\n" + orientalAveInfo + "\n" + vermontAveInfo + "\n" + connecticutAveInfo + "\n" + stCharlesPlaceInfo + "\n" + statesAveInfo + "\n" + virginiaAveInfo + "\n" + stJamesPlaceInfo + "\n" + tennesseeAveInfo + "\n" + newYorkAveInfo + "\n" + kentuckyAveInfo + "\n" + indianaAveInfo + "\n" + illinoisAveInfo + "\n" + atlanticAveInfo + "\n" + ventnorAveInfo + "\n" + marvinGardensInfo + "\n" + pacificAveInfo + "\n" + northCarolinaAveInfo + "\n" + pennsylvaniaAveInfo + "\n" + parkPlaceInfo + "\n" + boardwalkInfo + "\n" + readingRailRoadInfo + "\n" + pennsylvaniaAveInfo + "\n" + bandoRailRoadInfo + "\n" + shortLineInfo + "\n" + electricCompanyInfo + "\n" + waterWorksInfo + "\n" + playerInfo[0] + "\n" + playerInfo[1] + "\n" + playerInfo[2]  + "\n" + playerInfo[3] + "\n" + playerProperties[0] + "\n" + playerProperties[1]  + "\n" + playerProperties[2]  + "\n" + playerProperties[3]  + "\n" + playerMonopolies[0] + "\n" + playerMonopolies[1] + "\n" + playerMonopolies[2] + "\n" + playerMonopolies[3] + "\n" + goMoney + "\n" + jailCost + "\n" + jailEnabled + "\n" + freeParkingEnabled], "monopolySave.txt", {type: "text/plain;charset=utf-8"});
                 saveAs(myFile);
             }
         </script>
@@ -155,6 +155,7 @@
         <button type="button" id="trade" onclick="trade()">Trade With Other Players</button>
         <button type="button" id="save" onclick="saveFile()">Save</button>
         <input type="file" name="inputfile" id="inputfile">
+        <button type="button" id="editRules" onclick="editRules()">Edit Rules</button>
         <br>
         <pre id="output"></pre>
         <script type="text/javascript">
