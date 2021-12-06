@@ -2166,6 +2166,7 @@ function editRules() {
                         alert("Improper Input");
                     } else {
                         goMoney = newGoMoney;
+                        alert("Rule Changed");
                     }
                     break;
                 case "Jail Cost":
@@ -2175,17 +2176,20 @@ function editRules() {
                         alert("Improper Input");
                     } else {
                         jailCost = newJailCost;
+                        alert("Rule Changed");
                     }
                     break;
                 case "Jail Enabled":
                     var newJailEnabled = prompt("Enter New Value for Jail Enabled. Options are true or false");
                     newJailEnabled = JSON.parse(newJailEnabled);
                     jailEnabled = newJailEnabled;
+                    alert("Rule Changed");
                     break;
                 case "Free Parking Enabled":
                     var newFreeParkingEnabled = prompt("Enter New Value for Free Parking Enabled. Options are true or false");
                     newFreeParkingEnabled = JSON.parse(newFreeParkingEnabled);
                     freeParkingEnabled = newFreeParkingEnabled;
+                    alert("Rule Changed");
                     break;
                 default:
                     alert("Improper Selection");
