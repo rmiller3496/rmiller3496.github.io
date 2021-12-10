@@ -34,65 +34,78 @@ var init = function (window) {
                 if (numberOfCirclesToCreate < 0){
                     alert("Negative Number Entered, Please Refresh and Enter a Positive Number");
                 } else {
-                    if (numberOfCirclesToCreate >= 300){
-                        var moveForward = confirm("Animating 300 or more circles can cause frame drops. Press Okay to continue");
-                        if (moveForward){
-                            numberOfCirclesToCreate = parseInt(numberOfCirclesToCreate);
-                            while (circlesCreated < numberOfCirclesToCreate){
-                                drawCircle();
-                                circlesCreated++;
-                            }
-                            view.addChild(fps);
-                            app.addUpdateable(fps);
-                    
-                            game.circle = circle;
-                            game.circles = circles;
-                            game.drawCircle = drawCircle;
-                            game.update = update;
+                    var colorTypeOptions = ["red", "yellow", "blue", "green", "purple", "white", "orange", "all colors"];
+                    var colorType = prompt("Enter Color Type you would like to see.\nOptions: Red, Yellow, Blue, Green, Purple, White, Orange, All Colors");
+                    if (colorType !== undefined){
+                        colorType = colorType.toLowerCase();
+                        if (colorTypeOptions.indexOf(colorType) === -1){
+                            alert("Invalid Option, Please Refresh Page");
+                        } else {
+                            var colorNumber = colorTypeOptions.indexOf(colorType);
+                            if (numberOfCirclesToCreate >= 300){
+                                var moveForward = confirm("Animating 300 or more circles can cause frame drops. Press Okay to continue");
+                                if (moveForward){
+                                    numberOfCirclesToCreate = parseInt(numberOfCirclesToCreate);
+                                    while (circlesCreated < numberOfCirclesToCreate){
+                                        drawCircle();
+                                        circlesCreated++;
+                                    }
+                                    view.addChild(fps);
+                                    app.addUpdateable(fps);
                             
-                            app.addUpdateable(window.opspark.game);
-    
-    
-                            // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
-                            if((typeof process !== 'undefined') &&
-                            (typeof process.versions.node !== 'undefined')) {
-                            // here, export any references you need for tests //
-                            module.exports = init;
-                            }
-                        } else{
-                            alert("Please Refresh the Page");
+                                    game.circle = circle;
+                                    game.circles = circles;
+                                    game.drawCircle = drawCircle;
+                                    game.update = update;
+                                    
+                                    app.addUpdateable(window.opspark.game);
+            
+            
+                                    // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
+                                    if((typeof process !== 'undefined') &&
+                                    (typeof process.versions.node !== 'undefined')) {
+                                    // here, export any references you need for tests //
+                                    module.exports = init;
+                                    }
+                                } else{
+                                    alert("Please Refresh the Page");
+                                }
+                            } else {
+                                numberOfCirclesToCreate = parseInt(numberOfCirclesToCreate);
+                                while (circlesCreated < numberOfCirclesToCreate){
+                                    drawCircle();
+                                    circlesCreated++;
+                                }
+                                view.addChild(fps);
+                                app.addUpdateable(fps);
+                        
+                                game.circle = circle;
+                                game.circles = circles;
+                                game.drawCircle = drawCircle;
+                                game.update = update;
+                                
+                                app.addUpdateable(window.opspark.game);
+            
+            
+                                // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
+                                if((typeof process !== 'undefined') &&
+                                (typeof process.versions.node !== 'undefined')) {
+                                // here, export any references you need for tests //
+                                module.exports = init;
+                                }
+                             }``
                         }
                     } else {
-                        numberOfCirclesToCreate = parseInt(numberOfCirclesToCreate);
-                        while (circlesCreated < numberOfCirclesToCreate){
-                            drawCircle();
-                            circlesCreated++;
-                        }
-                        view.addChild(fps);
-                        app.addUpdateable(fps);
-                
-                        game.circle = circle;
-                        game.circles = circles;
-                        game.drawCircle = drawCircle;
-                        game.update = update;
-                        
-                        app.addUpdateable(window.opspark.game);
-    
-    
-                        // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
-                        if((typeof process !== 'undefined') &&
-                        (typeof process.versions.node !== 'undefined')) {
-                        // here, export any references you need for tests //
-                        module.exports = init;
-                        }
-                     }``
+                        alert("No Option Selected, Please refresh page");
+                    }
+                    
                 }
            }
         }
 
         // TODO 2 : Create a function that draws a circle 
         function drawCircle() {
-            circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
+            circle = draw.randomCircleInArea(canvas, true, true, colorNumber);
             physikz.addRandomVelocity(circle, canvas, 10, 10);
             view.addChild(circle);
             circles.push(circle);

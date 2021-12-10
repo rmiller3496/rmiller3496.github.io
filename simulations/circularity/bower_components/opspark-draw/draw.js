@@ -90,7 +90,30 @@
         if (radius) { dimensions.radius = radius; }
         return dimensions;
     }
-    
+    // 0       1        2         3          4        5      6         7
+    //["red", "yellow", "blue", "green", "purple", "white", "orange", "all colors"]
+    function handleColorOption(colorNumber){
+        switch(colorNumber){
+            case 0:
+                return "#FF0000";
+            case 1:
+                return "#FFFF00";
+            case 2:
+                return "0000FF";
+            case 3:
+                return "#00FF00";
+            case 4:
+                return "#660066"
+            case 5:
+                return "#FFFFFF"
+            case 6:
+                return "#FF6600";
+            case 7:
+                randomColor(255, 255, 255);
+                break;
+        }
+    }
+
     var draw = {
         setDimensionsOn: function (shape, dimensions) {
             /*
@@ -297,10 +320,10 @@
 			return circle;
     	},
     	
-    	randomRadialProps: function (area, radiusMin, radiusMax, redMax, greenMax, blueMax, colorRange) {
+    	randomRadialProps: function (area, radiusMin, radiusMax, colorOption) {
             return {
     	        radius: randomIntBetween(radiusMin || 5, radiusMax || 20),
-    	        color: '#0000FF',
+    	        color: handleColorOption(colorOption),
     	        x: randomIntBetween(0, area.width),
     	        y: randomIntBetween(0, area.height)
     	    };
